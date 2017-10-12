@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */; };
+		250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AF0BC1F8FF0FB00BD919B /* Side.swift */; };
 		255A6DEB1F8F67D000C76EAD /* MainFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DEA1F8F67D000C76EAD /* MainFlowLayout.swift */; };
 		255A6DED1F8F726300C76EAD /* TileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DEC1F8F726300C76EAD /* TileCollectionViewCell.swift */; };
 		255A6DF31F8F95B700C76EAD /* FlyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DF21F8F95B700C76EAD /* FlyAnimator.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
+		250AF0BC1F8FF0FB00BD919B /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		255A6DEA1F8F67D000C76EAD /* MainFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowLayout.swift; sourceTree = "<group>"; };
 		255A6DEC1F8F726300C76EAD /* TileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCollectionViewCell.swift; sourceTree = "<group>"; };
 		255A6DF21F8F95B700C76EAD /* FlyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyAnimator.swift; sourceTree = "<group>"; };
@@ -80,6 +84,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		250AF0B81F8FEF7300BD919B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		250AF0BB1F8FF0E400BD919B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				250AF0BC1F8FF0FB00BD919B /* Side.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		255A6DF61F8FB33600C76EAD /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +194,8 @@
 			children = (
 				25AE022D1F0B7389004EA053 /* AppDelegate.swift */,
 				255A6DF61F8FB33600C76EAD /* UI */,
+				250AF0B81F8FEF7300BD919B /* Extensions */,
+				250AF0BB1F8FF0E400BD919B /* Models */,
 				255A6DFC1F8FB3B700C76EAD /* Resources */,
 				255A6DFE1F8FB3F300C76EAD /* Supporting Files */,
 			);
@@ -330,7 +352,9 @@
 			files = (
 				255A6DF31F8F95B700C76EAD /* FlyAnimator.swift in Sources */,
 				255A6DED1F8F726300C76EAD /* TileCollectionViewCell.swift in Sources */,
+				250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */,
 				255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */,
+				250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */,
 				255A6DEB1F8F67D000C76EAD /* MainFlowLayout.swift in Sources */,
 				25AE02301F0B7389004EA053 /* MainViewController.swift in Sources */,
 				25AE022E1F0B7389004EA053 /* AppDelegate.swift in Sources */,

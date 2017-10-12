@@ -30,11 +30,26 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
     func animateIn(context: UIViewControllerContextTransitioning) {
         
         let containerView = context.containerView
-        guard let fromViewController = context.viewController(forKey: .from), let toViewController = context.viewController(forKey: .to)  else { return }
+        guard let fromViewController = context.viewController(forKey: .from) as? UICollectionViewController,
+              let toViewController = context.viewController(forKey: .to),
+              let collectionView = fromViewController.collectionView else { return }
         
         containerView.addSubview(toViewController.view)
         containerView.addSubview(fromViewController.view)
         toViewController.view.alpha = 0
+        
+        for (index, cell) in collectionView.visibleCells.enumerated() {
+            
+            let side = collectionView.side(for: cell)
+            cell.backgroundColor = side.color()
+            let cellOffset = side.flyOffset(size: cell.frame.size)
+            
+            UIView.animate(withDuration: 2, delay: 0.1, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .curveEaseIn, animations: {
+                cell.transform = CGAffineTransform(translationX: cellOffset.width, y: cellOffset.height)
+            }, completion: { (completed) in
+
+            })
+        }
         
         UIView.animate(withDuration: self.transitionDuration(using: context),
                        animations: {
@@ -48,7 +63,9 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
     
     func animateOut(context: UIViewControllerContextTransitioning) {
         let containerView = context.containerView
-        guard let fromViewController = context.viewController(forKey: .from), let toViewController = context.viewController(forKey: .to)  else { return }
+        guard let fromViewController = context.viewController(forKey: .from),
+            let toViewController = context.viewController(forKey: .to) as? UICollectionViewController,
+            let collectionView = toViewController.collectionView else { return }
         
         containerView.addSubview(toViewController.view)
         containerView.addSubview(fromViewController.view)
@@ -58,6 +75,10 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
                        animations: {
                         fromViewController.view.alpha = 0
                         toViewController.view.alpha = 1
+                        
+                        for (index, cell) in collectionView.visibleCells.enumerated() {
+                            cell.transform = CGAffineTransform.identity
+                        }
         }) { (completed) in
             context.completeTransition(completed)
         }
