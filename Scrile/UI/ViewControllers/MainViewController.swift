@@ -45,7 +45,8 @@ class MainViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tileCellIdentifier, for: indexPath)        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tileCellIdentifier, for: indexPath)
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     
