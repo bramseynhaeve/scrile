@@ -15,6 +15,7 @@ struct Side: OptionSet {
     static let top = Side(rawValue: 1 << 2)
     static let right = Side(rawValue: 1 << 3)
     static let bottom = Side(rawValue: 1 << 4)
+    static let middle = Side(rawValue: 1 << 5)
 }
 
 extension Side {
@@ -44,6 +45,10 @@ extension Side {
     
     func color() -> UIColor {
         switch (self) {
+        case [.middle, .top]:
+            return .yellow
+        case [.middle, .bottom]:
+            return .blue
         case [.left, .top]:
             return .orange
         case [.right, .top]:
