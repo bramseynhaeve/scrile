@@ -15,20 +15,47 @@ struct Side: OptionSet {
     static let top = Side(rawValue: 1 << 2)
     static let right = Side(rawValue: 1 << 3)
     static let bottom = Side(rawValue: 1 << 4)
-    static let middle = Side(rawValue: 1 << 5)
+    
+    static let topLeft: Side = [.left, .top]
+    static let topRight: Side = [.right, .top]
+    static let bottomLeft: Side = [.left, .bottom]
+    static let bottomRight: Side = [.right, .bottom]
+
+    static let topMiddle: Side = [.left, .right, .top]
+    static let bottomMiddle: Side = [.left, .right, .bottom]
+    static let middle: Side = [.left, .right, .top, .bottom]
+    
 }
 
 extension Side {
     func flyOffset(size: CGSize) -> CGSize {
         
+        self.randomDirection()
+        
         switch (self) {
-        case [.left, .top]:
+        case .topMiddle:
+            let random = arc4random_uniform(3)
+            
+            //left or right
+            let offset = random == 0 ? CGSize(width: size.width, height: 0) : CGSize(width: -size.width, height: 0)
+            
+            //or up
+            return random == 2 ? CGSize(width: 0, height: -size.height) : offset
+        case .bottomMiddle:
+            let random = arc4random_uniform(3)
+            
+            //left or right
+            let offset = random == 0 ? CGSize(width: size.width, height: 0) : CGSize(width: -size.width, height: 0)
+            
+            //or down
+            return random == 2 ? CGSize(width: 0, height: size.height) : offset
+        case .topLeft:
             return arc4random_uniform(2) == 0 ? CGSize(width: -size.width, height: 0) : CGSize(width: 0, height: -size.height)
-        case [.right, .top]:
+        case .topRight:
             return arc4random_uniform(2) == 0 ? CGSize(width: size.width, height: 0) : CGSize(width: 0, height: -size.height)
-        case [.left, .bottom]:
+        case .bottomLeft:
             return arc4random_uniform(2) == 0 ? CGSize(width: -size.width, height: 0) : CGSize(width: 0, height: size.height)
-        case [.right, .bottom]:
+        case .bottomRight:
             return arc4random_uniform(2) == 0 ? CGSize(width: size.width, height: 0) : CGSize(width: 0, height: size.height)
         case .left:
             return CGSize(width: -size.width, height: 0)
@@ -38,6 +65,14 @@ extension Side {
             return CGSize(width: size.width, height: 0)
         case .bottom:
             return CGSize(width: 0, height: size.height)
+        case .middle:
+            let random = arc4random_uniform(4)
+            
+            //left or right
+            let offset = random == 0 ? CGSize(width: size.width, height: 0) : CGSize(width: -size.width, height: 0)
+            
+            //or up
+            return random == 2 ? CGSize(width: 0, height: -size.height) : offset
         default:
             return CGSize.zero
         }
@@ -45,17 +80,17 @@ extension Side {
     
     func color() -> UIColor {
         switch (self) {
-        case [.middle, .top]:
+        case .topMiddle:
             return UIColor.yellow.darkened(byPercentage: 0.3)!
-        case [.middle, .bottom]:
+        case .bottomMiddle:
             return UIColor.blue.darkened(byPercentage: 0.3)!
-        case [.left, .top]:
+        case .topLeft:
             return .orange
-        case [.right, .top]:
+        case .topRight:
             return .brown
-        case [.left, .bottom]:
+        case .bottomLeft:
             return .purple
-        case [.right, .bottom]:
+        case .bottomRight:
             return .cyan
         case .left:
             return .red

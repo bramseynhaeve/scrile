@@ -10,26 +10,18 @@ import UIKit
 
 extension UICollectionView {
     func side(for cell: UICollectionViewCell) -> Side {
-        let margin:CGFloat = 5.0
+        let correctionMargin: CGFloat = 5.0
+        let verticalMargin:CGFloat = ((self.frame.height - cell.frame.height) / 2) - correctionMargin
+        let horizontalMargin:CGFloat = ((self.frame.width - cell.frame.width) / 2) - correctionMargin
+        
         var frame = cell.frame
         frame.origin.y -= self.contentOffset.y
         
-        //TODO: use optional Side
         var side = Side(rawValue: 0)
-        if round(frame.origin.x) == 0 { side.insert(.left) }
-        if round(frame.origin.y) <= margin { side.insert(.top) }
-        if round(frame.origin.x - self.frame.size.width + frame.size.width) == 0 { side.insert(.right) }
-        if round(frame.origin.y - self.frame.size.height + frame.size.height) >= -margin { side.insert(.bottom) }
-        
-        let isOnASide = [.left, .top, .bottom, .right].contains(side)
-        if !isOnASide {
-            side.insert(.middle)
-            
-            let offset = frame.midY - self.frame.midY
-            if (abs(offset) > frame.height / 2) {
-                side.insert(offset > 0 ? .bottom : .top)
-            }
-        }
+        if round(frame.midX) <= (self.frame.midX - horizontalMargin) { side.insert(.left) }
+        if round(frame.midY) <= (self.frame.midY - verticalMargin) { side.insert(.top) }
+        if round(frame.midX) >= (self.frame.midX + horizontalMargin) { side.insert(.right) }
+        if round(frame.midY) >= (self.frame.midY + verticalMargin) { side.insert(.bottom) }
         
         return side
     }
