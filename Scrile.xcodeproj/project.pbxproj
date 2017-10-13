@@ -21,6 +21,7 @@
 		25AE024E1F0B7389004EA053 /* ScrileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE024D1F0B7389004EA053 /* ScrileUITests.swift */; };
 		25DEB2271F90B0CB00C015F7 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DEB2261F90B0CB00C015F7 /* UIColorExtension.swift */; };
 		25DEB22B1F90D01700C015F7 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DEB22A1F90D01700C015F7 /* CGRectExtension.swift */; };
+		25DEB22D1F90D5E900C015F7 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DEB22C1F90D5E900C015F7 /* ArrayExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		25AE024F1F0B7389004EA053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25DEB2261F90B0CB00C015F7 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		25DEB22A1F90D01700C015F7 /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
+		25DEB22C1F90D5E900C015F7 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */,
 				25DEB2261F90B0CB00C015F7 /* UIColorExtension.swift */,
 				25DEB22A1F90D01700C015F7 /* CGRectExtension.swift */,
+				25DEB22C1F90D5E900C015F7 /* ArrayExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				255A6DF31F8F95B700C76EAD /* FlyAnimator.swift in Sources */,
 				255A6DED1F8F726300C76EAD /* TileCollectionViewCell.swift in Sources */,
 				250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */,
+				25DEB22D1F90D5E900C015F7 /* ArrayExtension.swift in Sources */,
 				255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */,
 				250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */,
 				25DEB2271F90B0CB00C015F7 /* UIColorExtension.swift in Sources */,

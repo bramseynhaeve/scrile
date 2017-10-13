@@ -11,8 +11,8 @@ import UIKit
 extension UICollectionView {
     func side(for cell: UICollectionViewCell) -> Side {
         let correctionMargin: CGFloat = 5.0
-        let verticalMargin:CGFloat = ((self.frame.height - cell.frame.height) / 2) - correctionMargin
-        let horizontalMargin:CGFloat = ((self.frame.width - cell.frame.width) / 2) - correctionMargin
+        let verticalMargin:CGFloat = (cell.frame.height / 2) - correctionMargin
+        let horizontalMargin:CGFloat = (cell.frame.width / 2) - correctionMargin
         
         var frame = cell.frame
         frame.origin.y -= self.contentOffset.y
