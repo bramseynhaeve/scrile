@@ -46,9 +46,9 @@ extension Side {
     func color() -> UIColor {
         switch (self) {
         case [.middle, .top]:
-            return .yellow
+            return UIColor.yellow.darkened(byPercentage: 0.3)!
         case [.middle, .bottom]:
-            return .blue
+            return UIColor.blue.darkened(byPercentage: 0.3)!
         case [.left, .top]:
             return .orange
         case [.right, .top]:

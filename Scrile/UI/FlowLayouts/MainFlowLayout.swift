@@ -22,7 +22,7 @@ class MainFlowLayout: UICollectionViewFlowLayout {
     
     override var itemSize: CGSize {
         set {
-            itemSize = newValue
+            self.itemSize = newValue
         }
         get {
             guard let collectionView = collectionView else { return CGSize.zero }

@@ -20,7 +20,17 @@ extension UICollectionView {
         if round(frame.origin.y) <= margin { side.insert(.top) }
         if round(frame.origin.x - self.frame.size.width + frame.size.width) == 0 { side.insert(.right) }
         if round(frame.origin.y - self.frame.size.height + frame.size.height) >= -margin { side.insert(.bottom) }
-
+        
+        let isOnASide = [.left, .top, .bottom, .right].contains(side)
+        if !isOnASide {
+            side.insert(.middle)
+            
+            let offset = frame.midY - self.frame.midY
+            if (abs(offset) > frame.height / 2) {
+                side.insert(offset > 0 ? .bottom : .top)
+            }
+        }
+        
         return side
     }
 }
