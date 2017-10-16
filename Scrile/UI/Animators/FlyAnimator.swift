@@ -10,6 +10,10 @@ import UIKit
 
 class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
+    let delay = 0.02
+    let touchDelay = 0.15
+    let tileTransitionDuration = 0.16
+    
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isInAnimation(context: transitionContext) {
             animateIn(context: transitionContext)
@@ -19,7 +23,7 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 1.5
+        return 1
     }
     
     func isInAnimation(context: UIViewControllerContextTransitioning) -> Bool {
@@ -38,23 +42,30 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
         containerView.addSubview(fromViewController.view)
         toViewController.view.alpha = 0
         
-        for (index, cell) in collectionView.visibleCells.enumerated() {
+        let sortedCells = collectionView.visibleCells.sorted { (cell1, cell2) -> Bool in            
+            if cell1.isSelected { return true }
+            if cell2.isSelected { return false }
             
-            let side = collectionView.side(for: cell)
-            cell.backgroundColor = side.color()
-            let cellOffset = side.flyOffset(size: cell.frame.size)
-            
-            UIView.animate(withDuration: 2, delay: 0.1, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.2, options: .curveEaseIn, animations: {
-                cell.transform = CGAffineTransform(translationX: cellOffset.width, y: cellOffset.height)
-            }, completion: { (completed) in
-
-            })
+            let side = collectionView.side(for: cell1)
+            return side.isAtBorder()
         }
         
-        UIView.animate(withDuration: self.transitionDuration(using: context),
+        for (index, cell) in sortedCells.enumerated() {
+            
+            let side = collectionView.side(for: cell)
+            let cellOffset = side.flyOffset(size: cell.frame.size)
+            let transitionDelay = (cell.isSelected ? 0.0 : touchDelay) + (delay * Double(index + 1)) 
+            
+            UIView.animate(withDuration: tileTransitionDuration, delay: transitionDelay, options: .curveEaseIn, animations: {
+                cell.transform = CGAffineTransform(translationX: cellOffset.width, y: cellOffset.height)
+            }, completion: nil)
+        }
+        
+        UIView.animate(withDuration: 0.29,
+                       delay: self.transitionDuration(using: context) - 0.29,
+                       options: .curveEaseOut,
                        animations: {
                         fromViewController.view.alpha = 0
-                        toViewController.view.backgroundColor = UIColor.yellow
                         toViewController.view.alpha = 1
         }) { (completed) in
             context.completeTransition(completed)
@@ -70,15 +81,22 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
         containerView.addSubview(toViewController.view)
         containerView.addSubview(fromViewController.view)
         toViewController.view.alpha = 0
+
+        let tileTransitionDuration = transitionDuration(using: context) - (delay * Double(collectionView.visibleCells.count))
         
-        UIView.animate(withDuration: self.transitionDuration(using: context),
+        for (index, cell) in collectionView.visibleCells.enumerated() {
+            let transitionDelay = delay * Double(index + 1)
+            
+            UIView.animate(withDuration: tileTransitionDuration, delay: transitionDelay, options: .curveEaseOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+        }
+        
+        UIView.animate(withDuration: 0.29,
+                       delay: 0,
                        animations: {
                         fromViewController.view.alpha = 0
                         toViewController.view.alpha = 1
-                        
-                        for (index, cell) in collectionView.visibleCells.enumerated() {
-                            cell.transform = CGAffineTransform.identity
-                        }
         }) { (completed) in
             context.completeTransition(completed)
         }

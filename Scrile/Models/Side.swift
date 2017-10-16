@@ -18,43 +18,49 @@ enum Direction {
 struct Side: OptionSet {
     let rawValue: Int
     
-    static let left = Side(rawValue: 1 << 1)
-    static let top = Side(rawValue: 1 << 2)
-    static let right = Side(rawValue: 1 << 3)
-    static let bottom = Side(rawValue: 1 << 4)
+    static let none = Side(rawValue: 0)
+    
+    static let left = Side(rawValue: 1 << 0)
+    static let top = Side(rawValue: 1 << 1)
+    static let right = Side(rawValue: 1 << 2)
+    static let bottom = Side(rawValue: 1 << 3)
+    
+    static let leaningTop = Side(rawValue: 1 << 4)
+    static let leaningBottom = Side(rawValue: 1 << 5)
     
     static let topLeft: Side = [.left, .top]
     static let topRight: Side = [.right, .top]
     static let bottomLeft: Side = [.left, .bottom]
     static let bottomRight: Side = [.right, .bottom]
-
-    static let topMiddle: Side = [.left, .right, .top]
-    static let bottomMiddle: Side = [.left, .right, .bottom]
-    static let middle: Side = [.left, .right, .top, .bottom]
-    
 }
 
 extension Side {
     func flyOffset(size: CGSize) -> CGSize {
         
+        var multiplier:CGFloat = 1.0
+        switch self {
+        case .leaningTop, .leaningBottom:
+            multiplier = 2.2
+        case .none:
+            multiplier = 3.3
+        default:
+            multiplier = 1.1
+        }
+        
         switch self.randomDirection() {
         case .left:
-            return CGSize(width: -size.width, height: 0)
+            return CGSize(width: -size.width * multiplier, height: 0)
         case .up:
-            return CGSize(width: 0, height: -size.height)
+            return CGSize(width: 0, height: -size.height * multiplier)
         case .right:
-            return CGSize(width: size.width, height: 0)
+            return CGSize(width: size.width * multiplier, height: 0)
         case .down:
-            return CGSize(width: 0, height: size.height)
+            return CGSize(width: 0, height: size.height * multiplier)
         }
     }
     
     func color() -> UIColor {
         switch (self) {
-        case .topMiddle:
-            return UIColor.yellow.darkened(byPercentage: 0.3)!
-        case .bottomMiddle:
-            return UIColor.blue.darkened(byPercentage: 0.3)!
         case .topLeft:
             return .orange
         case .topRight:
@@ -71,6 +77,10 @@ extension Side {
             return .green
         case .bottom:
             return .blue
+        case .leaningTop:
+            return UIColor.yellow.darkened(byPercentage: 0.4)!
+        case .leaningBottom:
+            return UIColor.blue.darkened(byPercentage: 0.4)!
         default:
             return .gray
         }
@@ -78,10 +88,6 @@ extension Side {
     
     func randomDirection() -> Direction {
         switch (self) {
-        case .topMiddle:
-            return [.left, .up, .right].randomItem
-        case .bottomMiddle:
-            return [.left, .down, .right].randomItem
         case .topLeft:
             return [.left, .up].randomItem
         case .topRight:
@@ -98,8 +104,17 @@ extension Side {
             return .right
         case .bottom:
             return .down
+        case .leaningTop:
+            return [.left, .up, .right].randomItem
+        case .leaningBottom:
+            return [.left, .down, .right].randomItem
+            
         default:
-            return [.left, .up, .right, .down].randomItem
+            return [.left, .up, .right, .right].randomItem
         }
+    }
+    
+    func isAtBorder() -> Bool {
+        return contains(.left) || contains(.top) || contains(.right) || contains(.bottom)
     }
 }

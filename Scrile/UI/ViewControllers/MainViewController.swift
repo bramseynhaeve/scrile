@@ -30,9 +30,20 @@ class MainViewController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         if let collectionView = collectionView {
             collectionView.register(TileCollectionViewCell.self, forCellWithReuseIdentifier: tileCellIdentifier)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard let collectionView = collectionView else { return }
+        for cell in collectionView.visibleCells {
+            let _ = collectionView.side(for: cell)
         }
     }
     
@@ -46,7 +57,6 @@ class MainViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tileCellIdentifier, for: indexPath)
-        cell.backgroundColor = UIColor.clear
         return cell
     }
     
