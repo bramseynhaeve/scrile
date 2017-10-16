@@ -54,7 +54,9 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
             
             let side = collectionView.side(for: cell)
             let cellOffset = side.flyOffset(size: cell.frame.size)
-            let transitionDelay = (cell.isSelected ? 0.0 : touchDelay) + (delay * Double(index + 1)) 
+            let transitionDelay = (cell.isSelected ? 0.0 : touchDelay) + (delay * Double(index + 1))
+            
+            cell.layer.zPosition = CGFloat(sortedCells.count - index)
             
             UIView.animate(withDuration: tileTransitionDuration, delay: transitionDelay, options: .curveEaseIn, animations: {
                 cell.transform = CGAffineTransform(translationX: cellOffset.width, y: cellOffset.height)
@@ -89,7 +91,7 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
         }
         
         for (index, cell) in sortedCells.enumerated() {
-            let transitionDelay = (cell.isSelected ? 0.0 : touchDelay) + (delay * Double(index + 1))
+            let transitionDelay = 0.29 + (delay * Double(index))
             
             UIView.animate(withDuration: tileTransitionDuration, delay: transitionDelay, options: .curveEaseOut, animations: {
                 cell.transform = CGAffineTransform.identity
