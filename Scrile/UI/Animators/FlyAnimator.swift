@@ -73,6 +73,7 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
     }
     
     func animateOut(context: UIViewControllerContextTransitioning) {
+        
         let containerView = context.containerView
         guard let fromViewController = context.viewController(forKey: .from),
             let toViewController = context.viewController(forKey: .to) as? UICollectionViewController,
@@ -81,25 +82,28 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
         containerView.addSubview(toViewController.view)
         containerView.addSubview(fromViewController.view)
         toViewController.view.alpha = 0
-
-        let tileTransitionDuration = transitionDuration(using: context) - (delay * Double(collectionView.visibleCells.count))
         
-        for (index, cell) in collectionView.visibleCells.enumerated() {
-            let transitionDelay = delay * Double(index + 1)
+        let sortedCells = collectionView.visibleCells.sorted { (cell1, cell2) -> Bool in
+            let side = collectionView.side(for: cell1)
+            return !side.isAtBorder()
+        }
+        
+        for (index, cell) in sortedCells.enumerated() {
+            let transitionDelay = (cell.isSelected ? 0.0 : touchDelay) + (delay * Double(index + 1))
             
             UIView.animate(withDuration: tileTransitionDuration, delay: transitionDelay, options: .curveEaseOut, animations: {
                 cell.transform = CGAffineTransform.identity
-            }, completion: nil)
+            }, completion: { (completed) in
+                if index == sortedCells.count - 1 {
+                    context.completeTransition(completed)
+                }
+            })
         }
         
-        UIView.animate(withDuration: 0.29,
-                       delay: 0,
-                       animations: {
-                        fromViewController.view.alpha = 0
-                        toViewController.view.alpha = 1
-        }) { (completed) in
-            context.completeTransition(completed)
-        }
+        UIView.animate(withDuration: 0.29, delay: 0, options: .curveEaseIn, animations: {
+            fromViewController.view.alpha = 0
+            toViewController.view.alpha = 1
+        }, completion: nil)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
