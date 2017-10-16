@@ -14,7 +14,7 @@ extension UICollectionView {
         let verticalMargin:CGFloat = ((self.frame.height - cell.frame.height) / 2) - correctionMargin
         let horizontalMargin:CGFloat = ((self.frame.width - cell.frame.width) / 2) - correctionMargin
         
-        var frame = cell.frame
+        var frame = cell.transform.isIdentity ? cell.frame : cell.frame.applying(cell.transform.inverted())
         frame.origin.y -= self.contentOffset.y
         
         var side = Side.none
