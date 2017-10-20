@@ -16,13 +16,15 @@ class MainViewController: UICollectionViewController {
         let flowLayout = MainFlowLayout()
         super.init(collectionViewLayout: flowLayout)
         
-        if #available(iOS 11.0, *) {
-            if let collectionView = collectionView {
-                collectionView.insetsLayoutMarginsFromSafeArea = false
-                
+        
+        if let collectionView = collectionView {
+            if #available(iOS 11.0, *) {
                 let statusBarHeight = UIApplication.shared.statusBarFrame.height
+                collectionView.insetsLayoutMarginsFromSafeArea = false
                 additionalSafeAreaInsets = UIEdgeInsetsMake(-statusBarHeight, 0, -statusBarHeight, 0)
             }
+            
+            collectionView.backgroundColor = .clear
         }
     }
     
@@ -44,14 +46,6 @@ class MainViewController: UICollectionViewController {
         guard let collectionView = collectionView else { return }
         for cell in collectionView.visibleCells {
             let _ = collectionView.side(for: cell)
-        }
-    }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let collectionView = collectionView else { return }
-        for cell in collectionView.visibleCells {
-            let side = collectionView.side(for: cell)
-            cell.backgroundColor = side.color()
         }
     }
     
