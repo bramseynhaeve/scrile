@@ -36,7 +36,7 @@ class MainViewController: UICollectionViewController {
         super.viewDidLoad()
         
         if let collectionView = collectionView {
-            collectionView.register(TileCollectionViewCell.self, forCellWithReuseIdentifier: tileCellIdentifier)
+            collectionView.register(NumberTileCollectionViewCell.self, forCellWithReuseIdentifier: tileCellIdentifier)
         }
     }
     
@@ -51,6 +51,11 @@ class MainViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tileCellIdentifier, for: indexPath)
+    
+        if let tileCell = cell as? NumberTileCollectionViewCell {
+            tileCell.number = indexPath.row.scrumFibonacci()
+        }
+        
         return cell
     }
     
@@ -59,7 +64,7 @@ class MainViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1000
+        return 15
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
