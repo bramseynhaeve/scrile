@@ -35,8 +35,7 @@ class NumberTileCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 2
         layer.masksToBounds = true
         
-        numberLabel.text = "1"
-        numberLabel.font = .systemFont(ofSize: 50)
+        numberLabel.font = UIFont.vagThin(size: 50)
         numberLabel.textColor = .white
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
         
