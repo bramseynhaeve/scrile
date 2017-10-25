@@ -8,10 +8,10 @@
 
 import UIKit
 
-class MainViewController: UICollectionViewController {
+class TileCollectionViewController: UICollectionViewController {
     
     let tileCellIdentifier = "tileCell"
-
+    
     init() {
         let flowLayout = MainFlowLayout()
         super.init(collectionViewLayout: flowLayout)
@@ -51,7 +51,7 @@ class MainViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tileCellIdentifier, for: indexPath)
-    
+        
         if let tileCell = cell as? NumberTileCollectionViewCell {
             tileCell.number = indexPath.row.scrumFibonacci()
         }
@@ -72,4 +72,3 @@ class MainViewController: UICollectionViewController {
         present(colorViewController, animated: true, completion: nil)
     }
 }
-
