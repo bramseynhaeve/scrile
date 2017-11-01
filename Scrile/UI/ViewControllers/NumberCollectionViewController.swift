@@ -31,7 +31,7 @@ class NumberCollectionViewController: TileCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let hiddenNumberViewController = HiddenNumberViewController()
-        present(hiddenNumberViewController, animated: true, completion: nil)
+//        present(ColorViewController(), animated: true, completion: nil)
+        present(HiddenNumberViewController(), animated: true, completion: nil)
     }
 }

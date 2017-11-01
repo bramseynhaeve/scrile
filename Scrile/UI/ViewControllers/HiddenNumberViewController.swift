@@ -12,7 +12,7 @@ private let hiddenTileCellIdentifier = "hiddenTileCell"
 
 class HiddenNumberViewController: TileCollectionViewController {
         
-    let animator = FlyAnimator()
+    let animator = FlipAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +29,8 @@ class HiddenNumberViewController: TileCollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: hiddenTileCellIdentifier, for: indexPath)
         return cell
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let hiddenNumberViewController = HiddenNumberViewController()
-        present(hiddenNumberViewController, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
