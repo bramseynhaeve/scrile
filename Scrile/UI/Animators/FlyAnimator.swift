@@ -40,7 +40,7 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
     
     func isInAnimation(context: UIViewControllerContextTransitioning) -> Bool {
         guard let fromViewController = context.viewController(forKey: .from) else { return true }        
-        return fromViewController.isKind(of: TileCollectionViewController.self)
+        return fromViewController.isKind(of: NumberCollectionViewController.self)
     }
     
     func animateIn(context: UIViewControllerContextTransitioning) {
