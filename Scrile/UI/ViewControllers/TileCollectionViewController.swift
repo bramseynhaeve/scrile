@@ -8,22 +8,15 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class TileCollectionViewController: UICollectionViewController {
 
     init() {
         let flowLayout = MainFlowLayout()
         super.init(collectionViewLayout: flowLayout)
         
-        if let collectionView = collectionView {
-            if #available(iOS 11.0, *) {
-                let statusBarHeight = UIApplication.shared.statusBarFrame.height
-                collectionView.insetsLayoutMarginsFromSafeArea = false
-                additionalSafeAreaInsets = UIEdgeInsetsMake(-statusBarHeight, 0, -statusBarHeight, 0)
-            }
-            
-            collectionView.backgroundColor = .clear
+        if #available(iOS 11.0, *) {
+            let statusBarHeight = UIApplication.shared.statusBarFrame.height
+            additionalSafeAreaInsets = UIEdgeInsetsMake(-statusBarHeight, 0, -statusBarHeight, 0)
         }
     }
     
