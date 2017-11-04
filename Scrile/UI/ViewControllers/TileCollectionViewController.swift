@@ -8,10 +8,11 @@
 
 import UIKit
 
-class TileCollectionViewController: UICollectionViewController {
+class TileCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    let flowLayout = MainFlowLayout()
 
     init() {
-        let flowLayout = MainFlowLayout()
         super.init(collectionViewLayout: flowLayout)
         
         if #available(iOS 11.0, *) {
@@ -20,12 +21,46 @@ class TileCollectionViewController: UICollectionViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        collectionView?.backgroundColor = UIColor.clear
+    }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        let totalNumberOfTiles = User.numberTileCount + User.optionTileCount
+        let numberOfSections = Int(ceil(Double(totalNumberOfTiles) / Double(flowLayout.numberOfHorizontalItems)))
+        
+        return numberOfSections
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15 //should be the same as the original view controllers
+        let totalNumberOfTiles = User.numberTileCount + User.optionTileCount
+        let restTiles = totalNumberOfTiles % flowLayout.numberOfHorizontalItems
+        let isLastSection = section == numberOfSections(in: collectionView) - 1
+        
+        if isLastSection && restTiles != 0 {
+            return restTiles
+        }
+        
+        return flowLayout.numberOfHorizontalItems
+     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let totalNumberOfTiles = User.numberTileCount + User.optionTileCount
+        let restTiles = totalNumberOfTiles % flowLayout.numberOfHorizontalItems
+        let isLastSection = indexPath.section == numberOfSections(in: collectionView) - 1
+        
+        if isLastSection && restTiles != 0 {
+            var size = flowLayout.itemSize
+            let totalSpacing = flowLayout.minimumInteritemSpacing * (CGFloat(restTiles) - 1)
+            size.width = (collectionView.frame.width - totalSpacing) / CGFloat(restTiles)
+            
+            return size
+        }
+        
+        return flowLayout.itemSize
     }
     
     required init?(coder aDecoder: NSCoder) {

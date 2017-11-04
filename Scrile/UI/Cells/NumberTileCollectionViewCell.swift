@@ -10,6 +10,10 @@ import UIKit
 
 class NumberTileCollectionViewCell: TileCollectionViewCell {
     
+    static var reuseID: String {
+        return String(describing: self)
+    }
+    
     fileprivate let numberLabel: UILabel = UILabel()
     var number: Float = 0.0 {
         didSet {

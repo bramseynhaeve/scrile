@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */; };
 		250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AF0BC1F8FF0FB00BD919B /* Side.swift */; };
+		251B5C681FA9E6D400659A9B /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */; };
+		251B5C6C1FAA16E700659A9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C6B1FAA16E700659A9B /* User.swift */; };
+		251B5C6E1FAA1B3D00659A9B /* InActiveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C6D1FAA1B3D00659A9B /* InActiveCollectionViewCell.swift */; };
 		2527801E1F9A25FF00E69AFA /* FloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2527801D1F9A25FF00E69AFA /* FloatExtension.swift */; };
 		255A6DEB1F8F67D000C76EAD /* MainFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DEA1F8F67D000C76EAD /* MainFlowLayout.swift */; };
 		255A6DED1F8F726300C76EAD /* NumberTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DEC1F8F726300C76EAD /* NumberTileCollectionViewCell.swift */; };
@@ -54,6 +57,9 @@
 /* Begin PBXFileReference section */
 		250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		250AF0BC1F8FF0FB00BD919B /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
+		251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		251B5C6B1FAA16E700659A9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		251B5C6D1FAA1B3D00659A9B /* InActiveCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InActiveCollectionViewCell.swift; sourceTree = "<group>"; };
 		2527801D1F9A25FF00E69AFA /* FloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtension.swift; sourceTree = "<group>"; };
 		255A6DEA1F8F67D000C76EAD /* MainFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowLayout.swift; sourceTree = "<group>"; };
 		255A6DEC1F8F726300C76EAD /* NumberTileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTileCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				250AF0BC1F8FF0FB00BD919B /* Side.swift */,
+				251B5C6B1FAA16E700659A9B /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +185,8 @@
 				255A6DEC1F8F726300C76EAD /* NumberTileCollectionViewCell.swift */,
 				25F5B5271FA244B600CEC2C1 /* HiddenNumberTileCollectionViewCell.swift */,
 				25F5B5291FA2452E00CEC2C1 /* TileCollectionViewCell.swift */,
+				251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */,
+				251B5C6D1FAA1B3D00659A9B /* InActiveCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -409,6 +418,8 @@
 				255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */,
 				25F6AD1D1F9502E400B63CA3 /* IntExtension.swift in Sources */,
 				250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */,
+				251B5C6E1FAA1B3D00659A9B /* InActiveCollectionViewCell.swift in Sources */,
+				251B5C6C1FAA16E700659A9B /* User.swift in Sources */,
 				25DEB2271F90B0CB00C015F7 /* UIColorExtension.swift in Sources */,
 				255A6DEB1F8F67D000C76EAD /* MainFlowLayout.swift in Sources */,
 				25F5B52A1FA2452E00CEC2C1 /* TileCollectionViewCell.swift in Sources */,
@@ -416,6 +427,7 @@
 				25BF23061F9F303900F0D806 /* UIFontExtension.swift in Sources */,
 				25AE022E1F0B7389004EA053 /* AppDelegate.swift in Sources */,
 				25F5B52C1FA9BA2100CEC2C1 /* TileCollectionViewController.swift in Sources */,
+				251B5C681FA9E6D400659A9B /* OptionCollectionViewCell.swift in Sources */,
 				25F5B5261FA2423000CEC2C1 /* HiddenNumberViewController.swift in Sources */,
 				25DEB22B1F90D01700C015F7 /* CGRectExtension.swift in Sources */,
 			);
