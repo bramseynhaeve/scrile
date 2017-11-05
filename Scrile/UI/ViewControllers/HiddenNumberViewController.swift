@@ -21,6 +21,7 @@ class HiddenNumberViewController: TileCollectionViewController {
         transitioningDelegate = animator
         
         if let collectionView = collectionView {
+            collectionView.isScrollEnabled = false
             collectionView.register(HiddenNumberTileCollectionViewCell.self, forCellWithReuseIdentifier: hiddenTileCellIdentifier)
         }
     }
