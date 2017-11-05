@@ -1,74 +1,69 @@
 //
-//  ViewController.swift
+//  TileCollectionViewController.swift
 //  Scrile
 //
-//  Created by Bram Seynhaeve on 04/07/2017.
+//  Created by Bram Seynhaeve on 01/11/2017.
 //  Copyright © 2017 In The Pocket. All rights reserved.
 //
 
 import UIKit
 
-class TileCollectionViewController: UICollectionViewController {
+class TileCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    let tileCellIdentifier = "tileCell"
-    
+    let flowLayout = MainFlowLayout()
+
     init() {
-        let flowLayout = MainFlowLayout()
         super.init(collectionViewLayout: flowLayout)
         
-        
-        if let collectionView = collectionView {
-            if #available(iOS 11.0, *) {
-                let statusBarHeight = UIApplication.shared.statusBarFrame.height
-                collectionView.insetsLayoutMarginsFromSafeArea = false
-                additionalSafeAreaInsets = UIEdgeInsetsMake(-statusBarHeight, 0, -statusBarHeight, 0)
-            }
-            
-            collectionView.backgroundColor = .clear
+        if #available(iOS 11.0, *) {
+            let statusBarHeight = UIApplication.shared.statusBarFrame.height
+            additionalSafeAreaInsets = UIEdgeInsetsMake(-statusBarHeight, 0, -statusBarHeight, 0)
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let collectionView = collectionView {
-            collectionView.register(NumberTileCollectionViewCell.self, forCellWithReuseIdentifier: tileCellIdentifier)
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        guard let collectionView = collectionView else { return }
-        for cell in collectionView.visibleCells {
-            let _ = collectionView.side(for: cell)
-        }
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tileCellIdentifier, for: indexPath)
-        
-        if let tileCell = cell as? NumberTileCollectionViewCell {
-            tileCell.number = indexPath.row.scrumFibonacci()
-        }
-        
-        return cell
+        collectionView?.backgroundColor = UIColor.clear
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        let totalNumberOfTiles = User.numberTileCount + User.optionTileCount
+        let numberOfSections = Int(ceil(Double(totalNumberOfTiles) / Double(flowLayout.numberOfHorizontalItems)))
+        
+        return numberOfSections
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        let totalNumberOfTiles = User.numberTileCount + User.optionTileCount
+        let restTiles = totalNumberOfTiles % flowLayout.numberOfHorizontalItems
+        let isLastSection = section == numberOfSections(in: collectionView) - 1
+        
+        if isLastSection && restTiles != 0 {
+            return restTiles
+        }
+        
+        return flowLayout.numberOfHorizontalItems
+     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let totalNumberOfTiles = User.numberTileCount + User.optionTileCount
+        let restTiles = totalNumberOfTiles % flowLayout.numberOfHorizontalItems
+        let isLastSection = indexPath.section == numberOfSections(in: collectionView) - 1
+        
+        if isLastSection && restTiles != 0 {
+            var size = flowLayout.itemSize
+            let totalSpacing = flowLayout.minimumInteritemSpacing * (CGFloat(restTiles) - 1)
+            size.width = (collectionView.frame.width - totalSpacing) / CGFloat(restTiles)
+            
+            return size
+        }
+        
+        return flowLayout.itemSize
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let colorViewController = ColorViewController()
-        present(colorViewController, animated: true, completion: nil)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

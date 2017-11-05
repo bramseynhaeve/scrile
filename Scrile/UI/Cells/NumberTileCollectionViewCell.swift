@@ -8,7 +8,11 @@
 
 import UIKit
 
-class NumberTileCollectionViewCell: UICollectionViewCell {
+class NumberTileCollectionViewCell: TileCollectionViewCell {
+    
+    static var reuseID: String {
+        return String(describing: self)
+    }
     
     fileprivate let numberLabel: UILabel = UILabel()
     var number: Float = 0.0 {
@@ -23,13 +27,7 @@ class NumberTileCollectionViewCell: UICollectionViewCell {
         numberLabel.text = ""
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        layoutTile()
-    }
-    
-    fileprivate func layoutTile() {
+    override func layoutTile() {
         backgroundColor = UIColor.red
         
         layer.cornerRadius = 2
@@ -60,9 +58,4 @@ class NumberTileCollectionViewCell: UICollectionViewCell {
         
         addConstraints([labelCenterX, labelCenterY])
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

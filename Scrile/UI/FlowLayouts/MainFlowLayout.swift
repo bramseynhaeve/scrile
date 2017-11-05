@@ -18,6 +18,7 @@ class MainFlowLayout: UICollectionViewFlowLayout {
         
         minimumLineSpacing = 2.0
         minimumInteritemSpacing = 2.0
+        sectionInset = UIEdgeInsetsMake(2.0, 0, 0, 0)
     }
     
     override var itemSize: CGSize {
