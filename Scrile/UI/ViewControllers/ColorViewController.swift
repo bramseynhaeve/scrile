@@ -29,6 +29,6 @@ class ColorViewController: UIViewController {
     }
     
     @objc func didTouchBackButton() {        
-        dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
 }

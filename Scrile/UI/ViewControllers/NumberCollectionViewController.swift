@@ -49,10 +49,10 @@ class NumberCollectionViewController: TileCollectionViewController {
         
         switch cellType(for: indexPath) {
         case .number:
-            present(HiddenNumberViewController(), animated: true, completion: nil)
+            navigationController?.pushViewController(HiddenNumberViewController(), animated: true)
             
         case .option:
-             present(ColorViewController(), animated: true, completion: nil)
+            navigationController?.pushViewController(ColorViewController(), animated: true)
             
         default:
             print("No action is needed here")
