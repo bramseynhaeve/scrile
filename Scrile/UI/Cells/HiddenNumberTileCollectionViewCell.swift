@@ -17,6 +17,6 @@ class HiddenNumberTileCollectionViewCell: TileCollectionViewCell {
     override func layoutTile() {
         super.layoutTile()
         
-        backgroundColor = UIColor.green
+        backgroundColor = UIColor.darkGray
     }
 }

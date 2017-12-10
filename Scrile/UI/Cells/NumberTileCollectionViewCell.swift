@@ -22,8 +22,13 @@ class NumberTileCollectionViewCell: TileCollectionViewCell {
         }
     }
     
+    var result: String? {
+        return numberLabel.text
+    }
+    
     override func prepareForReuse() {
-        super.prepareForReuse()        
+        super.prepareForReuse()
+        
         numberLabel.text = ""
     }
     

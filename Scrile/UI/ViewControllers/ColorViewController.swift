@@ -9,16 +9,11 @@
 import UIKit
 
 class ColorViewController: UIViewController {
-    
-    let animator = FlyAnimator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.green
-        
-        modalPresentationStyle = .custom
-        transitioningDelegate = animator
         
         let button = UIButton(frame: CGRect(x: 30, y: 30, width: 100, height: 100))
         button.setTitle("Back", for: .normal)
@@ -29,6 +24,6 @@ class ColorViewController: UIViewController {
     }
     
     @objc func didTouchBackButton() {        
-        dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
 }

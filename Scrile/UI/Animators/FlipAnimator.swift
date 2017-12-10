@@ -14,9 +14,9 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isInAnimation(context: transitionContext) {
-            animateIn(context: transitionContext)
+            flipTiles(reverseAnimation: false, context: transitionContext)
         } else {
-            animateOut(context: transitionContext)
+            flipTiles(reverseAnimation: true, context: transitionContext)
         }
     }
     
@@ -27,14 +27,6 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
     func isInAnimation(context: UIViewControllerContextTransitioning) -> Bool {
         guard let fromViewController = context.viewController(forKey: .from) else { return true }
         return fromViewController.isKind(of: NumberCollectionViewController.self)
-    }
-    
-    func animateIn(context: UIViewControllerContextTransitioning) {
-        flipTiles(reverseAnimation: false, context: context)
-    }
-    
-    func animateOut(context: UIViewControllerContextTransitioning) {
-        flipTiles(reverseAnimation: true, context: context)
     }
     
     func flipTiles(reverseAnimation: Bool, context: UIViewControllerContextTransitioning) {
@@ -52,6 +44,10 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
         toCollectionView.layoutSubviews()
         
         let fromVisibleCells = fromCollectionView.visibleCells.sorted { (cell1, cell2) -> Bool in
+        
+            if cell1.isSelected { return true }
+            if cell2.isSelected { return false }
+        
             guard let indexPath1 = fromCollectionView.indexPath(for: cell1),
                 let indexPath2 = fromCollectionView.indexPath(for: cell2) else { return false }
             
@@ -84,7 +80,9 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
             
             toCell.layer.transform = toTransform
             
-            UIView.animate(withDuration: 0.15, delay: 0.02 * Double(index + 1), options: .curveEaseIn, animations: {
+            let firstCellDelay = index == 0 ? 0.0 : 0.1
+            
+            UIView.animate(withDuration: 0.15, delay: 0.02 * Double(index) + firstCellDelay, options: .curveEaseIn, animations: {
                 cell.layer.transform = fromTransform
             }) { (completed) in
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {

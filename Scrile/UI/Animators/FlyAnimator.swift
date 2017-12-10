@@ -50,6 +50,7 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
               let toViewController = context.viewController(forKey: .to),
               let collectionView = fromViewController.collectionView else { return }
     
+        containerView.removeConstraints(containerView.constraints)
         containerView.insertSubview(toViewController.view, at: 0)
         containerView.insertSubview(topBlackView, at:1)
         containerView.insertSubview(bottomBlackView, at: 2)
@@ -59,16 +60,19 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
         let topHeightConstraints = NSLayoutConstraint(item: topBlackView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.5, constant: 0.0)
         let topHorizontalConstraint = NSLayoutConstraint(item: topBlackView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
         let topVerticalConstraint = NSLayoutConstraint(item: topBlackView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 0.0)
-        
+
         let bottomWidthConstraints = NSLayoutConstraint(item: bottomBlackView, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 1.0, constant: 0.0)
         let bottomHeightConstraints = NSLayoutConstraint(item: bottomBlackView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.5, constant: 0.0)
         let bottomHorizontalConstraint = NSLayoutConstraint(item: bottomBlackView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
         let bottomVerticalConstraint = NSLayoutConstraint(item: bottomBlackView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        
+
         containerView.addConstraints([topWidthConstraints, topHeightConstraints, topHorizontalConstraint, topVerticalConstraint])
         containerView.addConstraints([bottomWidthConstraints, bottomHeightConstraints, bottomHorizontalConstraint, bottomVerticalConstraint])
         
         containerView.layoutIfNeeded()
+        
+        self.topBlackView.transform = CGAffineTransform.identity
+        self.bottomBlackView.transform = CGAffineTransform.identity
         
         let sortedCells = collectionView.visibleCells.sorted { (cell1, cell2) -> Bool in            
             if cell1.isSelected { return true }
@@ -90,13 +94,18 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
             }, completion: nil)
         }
         
+        fromViewController.view.alpha = 1
+        
         UIView.animate(withDuration: 0.29,
                        delay: self.transitionDuration(using: context) * 0.4,
                        options: .curveEaseOut,
                        animations: {
-                        self.topBlackView.transform = CGAffineTransform(translationX: 0, y: -self.topBlackView.frame.height)
-                        self.bottomBlackView.transform = CGAffineTransform(translationX: 0, y: self.bottomBlackView.frame.height)
+                            fromViewController.view.alpha = 0
+                            self.topBlackView.transform = CGAffineTransform(translationX: 0, y: -self.topBlackView.frame.height)
+                            self.bottomBlackView.transform = CGAffineTransform(translationX: 0, y: self.bottomBlackView.frame.height)
         }) { (completed) in
+            self.topBlackView.removeFromSuperview()
+            self.bottomBlackView.removeFromSuperview()
             context.completeTransition(completed)
         }
     }
@@ -108,10 +117,29 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
             let toViewController = context.viewController(forKey: .to) as? UICollectionViewController,
             let collectionView = toViewController.collectionView else { return }
         
+        containerView.removeConstraints(containerView.constraints)
         containerView.insertSubview(fromViewController.view, at: 0)
         containerView.insertSubview(topBlackView, at:1)
         containerView.insertSubview(bottomBlackView, at: 2)
         containerView.insertSubview(toViewController.view, at: 3)
+        
+        let topWidthConstraints = NSLayoutConstraint(item: topBlackView, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 1.0, constant: 0.0)
+        let topHeightConstraints = NSLayoutConstraint(item: topBlackView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.5, constant: 0.0)
+        let topHorizontalConstraint = NSLayoutConstraint(item: topBlackView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        let topVerticalConstraint = NSLayoutConstraint(item: topBlackView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 0.0)
+
+        let bottomWidthConstraints = NSLayoutConstraint(item: bottomBlackView, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 1.0, constant: 0.0)
+        let bottomHeightConstraints = NSLayoutConstraint(item: bottomBlackView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.5, constant: 0.0)
+        let bottomHorizontalConstraint = NSLayoutConstraint(item: bottomBlackView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        let bottomVerticalConstraint = NSLayoutConstraint(item: bottomBlackView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+
+        containerView.addConstraints([topWidthConstraints, topHeightConstraints, topHorizontalConstraint, topVerticalConstraint])
+        containerView.addConstraints([bottomWidthConstraints, bottomHeightConstraints, bottomHorizontalConstraint, bottomVerticalConstraint])
+        
+        containerView.layoutIfNeeded()
+        
+        self.topBlackView.transform = CGAffineTransform(translationX: 0, y: -self.topBlackView.frame.height)
+        self.bottomBlackView.transform = CGAffineTransform(translationX: 0, y: self.bottomBlackView.frame.height)
         
         let sortedCells = collectionView.visibleCells.sorted { (cell1, cell2) -> Bool in
             let side = collectionView.side(for: cell1)
@@ -126,11 +154,15 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
                 cell.transform = CGAffineTransform.identity
             }, completion: { (completed) in
                 if index == sortedCells.count - 1 {
+                    self.topBlackView.removeFromSuperview()
+                    self.bottomBlackView.removeFromSuperview()
                     context.completeTransition(completed)
                 }
             })
         }
-        
+
+        toViewController.view.alpha = 1
+        fromViewController.view.alpha = 1
         UIView.animate(withDuration: 0.29, delay: 0, options: .curveEaseOut, animations: {
             self.topBlackView.transform = CGAffineTransform.identity
             self.bottomBlackView.transform = CGAffineTransform.identity

@@ -14,11 +14,6 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
 
     init() {
         super.init(collectionViewLayout: flowLayout)
-        
-        if #available(iOS 11.0, *) {
-            let statusBarHeight = UIApplication.shared.statusBarFrame.height
-            additionalSafeAreaInsets = UIEdgeInsetsMake(-statusBarHeight, 0, -statusBarHeight, 0)
-        }
     }
     
     override func viewDidLoad() {

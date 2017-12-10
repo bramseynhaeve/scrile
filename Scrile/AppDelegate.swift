@@ -16,11 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let tileCollectionViewController = NumberCollectionViewController()
+        let navigationController = NavigationViewController(rootViewController: tileCollectionViewController)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if let window = window {
-            window.rootViewController = tileCollectionViewController
+            window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
         
