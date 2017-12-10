@@ -49,7 +49,12 @@ class NumberCollectionViewController: TileCollectionViewController {
         
         switch cellType(for: indexPath) {
         case .number:
-            navigationController?.pushViewController(HiddenNumberViewController(), animated: true)
+            guard
+                let cell = collectionView.cellForItem(at: indexPath) as? NumberTileCollectionViewCell,
+                let result = cell.result
+            else { return }
+            
+            navigationController?.pushViewController(HiddenNumberViewController(result: result), animated: true)
             
         case .option:
             navigationController?.pushViewController(ColorViewController(), animated: true)

@@ -10,19 +10,14 @@ import UIKit
 
 private let hiddenTileCellIdentifier = "hiddenTileCell"
 
-class HiddenNumberViewController: TileCollectionViewController {
-        
-    let animator = FlipAnimator()
+class HiddenNumberViewController: ResultDependingCollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        modalPresentationStyle = .custom
-        transitioningDelegate = animator
-        
         if let collectionView = collectionView {
-            collectionView.isScrollEnabled = false
             collectionView.register(HiddenNumberTileCollectionViewCell.self, forCellWithReuseIdentifier: hiddenTileCellIdentifier)
+            collectionView.isScrollEnabled = false
         }
     }
     
@@ -32,6 +27,6 @@ class HiddenNumberViewController: TileCollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.popToRootViewController(animated: true)
+        navigationController?.pushViewController(ChosenNumberCollectionViewController(result: result), animated: true)
     }
 }

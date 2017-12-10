@@ -16,6 +16,12 @@ class TileCollectionViewCell: UICollectionViewCell {
         layoutTile()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        transform = CGAffineTransform.identity
+    }
+    
     func layoutTile() {
         backgroundColor = UIColor.darkGray
         

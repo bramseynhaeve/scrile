@@ -8,7 +8,12 @@
 
 import UIKit
 
-class NavigationViewController: UINavigationController {
+class NavigationViewController: UINavigationController, UINavigationControllerDelegate {
+    
+    let popFlyAnimator = PopFlyAnimator()
+    let pushFlyAnimator = PushFlyAnimator()
+    let popFlipAnimator = PopFlipAnimator()
+    let pushFlipAnimator = PushFlipAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,5 +25,36 @@ class NavigationViewController: UINavigationController {
         
         isNavigationBarHidden = true
         automaticallyAdjustsScrollViewInsets = false
+        delegate = self
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        switch operation {
+        case .push:
+            return pushAnimatorForViewController(viewController: toVC)
+            
+        case .pop:
+            return popAnimatorForViewController(viewController: fromVC)
+            
+        default:
+            return nil
+        }
+    }
+    
+    func popAnimatorForViewController(viewController: UIViewController) -> UIViewControllerAnimatedTransitioning {
+        if viewController.isKind(of: TileCollectionViewController.self) {
+            return popFlipAnimator
+        }
+        
+        return popFlyAnimator
+    }
+    
+    func pushAnimatorForViewController(viewController: UIViewController) -> UIViewControllerAnimatedTransitioning {
+        if viewController.isKind(of: TileCollectionViewController.self) {
+            return pushFlipAnimator
+        }
+        
+        return pushFlyAnimator
     }
 }
