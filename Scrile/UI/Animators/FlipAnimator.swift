@@ -44,6 +44,10 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
         toCollectionView.layoutSubviews()
         
         let fromVisibleCells = fromCollectionView.visibleCells.sorted { (cell1, cell2) -> Bool in
+        
+            if cell1.isSelected { return true }
+            if cell2.isSelected { return false }
+        
             guard let indexPath1 = fromCollectionView.indexPath(for: cell1),
                 let indexPath2 = fromCollectionView.indexPath(for: cell2) else { return false }
             
@@ -76,7 +80,9 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
             
             toCell.layer.transform = toTransform
             
-            UIView.animate(withDuration: 0.15, delay: 0.02 * Double(index), options: .curveEaseIn, animations: {
+            let firstCellDelay = index == 0 ? 0.0 : 0.1
+            
+            UIView.animate(withDuration: 0.15, delay: 0.02 * Double(index) + firstCellDelay, options: .curveEaseIn, animations: {
                 cell.layer.transform = fromTransform
             }) { (completed) in
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
