@@ -10,11 +10,6 @@ import UIKit
 
 class NavigationViewController: UINavigationController, UINavigationControllerDelegate {
     
-    let popFlyAnimator = PopFlyAnimator()
-    let pushFlyAnimator = PushFlyAnimator()
-    let popFlipAnimator = PopFlipAnimator()
-    let pushFlipAnimator = PushFlipAnimator()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,17 +39,17 @@ class NavigationViewController: UINavigationController, UINavigationControllerDe
     
     func popAnimatorForViewController(viewController: UIViewController) -> UIViewControllerAnimatedTransitioning {
         if viewController.isKind(of: TileCollectionViewController.self) {
-            return popFlipAnimator
+            return PopFlipAnimator()
         }
         
-        return popFlyAnimator
+        return PopFlyAnimator()
     }
     
     func pushAnimatorForViewController(viewController: UIViewController) -> UIViewControllerAnimatedTransitioning {
         if viewController.isKind(of: TileCollectionViewController.self) {
-            return pushFlipAnimator
+            return PushFlipAnimator()
         }
         
-        return pushFlyAnimator
+        return PushFlyAnimator()
     }
 }

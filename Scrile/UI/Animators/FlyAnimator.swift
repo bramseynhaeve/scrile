@@ -104,6 +104,8 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
                             self.topBlackView.transform = CGAffineTransform(translationX: 0, y: -self.topBlackView.frame.height)
                             self.bottomBlackView.transform = CGAffineTransform(translationX: 0, y: self.bottomBlackView.frame.height)
         }) { (completed) in
+            self.topBlackView.removeFromSuperview()
+            self.bottomBlackView.removeFromSuperview()
             context.completeTransition(completed)
         }
     }
@@ -152,15 +154,16 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
                 cell.transform = CGAffineTransform.identity
             }, completion: { (completed) in
                 if index == sortedCells.count - 1 {
+                    self.topBlackView.removeFromSuperview()
+                    self.bottomBlackView.removeFromSuperview()
                     context.completeTransition(completed)
                 }
             })
         }
 
         toViewController.view.alpha = 1
-        fromViewController.view.alpha = 0
+        fromViewController.view.alpha = 1
         UIView.animate(withDuration: 0.29, delay: 0, options: .curveEaseOut, animations: {
-            fromViewController.view.alpha = 1
             self.topBlackView.transform = CGAffineTransform.identity
             self.bottomBlackView.transform = CGAffineTransform.identity
         }, completion: nil)
