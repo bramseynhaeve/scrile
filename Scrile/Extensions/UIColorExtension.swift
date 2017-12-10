@@ -37,4 +37,12 @@ extension UIColor {
     public func darkened(byPercentage percentage: CGFloat = 0.1) -> UIColor? {
         return changedBrightness(byPercentage: -percentage)
     }
+    
+    static var waitingBackgroundColor: UIColor {
+        return UIColor(white: 0.2, alpha: 1.0)
+    }
+    
+    static var waitingLightBackgroundColor: UIColor {
+        return UIColor(white: 0.25, alpha: 1.0)
+    }
 }
