@@ -1,24 +1,21 @@
 //
-//  HiddenNumberViewController.swift
+//  ResultCollectionViewController.swift
 //  Scrile
 //
-//  Created by Bram Seynhaeve on 26/10/2017.
+//  Created by Bram Seynhaeve on 05/11/2017.
 //  Copyright © 2017 In The Pocket. All rights reserved.
 //
 
 import UIKit
 
-class HiddenNumberViewController: TileCollectionViewController {
-
-    let result: Int
+class ResultCollectionViewController: TileCollectionViewController {
 
     init(result: Int, numberOfTiles: Int) {
 
-        let tiles = Array(0..<numberOfTiles).map { (_) -> BlankTile in
-            return BlankTile(color: UIColor.gray, number: result)
+        let tiles = Array(0..<numberOfTiles).map { (_) -> ResultTile in
+            return ResultTile(result: result)
         }
 
-        self.result = result
         super.init(tiles: tiles)
 
         collectionView?.isScrollEnabled = false

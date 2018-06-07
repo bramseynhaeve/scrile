@@ -1,5 +1,5 @@
 //
-//  HiddenNumberTileCollectionViewCell.swift
+//  HiddenStringTileCollectionViewCell.swift
 //  Scrile
 //
 //  Created by Bram Seynhaeve on 26/10/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HiddenNumberTileCollectionViewCell: TileCollectionViewCell {
+class HiddenStringTileCollectionViewCell: TileCollectionViewCell {
 
     let defaultColor = UIColor.darkGray
     var flashTimer: Timer?

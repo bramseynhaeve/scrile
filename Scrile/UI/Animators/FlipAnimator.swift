@@ -26,7 +26,7 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
     
     func isInAnimation(context: UIViewControllerContextTransitioning) -> Bool {
         guard let fromViewController = context.viewController(forKey: .from) else { return true }
-        return fromViewController.isKind(of: NumberCollectionViewController.self)
+        return fromViewController.isKind(of: TileCollectionViewController.self)
     }
     
     func flipTiles(reverseAnimation: Bool, context: UIViewControllerContextTransitioning) {

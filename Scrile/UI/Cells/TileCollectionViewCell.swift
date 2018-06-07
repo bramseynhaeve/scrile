@@ -9,10 +9,13 @@
 import UIKit
 
 class TileCollectionViewCell: UICollectionViewCell {
+
+    var actionViewController: UIViewController {
+        return UIViewController()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         layoutTile()
     }
     
@@ -24,7 +27,6 @@ class TileCollectionViewCell: UICollectionViewCell {
     
     func layoutTile() {
         backgroundColor = UIColor.darkGray
-        
         layer.cornerRadius = 2
         layer.masksToBounds = true
     }

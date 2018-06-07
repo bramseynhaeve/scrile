@@ -29,7 +29,8 @@ class User: NSObject {
         
         set { UserDefaults.standard.set(newValue, forKey: numberOfNumberTilesKey) }
     }
-    
+
+    static var tshirtSizes: [String] = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXL", "XXL", "XXL"]
     static var options: [OptionType] = [ .coffee, .customNumber, .tshirtSizing, .colorPicker]
     static var optionTileCount: Int { return options.count }
 }

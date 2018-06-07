@@ -1,5 +1,5 @@
 //
-//  NumberTileCollectionViewCell.swift
+//  StringTileCollectionViewCell.swift
 //  Scrile
 //
 //  Created by Bram Seynhaeve on 12/10/2017.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class NumberTileCollectionViewCell: TileCollectionViewCell {
+class StringTileCollectionViewCell: TileCollectionViewCell {
     
     static var reuseID: String {
         return String(describing: self)
     }
     
     fileprivate let numberLabel: UILabel = UILabel()
+    
     
     var number: Float = 0.0 {
         didSet {
