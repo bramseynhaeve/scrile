@@ -26,9 +26,7 @@
 		255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DF41F8F95EB00C76EAD /* ColorViewController.swift */; };
 		2578C2F920C8F72B006329D1 /* TshirtCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C2F820C8F72B006329D1 /* TshirtCollectionViewController.swift */; };
 		2578C2FE20C99EF3006329D1 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C2FD20C99EF3006329D1 /* Tile.swift */; };
-		2578C30020C99FB3006329D1 /* NumberTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C2FF20C99FB3006329D1 /* NumberTile.swift */; };
-		2578C30220C9B55E006329D1 /* BlankTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30120C9B55E006329D1 /* BlankTile.swift */; };
-		2578C30420C9BE4C006329D1 /* ResultTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30320C9BE4C006329D1 /* ResultTile.swift */; };
+		2578C30920C9C747006329D1 /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30820C9C747006329D1 /* NumberViewController.swift */; };
 		25AE022E1F0B7389004EA053 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE022D1F0B7389004EA053 /* AppDelegate.swift */; };
 		25AE02351F0B7389004EA053 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25AE02341F0B7389004EA053 /* Assets.xcassets */; };
 		25AE02381F0B7389004EA053 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25AE02361F0B7389004EA053 /* LaunchScreen.storyboard */; };
@@ -85,9 +83,7 @@
 		255A6DF41F8F95EB00C76EAD /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		2578C2F820C8F72B006329D1 /* TshirtCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TshirtCollectionViewController.swift; sourceTree = "<group>"; };
 		2578C2FD20C99EF3006329D1 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
-		2578C2FF20C99FB3006329D1 /* NumberTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTile.swift; sourceTree = "<group>"; };
-		2578C30120C9B55E006329D1 /* BlankTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankTile.swift; sourceTree = "<group>"; };
-		2578C30320C9BE4C006329D1 /* ResultTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTile.swift; sourceTree = "<group>"; };
+		2578C30820C9C747006329D1 /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
 		25AE022A1F0B7389004EA053 /* Scrile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25AE022D1F0B7389004EA053 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25AE02341F0B7389004EA053 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,9 +153,6 @@
 			children = (
 				250AF0BC1F8FF0FB00BD919B /* Side.swift */,
 				251B5C6B1FAA16E700659A9B /* User.swift */,
-				2578C2FF20C99FB3006329D1 /* NumberTile.swift */,
-				2578C30120C9B55E006329D1 /* BlankTile.swift */,
-				2578C30320C9BE4C006329D1 /* ResultTile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +178,7 @@
 				2523D1871FAF1CC4006387AA /* NavigationViewController.swift */,
 				2523D1911FAF2F3D006387AA /* ResultCollectionViewController.swift */,
 				2578C2F820C8F72B006329D1 /* TshirtCollectionViewController.swift */,
+				2578C30820C9C747006329D1 /* NumberViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -456,7 +450,6 @@
 				2523D1881FAF1CC4006387AA /* NavigationViewController.swift in Sources */,
 				250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */,
 				25F5B5241FA240DF00CEC2C1 /* FlipAnimator.swift in Sources */,
-				2578C30420C9BE4C006329D1 /* ResultTile.swift in Sources */,
 				25DEB22D1F90D5E900C015F7 /* ArrayExtension.swift in Sources */,
 				255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */,
 				2523D1901FAF29C9006387AA /* PopFlyAnimator.swift in Sources */,
@@ -466,7 +459,6 @@
 				250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */,
 				251B5C6E1FAA1B3D00659A9B /* InActiveCollectionViewCell.swift in Sources */,
 				251B5C6C1FAA16E700659A9B /* User.swift in Sources */,
-				2578C30020C99FB3006329D1 /* NumberTile.swift in Sources */,
 				25DEB2271F90B0CB00C015F7 /* UIColorExtension.swift in Sources */,
 				2523D1921FAF2F3D006387AA /* ResultCollectionViewController.swift in Sources */,
 				255A6DEB1F8F67D000C76EAD /* MainFlowLayout.swift in Sources */,
@@ -480,8 +472,8 @@
 				25F5B52C1FA9BA2100CEC2C1 /* TileCollectionViewController.swift in Sources */,
 				251B5C681FA9E6D400659A9B /* OptionCollectionViewCell.swift in Sources */,
 				25F5B5261FA2423000CEC2C1 /* HiddenNumberViewController.swift in Sources */,
-				2578C30220C9B55E006329D1 /* BlankTile.swift in Sources */,
 				25DEB22B1F90D01700C015F7 /* CGRectExtension.swift in Sources */,
+				2578C30920C9C747006329D1 /* NumberViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

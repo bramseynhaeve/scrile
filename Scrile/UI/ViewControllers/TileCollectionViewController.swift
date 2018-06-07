@@ -11,9 +11,9 @@ import UIKit
 class TileCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let flowLayout = MainFlowLayout()
-    let tiles: [Tile]
+    let tiles: [TileType]
 
-    init(tiles: [Tile]) {
+    init(tiles: [TileType]) {
         self.tiles = tiles
         super.init(collectionViewLayout: flowLayout)
     }
@@ -26,6 +26,7 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         collectionView?.register(StringTileCollectionViewCell.self, forCellWithReuseIdentifier: StringTileCollectionViewCell.reuseID)
         collectionView?.register(HiddenStringTileCollectionViewCell.self, forCellWithReuseIdentifier: HiddenStringTileCollectionViewCell.reuseID)
         collectionView?.register(ChosenNumberCollectionViewCell.self, forCellWithReuseIdentifier: ChosenNumberCollectionViewCell.reuseID)
+        collectionView?.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.reuseID)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -49,27 +50,32 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         let tile = tiles[index(for: indexPath)]
 
         switch tile {
-        case let numberTile as NumberTile:
+        case .number(let number):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StringTileCollectionViewCell.reuseID, for: indexPath)
             if let numberCell = cell as? StringTileCollectionViewCell {
-                numberCell.numberString = "\(numberTile.number)"
+                numberCell.number = number
             }
 
             return cell
 
-        case is BlankTile:
+        case .hiddenNumber:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HiddenStringTileCollectionViewCell.reuseID, for: indexPath)
             return cell
 
-        case let resultTile as ResultTile:
+        case .result(let number):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChosenNumberCollectionViewCell.reuseID, for: indexPath)
             if let resultCell = cell as? ChosenNumberCollectionViewCell {
-                resultCell.result = "\(resultTile.result)"
+                resultCell.result = "\(number)"
             }
             return cell
-            
-        default:
-            return UICollectionViewCell()
+
+        case .option(let type):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.reuseID, for: indexPath)
+            if let optionCell = cell as? OptionCollectionViewCell {
+                optionCell.setType(type: type)
+            }
+            return cell
+
         }
     }
 
@@ -77,21 +83,24 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         let tile = tiles[index(for: indexPath)]
 
         switch tile {
-        case let numberTile as NumberTile:
-            let viewController = HiddenNumberViewController(result: numberTile.number, numberOfTiles: tiles.count)
+        case .number(let number):
+            let viewController = HiddenNumberViewController(result: number, numberOfTiles: tiles.count)
             navigationController?.pushViewController(viewController, animated: true)
+            break
 
-        case let blankTile as BlankTile:
-            let viewController = ResultCollectionViewController(result: blankTile.number, numberOfTiles: tiles.count)
+        case .hiddenNumber(let number):
+            let viewController = ResultCollectionViewController(result: number, numberOfTiles: tiles.count)
             navigationController?.pushViewController(viewController, animated: true)
+            break
 
-        case is ResultTile:
+        case .result:
             navigationController?.popToRootViewController(animated: true)
+            break
 
-        default:
-            return
+        case .option(let type):
+            break
+
         }
-
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

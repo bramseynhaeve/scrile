@@ -14,13 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        // TODO: Dynamic number
-        let numbers = Array(0...22).map { (index) -> NumberTile in
-            return NumberTile(number: index)
-        }
-
-        let tileCollectionViewController = TileCollectionViewController(tiles: numbers)
+        let tileCollectionViewController = NumberViewController()
         let navigationController = NavigationViewController(rootViewController: tileCollectionViewController)
         
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -10,10 +10,10 @@ import UIKit
 
 class ResultCollectionViewController: TileCollectionViewController {
 
-    init(result: Int, numberOfTiles: Int) {
+    init(result: Float, numberOfTiles: Int) {
 
-        let tiles = Array(0..<numberOfTiles).map { (_) -> ResultTile in
-            return ResultTile(result: result)
+        let tiles = Array(0..<numberOfTiles).map { (_) -> TileType in
+            return TileType.result(result)
         }
 
         super.init(tiles: tiles)

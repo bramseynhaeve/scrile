@@ -10,15 +10,12 @@ import UIKit
 
 class HiddenNumberViewController: TileCollectionViewController {
 
-    let result: Int
+    init(result: Float, numberOfTiles: Int) {
 
-    init(result: Int, numberOfTiles: Int) {
-
-        let tiles = Array(0..<numberOfTiles).map { (_) -> BlankTile in
-            return BlankTile(color: UIColor.gray, number: result)
+        let tiles = Array(0..<numberOfTiles).map { (number) -> TileType in
+            return TileType.hiddenNumber(number.scrumFibonacci())
         }
-
-        self.result = result
+        
         super.init(tiles: tiles)
 
         collectionView?.isScrollEnabled = false

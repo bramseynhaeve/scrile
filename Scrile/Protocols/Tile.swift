@@ -8,6 +8,9 @@
 
 import UIKit
 
-protocol Tile {
-    
+enum TileType {
+    case number(Float)
+    case hiddenNumber(Float)
+    case result(Float)
+    case option(OptionType)
 }

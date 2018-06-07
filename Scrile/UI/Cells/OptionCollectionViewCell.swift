@@ -42,7 +42,7 @@ class OptionCollectionViewCell: TileCollectionViewCell {
     
     func imageForType(optionType: OptionType) -> UIImage {
         switch optionType {
-        case .colorPicker: return UIImage(named: "colorpicker")!
+//        case .colorPicker: return UIImage(named: "colorpicker")!
         default: return UIImage(named: "colorpicker")!
         }
     }
