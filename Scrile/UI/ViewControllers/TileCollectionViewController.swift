@@ -57,6 +57,11 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         
         return flowLayout.itemSize
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        // Remove inset border in last row
+        return section == 0 ? UIEdgeInsets.zero : flowLayout.sectionInset
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

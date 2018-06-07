@@ -15,10 +15,17 @@ class NumberTileCollectionViewCell: TileCollectionViewCell {
     }
     
     fileprivate let numberLabel: UILabel = UILabel()
+    
     var number: Float = 0.0 {
         didSet {
             let format = number > 0 && number < 1 ? "%.1f" : "%.0f"
-            numberLabel.text = String(format: format, number)
+            numberString = String(format: format, number)
+        }
+    }
+    
+    var numberString: String = "" {
+        didSet {
+            numberLabel.text = numberString
         }
     }
     

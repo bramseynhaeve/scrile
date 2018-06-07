@@ -33,7 +33,8 @@ class ChosenNumberCollectionViewCell: TileCollectionViewCell {
         numberLabel.textAlignment = .center
         numberLabel.font = UIFont.vagThin(size: fontSize)
         numberLabel.textColor = UIColor.red
-        
+//        numberLabel.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+
         addSubview(numberLabel)
     }
     
@@ -59,6 +60,7 @@ class ChosenNumberCollectionViewCell: TileCollectionViewCell {
     
     override func layoutTile() {
         super.layoutTile()
+        layer.cornerRadius = 0
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -32,8 +32,19 @@ class OptionCollectionViewCell: TileCollectionViewCell {
         return String(describing: self)
     }
     
+    func setType(type: OptionType) {
+        setImage(image: imageForType(optionType: type))
+    }
+    
     func setImage(image: UIImage) {
         imageView.image = image
+    }
+    
+    func imageForType(optionType: OptionType) -> UIImage {
+        switch optionType {
+        case .colorPicker: return UIImage(named: "colorpicker")!
+        default: return UIImage(named: "colorpicker")!
+        }
     }
     
     override func layoutTile() {

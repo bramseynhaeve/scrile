@@ -29,7 +29,7 @@ class MainFlowLayout: UICollectionViewFlowLayout {
             guard let collectionView = collectionView else { return CGSize.zero }
             
             let viewWidth = collectionView.frame.width
-            let viewHeight = collectionView.frame.height
+            let viewHeight = collectionView.frame.height - 40
             let numberOfHorizontalSeperators = numberOfHorizontalItems - 1
             let numberOfVerticalSeperators = numberOfVerticalItems - 1
             let tileWidth = (viewWidth - CGFloat(Int(minimumInteritemSpacing) * numberOfHorizontalSeperators)) / CGFloat(numberOfHorizontalItems)
