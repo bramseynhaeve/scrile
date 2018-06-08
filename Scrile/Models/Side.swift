@@ -30,8 +30,10 @@ struct Side: OptionSet {
     
     static let topLeft: Side = [.left, .top]
     static let topRight: Side = [.right, .top]
+    static let topLeftRight: Side = [.left, .top, .right]
     static let bottomLeft: Side = [.left, .bottom]
     static let bottomRight: Side = [.right, .bottom]
+    static let bottomLeftRight: Side = [.left, .bottom, .right]
 }
 
 extension Side {
@@ -96,6 +98,10 @@ extension Side {
             return [.left, .down].randomItem
         case .bottomRight:
             return [.down, .right].randomItem
+        case .topLeftRight:
+            return [.left, .up, .right].randomItem
+        case .bottomLeftRight:
+            return [.left, .down, .right].randomItem
         case .left:
             return .left
         case .top:
@@ -108,7 +114,7 @@ extension Side {
             return [.left, .up, .right].randomItem
         case .leaningBottom:
             return [.left, .down, .right].randomItem
-            
+
         default:
             return [.left, .up, .right, .right].randomItem
         }

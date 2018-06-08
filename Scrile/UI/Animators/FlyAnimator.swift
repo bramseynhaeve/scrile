@@ -55,19 +55,16 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
         containerView.insertSubview(topBlackView, at:1)
         containerView.insertSubview(bottomBlackView, at: 2)
         containerView.insertSubview(fromViewController.view, at: 3)
-        
-        let topWidthConstraints = NSLayoutConstraint(item: topBlackView, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 1.0, constant: 0.0)
-        let topHeightConstraints = NSLayoutConstraint(item: topBlackView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.5, constant: 0.0)
-        let topHorizontalConstraint = NSLayoutConstraint(item: topBlackView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let topVerticalConstraint = NSLayoutConstraint(item: topBlackView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 0.0)
 
-        let bottomWidthConstraints = NSLayoutConstraint(item: bottomBlackView, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 1.0, constant: 0.0)
-        let bottomHeightConstraints = NSLayoutConstraint(item: bottomBlackView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.5, constant: 0.0)
-        let bottomHorizontalConstraint = NSLayoutConstraint(item: bottomBlackView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let bottomVerticalConstraint = NSLayoutConstraint(item: bottomBlackView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        topBlackView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
+        topBlackView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
+        topBlackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        topBlackView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
 
-        containerView.addConstraints([topWidthConstraints, topHeightConstraints, topHorizontalConstraint, topVerticalConstraint])
-        containerView.addConstraints([bottomWidthConstraints, bottomHeightConstraints, bottomHorizontalConstraint, bottomVerticalConstraint])
+        bottomBlackView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
+        bottomBlackView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
+        bottomBlackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        bottomBlackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         
         containerView.layoutIfNeeded()
         
@@ -122,25 +119,22 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
         containerView.insertSubview(topBlackView, at:1)
         containerView.insertSubview(bottomBlackView, at: 2)
         containerView.insertSubview(toViewController.view, at: 3)
-        
-        let topWidthConstraints = NSLayoutConstraint(item: topBlackView, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 1.0, constant: 0.0)
-        let topHeightConstraints = NSLayoutConstraint(item: topBlackView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.5, constant: 0.0)
-        let topHorizontalConstraint = NSLayoutConstraint(item: topBlackView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let topVerticalConstraint = NSLayoutConstraint(item: topBlackView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1.0, constant: 0.0)
 
-        let bottomWidthConstraints = NSLayoutConstraint(item: bottomBlackView, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 1.0, constant: 0.0)
-        let bottomHeightConstraints = NSLayoutConstraint(item: bottomBlackView, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.5, constant: 0.0)
-        let bottomHorizontalConstraint = NSLayoutConstraint(item: bottomBlackView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let bottomVerticalConstraint = NSLayoutConstraint(item: bottomBlackView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        topBlackView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
+        topBlackView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
+        topBlackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        topBlackView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
 
-        containerView.addConstraints([topWidthConstraints, topHeightConstraints, topHorizontalConstraint, topVerticalConstraint])
-        containerView.addConstraints([bottomWidthConstraints, bottomHeightConstraints, bottomHorizontalConstraint, bottomVerticalConstraint])
+        bottomBlackView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
+        bottomBlackView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
+        bottomBlackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        bottomBlackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         
         containerView.layoutIfNeeded()
         
         self.topBlackView.transform = CGAffineTransform(translationX: 0, y: -self.topBlackView.frame.height)
         self.bottomBlackView.transform = CGAffineTransform(translationX: 0, y: self.bottomBlackView.frame.height)
-        
+
         let sortedCells = collectionView.visibleCells.sorted { (cell1, cell2) -> Bool in
             let side = collectionView.side(for: cell1)
             return !side.isAtBorder()

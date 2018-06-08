@@ -20,7 +20,7 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
             let attributedString = NSAttributedString(string: result, attributes: [NSAttributedStringKey.baselineOffset: baselineOffset])
             
             numberLabel.attributedText = attributedString
-            numberLabel.font = UIFont.vagThin(size: fontSize * adjustmentFactor)
+//            numberLabel.font = UIFont.vagThin(size: fontSize * adjustmentFactor)
         }
     }
     
@@ -31,6 +31,10 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
         
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
         numberLabel.textAlignment = .center
+        numberLabel.adjustsFontSizeToFitWidth = true
+        numberLabel.baselineAdjustment = .alignCenters
+        numberLabel.numberOfLines = 1
+        numberLabel.minimumScaleFactor = 0.3
         numberLabel.font = UIFont.vagThin(size: fontSize)
         numberLabel.textColor = UIColor.red
 
@@ -42,15 +46,12 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
         
         // Get parrent of collectionView
         guard let newSuperview = superview?.superview else { return }
-        
-        let centerXConstraint = NSLayoutConstraint(item: numberLabel, attribute: .centerX, relatedBy: .equal, toItem: newSuperview, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let centerYConstraint = NSLayoutConstraint(item: numberLabel, attribute: .centerY, relatedBy: .equal, toItem: newSuperview, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-        let leftConstraint = NSLayoutConstraint(item: numberLabel, attribute: .left, relatedBy: .greaterThanOrEqual, toItem: newSuperview, attribute: .left, multiplier: 1.0, constant: 0.0)
-        let rightConstraint = NSLayoutConstraint(item: numberLabel, attribute: .right, relatedBy: .greaterThanOrEqual, toItem: newSuperview, attribute: .right, multiplier: 1.0, constant: 0.0)
-        
-        newSuperview.addConstraints([centerXConstraint, centerYConstraint, leftConstraint, rightConstraint])
-        
-        numberLabel.sizeToFit()
+
+        numberLabel.centerXAnchor.constraint(equalTo: newSuperview.centerXAnchor).isActive = true
+        numberLabel.centerYAnchor.constraint(equalTo: newSuperview.centerYAnchor).isActive = true
+        numberLabel.leftAnchor.constraint(equalTo: newSuperview.leftAnchor, constant: 0).isActive = true
+        numberLabel.rightAnchor.constraint(equalTo: newSuperview.rightAnchor, constant: 0).isActive = true
+        numberLabel.backgroundColor = UIColor.black.withAlphaComponent(0.01)
     }
     
     static var reuseID: String {
@@ -59,7 +60,7 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
     
     override func layoutTile() {
         super.layoutTile()
-        layer.cornerRadius = 0
+//        layer.cornerRadius = 0
     }
     
     required init?(coder aDecoder: NSCoder) {

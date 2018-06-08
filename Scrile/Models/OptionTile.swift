@@ -18,26 +18,29 @@ enum OptionType {
 
     var image: UIImage {
         switch self {
-        case .tshirt: return UIImage(named: "colorpicker")!
+        case .color: return UIImage(named: "colorpicker")!
         default: return UIImage(named: "rules")!
         }
     }
 
     var color: UIColor {
+        return .red
+
         switch self {
-        case .tshirt: return UIColor.blue
+        case .tshirt: return UIColor.red
         default: return UIColor.yellow
         }
     }
 
-//    var viewController: UIViewController {
-//        switch self {
-//        case .tshirt:
-//            
-//        default:
-//
-//        }
-//    }
+    var viewController: UIViewController {
+        switch self {
+        case .tshirt: return TshirtViewController()
+        case .numbers: return NumberViewController()
+        default:
+            return ColorViewController()
+
+        }
+    }
 }
 
 struct OptionTile {

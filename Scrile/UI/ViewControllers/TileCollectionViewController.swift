@@ -62,7 +62,9 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         case .numberResult(let number):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath)
             if let resultCell = cell as? ResultNumberCollectionViewCell {
-                resultCell.result = "\(number)"
+                let format = number > 0 && number < 1 ? "%.1f" : "%.0f"
+                let resultStrig = String(format: format, number)
+                resultCell.result = resultStrig
             }
             return cell
 
@@ -113,6 +115,7 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
             break
 
         case .option(let type):
+            navigationController?.pushViewController(type.viewController, animated: true)
             break
 
         }

@@ -29,6 +29,7 @@
 		2578C30D20C9EC58006329D1 /* TshirtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30C20C9EC58006329D1 /* TshirtViewController.swift */; };
 		2578C31120C9F41B006329D1 /* TshirtTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31020C9F41B006329D1 /* TshirtTileCollectionViewCell.swift */; };
 		2578C31320CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31220CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift */; };
+		2578C31520CAF8AF006329D1 /* DoubleFlyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31420CAF8AF006329D1 /* DoubleFlyAnimator.swift */; };
 		25AE022E1F0B7389004EA053 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE022D1F0B7389004EA053 /* AppDelegate.swift */; };
 		25AE02351F0B7389004EA053 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25AE02341F0B7389004EA053 /* Assets.xcassets */; };
 		25AE02381F0B7389004EA053 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25AE02361F0B7389004EA053 /* LaunchScreen.storyboard */; };
@@ -88,6 +89,7 @@
 		2578C30C20C9EC58006329D1 /* TshirtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TshirtViewController.swift; sourceTree = "<group>"; };
 		2578C31020C9F41B006329D1 /* TshirtTileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TshirtTileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2578C31220CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTshirtCollectionViewCell.swift; sourceTree = "<group>"; };
+		2578C31420CAF8AF006329D1 /* DoubleFlyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFlyAnimator.swift; sourceTree = "<group>"; };
 		25AE022A1F0B7389004EA053 /* Scrile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25AE022D1F0B7389004EA053 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25AE02341F0B7389004EA053 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				255A6DF21F8F95B700C76EAD /* FlyAnimator.swift */,
+				2578C31420CAF8AF006329D1 /* DoubleFlyAnimator.swift */,
 				25F5B5231FA240DF00CEC2C1 /* FlipAnimator.swift */,
 				2523D1891FAF27C7006387AA /* PushFlipAnimator.swift */,
 				2523D18B1FAF285E006387AA /* PopFlipAnimator.swift */,
@@ -469,6 +472,7 @@
 				2523D18C1FAF285E006387AA /* PopFlipAnimator.swift in Sources */,
 				25F5B5281FA244B600CEC2C1 /* HiddenTileCollectionViewCell.swift in Sources */,
 				255A6DED1F8F726300C76EAD /* NumberTileCollectionViewCell.swift in Sources */,
+				2578C31520CAF8AF006329D1 /* DoubleFlyAnimator.swift in Sources */,
 				2523D1881FAF1CC4006387AA /* NavigationViewController.swift in Sources */,
 				250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */,
 				25F5B5241FA240DF00CEC2C1 /* FlipAnimator.swift in Sources */,

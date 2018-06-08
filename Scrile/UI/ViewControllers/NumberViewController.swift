@@ -22,6 +22,11 @@ class NumberViewController: TileCollectionViewController {
         let tiles = numbers + options
         super.init(tiles: tiles)
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.viewControllers = [self]
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
