@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StringTileCollectionViewCell: TileCollectionViewCell {
+class NumberTileCollectionViewCell: TileCollectionViewCell {
     
     static var reuseID: String {
         return String(describing: self)

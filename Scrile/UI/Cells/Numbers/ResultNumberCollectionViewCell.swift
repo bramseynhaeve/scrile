@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChosenNumberCollectionViewCell: TileCollectionViewCell {
+class ResultNumberCollectionViewCell: TileCollectionViewCell {
     
     let fontSize: Double = 480
     let baseLineFactor: Double = 0.0625

@@ -10,10 +10,10 @@ import UIKit
 
 class HiddenNumberViewController: TileCollectionViewController {
 
-    init(result: Float, numberOfTiles: Int) {
+    init(result: TileType, numberOfTiles: Int) {
 
-        let tiles = Array(0..<numberOfTiles).map { (number) -> TileType in
-            return TileType.hiddenNumber(number.scrumFibonacci())
+        let tiles = Array(0..<numberOfTiles).map { (_) -> TileType in
+            return result
         }
         
         super.init(tiles: tiles)

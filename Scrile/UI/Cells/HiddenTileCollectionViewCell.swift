@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HiddenStringTileCollectionViewCell: TileCollectionViewCell {
+class HiddenTileCollectionViewCell: TileCollectionViewCell {
 
     let defaultColor = UIColor.darkGray
     var flashTimer: Timer?

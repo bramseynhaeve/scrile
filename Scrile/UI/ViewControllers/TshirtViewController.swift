@@ -1,5 +1,5 @@
 //
-//  NumberViewController.swift
+//  TshirtViewController.swift
 //  Scrile
 //
 //  Created by Bram Seynhaeve on 07/06/2018.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-class NumberViewController: TileCollectionViewController {
+class TshirtViewController: TileCollectionViewController {
     init() {
 
-        let numbers = Array(0..<User.numberTileCount).map { (index) -> TileType in
-            return TileType.number(index.scrumFibonacci())
+        let numbers = ["XXS", "XS", "S", "M", "L", "XL", "XXL"].map { (size) -> TileType in
+            return TileType.tshirtSize(size)
         }
 
         let options = [OptionType.tshirt, OptionType.color].map { (type) -> TileType in
@@ -22,7 +22,7 @@ class NumberViewController: TileCollectionViewController {
         let tiles = numbers + options
         super.init(tiles: tiles)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

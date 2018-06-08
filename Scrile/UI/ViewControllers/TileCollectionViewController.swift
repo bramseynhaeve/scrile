@@ -23,10 +23,11 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         
         collectionView?.backgroundColor = UIColor.clear
 
-        collectionView?.register(StringTileCollectionViewCell.self, forCellWithReuseIdentifier: StringTileCollectionViewCell.reuseID)
-        collectionView?.register(HiddenStringTileCollectionViewCell.self, forCellWithReuseIdentifier: HiddenStringTileCollectionViewCell.reuseID)
-        collectionView?.register(ChosenNumberCollectionViewCell.self, forCellWithReuseIdentifier: ChosenNumberCollectionViewCell.reuseID)
+        collectionView?.register(NumberTileCollectionViewCell.self, forCellWithReuseIdentifier: NumberTileCollectionViewCell.reuseID)
+        collectionView?.register(HiddenTileCollectionViewCell.self, forCellWithReuseIdentifier: HiddenTileCollectionViewCell.reuseID)
+        collectionView?.register(ResultNumberCollectionViewCell.self, forCellWithReuseIdentifier: ResultNumberCollectionViewCell.reuseID)
         collectionView?.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.reuseID)
+        collectionView?.register(TshirtTileCollectionViewCell.self, forCellWithReuseIdentifier: TshirtTileCollectionViewCell.reuseID)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -51,22 +52,36 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
 
         switch tile {
         case .number(let number):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StringTileCollectionViewCell.reuseID, for: indexPath)
-            if let numberCell = cell as? StringTileCollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NumberTileCollectionViewCell.reuseID, for: indexPath)
+            if let numberCell = cell as? NumberTileCollectionViewCell {
                 numberCell.number = number
             }
 
             return cell
 
-        case .hiddenNumber:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HiddenStringTileCollectionViewCell.reuseID, for: indexPath)
-            return cell
-
-        case .result(let number):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChosenNumberCollectionViewCell.reuseID, for: indexPath)
-            if let resultCell = cell as? ChosenNumberCollectionViewCell {
+        case .numberResult(let number):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath)
+            if let resultCell = cell as? ResultNumberCollectionViewCell {
                 resultCell.result = "\(number)"
             }
+            return cell
+
+        case .tshirtSize(let size):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TshirtTileCollectionViewCell.reuseID, for: indexPath)
+            if let tshirtCell = cell as? TshirtTileCollectionViewCell {
+                tshirtCell.setSize(size)
+            }
+            return cell
+
+        case .tshirtResult(let size):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath)
+            if let resultCell = cell as? ResultNumberCollectionViewCell {
+                resultCell.result = size
+            }
+            return cell
+
+        case .hiddenNumber, .hiddenTshirtSize:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HiddenTileCollectionViewCell.reuseID, for: indexPath)
             return cell
 
         case .option(let type):
@@ -83,17 +98,17 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         let tile = tiles[index(for: indexPath)]
 
         switch tile {
-        case .number(let number):
-            let viewController = HiddenNumberViewController(result: number, numberOfTiles: tiles.count)
+        case .number, .tshirtSize:
+            let viewController = HiddenNumberViewController(result: tile.hide(), numberOfTiles: tiles.count)
             navigationController?.pushViewController(viewController, animated: true)
             break
 
-        case .hiddenNumber(let number):
-            let viewController = ResultCollectionViewController(result: number, numberOfTiles: tiles.count)
+        case .hiddenNumber, .hiddenTshirtSize:
+            let viewController = ResultCollectionViewController(result: tile.result(), numberOfTiles: tiles.count)
             navigationController?.pushViewController(viewController, animated: true)
             break
 
-        case .result:
+        case .numberResult, .tshirtResult:
             navigationController?.popToRootViewController(animated: true)
             break
 
