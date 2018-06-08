@@ -136,6 +136,17 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         return flowLayout.itemSize
     }
 
+    // Color Testing
+//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        guard let collectionView = collectionView else { return }
+//
+//        collectionView.visibleCells.forEach({ (cell) in
+//            let side = collectionView.side(for: cell)
+//            let color = side.color()
+//            cell.backgroundColor = color
+//        })
+//    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         // Remove inset border in last row
         return section == 0 ? UIEdgeInsets.zero : flowLayout.sectionInset

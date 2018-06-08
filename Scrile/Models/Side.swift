@@ -73,11 +73,11 @@ extension Side {
             return .cyan
         case .left:
             return .red
-        case .top:
+        case .top, .topLeftRight:
             return .yellow
         case .right:
             return .green
-        case .bottom:
+        case .bottom, .bottomLeftRight:
             return .blue
         case .leaningTop:
             return UIColor.yellow.darkened(byPercentage: 0.4)!
