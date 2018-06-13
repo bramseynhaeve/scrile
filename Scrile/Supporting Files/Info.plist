@@ -43,8 +43,10 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>VAGRoundedStd-Bold.otf</string>
-		<string>VAGRoundedStd-Thin.otf</string>
+		<string>Quicksand-Bold.ttf</string>
+		<string>Quicksand-Light.ttf</string>
+		<string>Quicksand-Medium.ttf</string>
+		<string>Quicksand-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

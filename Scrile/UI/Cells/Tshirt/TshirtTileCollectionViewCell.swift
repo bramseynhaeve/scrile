@@ -21,7 +21,7 @@ class TshirtTileCollectionViewCell: TileCollectionViewCell {
         
         backgroundColor = UIColor.red
 
-        tshirtSizeLabel.font = UIFont.vagThin(size: 50)
+        tshirtSizeLabel.font = UIFont.font1Light(size: 50)
         tshirtSizeLabel.textColor = .white
         tshirtSizeLabel.translatesAutoresizingMaskIntoConstraints = false
 

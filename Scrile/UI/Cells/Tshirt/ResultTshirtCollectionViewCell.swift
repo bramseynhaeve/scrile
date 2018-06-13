@@ -20,7 +20,7 @@ class ResultTshirtCollectionViewCell: TileCollectionViewCell {
             let attributedString = NSAttributedString(string: result, attributes: [NSAttributedStringKey.baselineOffset: baselineOffset])
 
             numberLabel.attributedText = attributedString
-            numberLabel.font = UIFont.vagThin(size: fontSize * adjustmentFactor)
+            numberLabel.font = UIFont.font1Light(size: fontSize * adjustmentFactor)
         }
     }
 
@@ -31,7 +31,7 @@ class ResultTshirtCollectionViewCell: TileCollectionViewCell {
 
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
         numberLabel.textAlignment = .center
-        numberLabel.font = UIFont.vagThin(size: fontSize)
+        numberLabel.font = UIFont.font1Light(size: fontSize)
         numberLabel.textColor = UIColor.red
 
         addSubview(numberLabel)

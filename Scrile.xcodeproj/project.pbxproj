@@ -30,13 +30,16 @@
 		2578C31120C9F41B006329D1 /* TshirtTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31020C9F41B006329D1 /* TshirtTileCollectionViewCell.swift */; };
 		2578C31320CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31220CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift */; };
 		2578C31520CAF8AF006329D1 /* DoubleFlyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31420CAF8AF006329D1 /* DoubleFlyAnimator.swift */; };
+		2578C31820CB316A006329D1 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31720CB316A006329D1 /* ResultView.swift */; };
+		2578C31D20CB37F7006329D1 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2578C31920CB37F5006329D1 /* Quicksand-Light.ttf */; };
+		2578C31E20CB37F7006329D1 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2578C31A20CB37F6006329D1 /* Quicksand-Regular.ttf */; };
+		2578C31F20CB37F7006329D1 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2578C31B20CB37F6006329D1 /* Quicksand-Medium.ttf */; };
+		2578C32020CB37F7006329D1 /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2578C31C20CB37F6006329D1 /* Quicksand-Bold.ttf */; };
 		25AE022E1F0B7389004EA053 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE022D1F0B7389004EA053 /* AppDelegate.swift */; };
 		25AE02351F0B7389004EA053 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25AE02341F0B7389004EA053 /* Assets.xcassets */; };
 		25AE02381F0B7389004EA053 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25AE02361F0B7389004EA053 /* LaunchScreen.storyboard */; };
 		25AE02431F0B7389004EA053 /* ScrileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE02421F0B7389004EA053 /* ScrileTests.swift */; };
 		25AE024E1F0B7389004EA053 /* ScrileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE024D1F0B7389004EA053 /* ScrileUITests.swift */; };
-		25BF23031F9F2FAA00F0D806 /* VAGRoundedStd-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 25BF23011F9F2FAA00F0D806 /* VAGRoundedStd-Thin.otf */; };
-		25BF23041F9F2FAA00F0D806 /* VAGRoundedStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 25BF23021F9F2FAA00F0D806 /* VAGRoundedStd-Bold.otf */; };
 		25BF23061F9F303900F0D806 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BF23051F9F303900F0D806 /* UIFontExtension.swift */; };
 		25DEB2271F90B0CB00C015F7 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DEB2261F90B0CB00C015F7 /* UIColorExtension.swift */; };
 		25DEB22B1F90D01700C015F7 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DEB22A1F90D01700C015F7 /* CGRectExtension.swift */; };
@@ -90,6 +93,11 @@
 		2578C31020C9F41B006329D1 /* TshirtTileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TshirtTileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2578C31220CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTshirtCollectionViewCell.swift; sourceTree = "<group>"; };
 		2578C31420CAF8AF006329D1 /* DoubleFlyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFlyAnimator.swift; sourceTree = "<group>"; };
+		2578C31720CB316A006329D1 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		2578C31920CB37F5006329D1 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		2578C31A20CB37F6006329D1 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		2578C31B20CB37F6006329D1 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		2578C31C20CB37F6006329D1 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
 		25AE022A1F0B7389004EA053 /* Scrile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25AE022D1F0B7389004EA053 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25AE02341F0B7389004EA053 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,8 +109,6 @@
 		25AE02491F0B7389004EA053 /* ScrileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25AE024D1F0B7389004EA053 /* ScrileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrileUITests.swift; sourceTree = "<group>"; };
 		25AE024F1F0B7389004EA053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		25BF23011F9F2FAA00F0D806 /* VAGRoundedStd-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Thin.otf"; sourceTree = "<group>"; };
-		25BF23021F9F2FAA00F0D806 /* VAGRoundedStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAGRoundedStd-Bold.otf"; sourceTree = "<group>"; };
 		25BF23051F9F303900F0D806 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		25DEB2261F90B0CB00C015F7 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		25DEB22A1F90D01700C015F7 /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 		255A6DF61F8FB33600C76EAD /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2578C31620CB3159006329D1 /* Views */,
 				255A6DF81F8FB36800C76EAD /* Animators */,
 				255A6DFA1F8FB39100C76EAD /* Cells */,
 				255A6DF91F8FB38100C76EAD /* FlowLayouts */,
@@ -275,6 +282,14 @@
 			path = Tshirt;
 			sourceTree = "<group>";
 		};
+		2578C31620CB3159006329D1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2578C31720CB316A006329D1 /* ResultView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		25AE02211F0B7388004EA053 = {
 			isa = PBXGroup;
 			children = (
@@ -330,8 +345,10 @@
 		25BF23001F9F2F6700F0D806 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				25BF23021F9F2FAA00F0D806 /* VAGRoundedStd-Bold.otf */,
-				25BF23011F9F2FAA00F0D806 /* VAGRoundedStd-Thin.otf */,
+				2578C31C20CB37F6006329D1 /* Quicksand-Bold.ttf */,
+				2578C31920CB37F5006329D1 /* Quicksand-Light.ttf */,
+				2578C31B20CB37F6006329D1 /* Quicksand-Medium.ttf */,
+				2578C31A20CB37F6006329D1 /* Quicksand-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -441,9 +458,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				25AE02381F0B7389004EA053 /* LaunchScreen.storyboard in Resources */,
-				25BF23041F9F2FAA00F0D806 /* VAGRoundedStd-Bold.otf in Resources */,
-				25BF23031F9F2FAA00F0D806 /* VAGRoundedStd-Thin.otf in Resources */,
+				2578C31E20CB37F7006329D1 /* Quicksand-Regular.ttf in Resources */,
+				2578C31F20CB37F7006329D1 /* Quicksand-Medium.ttf in Resources */,
 				25AE02351F0B7389004EA053 /* Assets.xcassets in Resources */,
+				2578C31D20CB37F7006329D1 /* Quicksand-Light.ttf in Resources */,
+				2578C32020CB37F7006329D1 /* Quicksand-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +499,7 @@
 				255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */,
 				2523D1901FAF29C9006387AA /* PopFlyAnimator.swift in Sources */,
 				2578C31320CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift in Sources */,
+				2578C31820CB316A006329D1 /* ResultView.swift in Sources */,
 				2523D18E1FAF29A7006387AA /* PushFlyAnimator.swift in Sources */,
 				2578C2FE20C99EF3006329D1 /* Tile.swift in Sources */,
 				25F6AD1D1F9502E400B63CA3 /* IntExtension.swift in Sources */,

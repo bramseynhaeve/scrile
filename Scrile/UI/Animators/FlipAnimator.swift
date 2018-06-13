@@ -42,7 +42,15 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
         
         toCollectionView.contentOffset = fromCollectionView.contentOffset
         toCollectionView.layoutSubviews()
-        
+
+        if let resultViewController = toViewController as? ResultCollectionViewController {
+            resultViewController.resultView.alpha = 0
+
+            UIView.animate(withDuration: 1) {
+                resultViewController.resultView.alpha = 1
+            }
+        }
+
         let fromVisibleCells = fromCollectionView.visibleCells.sorted { (cell1, cell2) -> Bool in
         
             if cell1.isSelected { return true }

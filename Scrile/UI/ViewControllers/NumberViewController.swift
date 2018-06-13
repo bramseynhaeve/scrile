@@ -15,7 +15,7 @@ class NumberViewController: TileCollectionViewController {
             return TileType.number(index.scrumFibonacci())
         }
 
-        let options = [OptionType.tshirt, OptionType.color].map { (type) -> TileType in
+        let options = [OptionType.coffee, OptionType.tshirt, OptionType.color, OptionType.settings, OptionType.info].map { (type) -> TileType in
             return TileType.option(type)
         }
 

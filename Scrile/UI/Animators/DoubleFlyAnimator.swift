@@ -71,7 +71,7 @@ class DoubleFlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIView
         for (index, cell) in toSortedCells.enumerated() {
             let side = toCollectionView.side(for: cell)
             let cellOffset = side.flyOffset(size: cell.frame.size)
-            let transitionDelay = 0.4 + (cell.isSelected ? 0.0 : touchDelay) + (delay * Double(index + 1))
+            let transitionDelay = 0.6 + (cell.isSelected ? 0.0 : touchDelay) + (delay * Double(index + 1))
 
             cell.layer.zPosition = CGFloat(toSortedCells.count - index)
             cell.transform = CGAffineTransform(translationX: cellOffset.width, y: cellOffset.height)

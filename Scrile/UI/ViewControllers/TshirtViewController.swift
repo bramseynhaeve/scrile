@@ -15,7 +15,7 @@ class TshirtViewController: TileCollectionViewController {
             return TileType.tshirtSize(size)
         }
 
-        let options = [OptionType.numbers, OptionType.color].map { (type) -> TileType in
+        let options = [OptionType.coffee, OptionType.numbers, OptionType.color, OptionType.settings, OptionType.info].map { (type) -> TileType in
             return TileType.option(type)
         }
 

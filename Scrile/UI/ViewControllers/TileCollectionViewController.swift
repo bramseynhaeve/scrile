@@ -62,9 +62,7 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         case .numberResult(let number):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath)
             if let resultCell = cell as? ResultNumberCollectionViewCell {
-                let format = number > 0 && number < 1 ? "%.1f" : "%.0f"
-                let resultStrig = String(format: format, number)
-                resultCell.result = resultStrig
+                resultCell.result = number
             }
             return cell
 
@@ -78,7 +76,7 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         case .tshirtResult(let size):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath)
             if let resultCell = cell as? ResultNumberCollectionViewCell {
-                resultCell.result = size
+                resultCell.result = 0
             }
             return cell
 

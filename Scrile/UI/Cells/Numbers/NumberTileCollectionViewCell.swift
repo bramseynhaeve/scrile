@@ -46,7 +46,7 @@ class NumberTileCollectionViewCell: TileCollectionViewCell {
         layer.cornerRadius = 2
         layer.masksToBounds = true
         
-        numberLabel.font = UIFont.vagThin(size: 50)
+        numberLabel.font = UIFont.font1Light(size: 50)
         numberLabel.textColor = .white
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
         
