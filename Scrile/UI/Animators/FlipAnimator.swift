@@ -43,13 +43,14 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
         toCollectionView.contentOffset = fromCollectionView.contentOffset
         toCollectionView.layoutSubviews()
 
-        if let resultViewController = toViewController as? ResultCollectionViewController {
-            resultViewController.resultView.alpha = 0
+        let resultViewController = toViewController as? ResultCollectionViewController ?? fromViewController as? ResultCollectionViewController
 
-            UIView.animate(withDuration: 1) {
-                resultViewController.resultView.alpha = 1
-            }
-        }
+//        if let resultViewController = resultViewController {
+//            resultViewController.collectionView?.visibleCells.forEach { cell in
+//                guard let cell = cell as? TileCollectionViewCell else { return }
+//                cell.hideBorder(completion: nil)
+//            }
+//        }
 
         let fromVisibleCells = fromCollectionView.visibleCells.sorted { (cell1, cell2) -> Bool in
         

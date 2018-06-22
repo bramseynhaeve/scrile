@@ -24,7 +24,12 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = .white
-        addSubview(resultView)
+        backgroundContainer.addSubview(resultView)
+    }
+
+    override func layoutTile() {
+        super.layoutTile()
+        hideBorder()
     }
 
     override func didMoveToSuperview() {

@@ -35,6 +35,10 @@ class ResultView: UIView {
         setResult(result)
     }
 
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        return nil
+    }
+
     func setResult(_ result: Float) {
         let format = result > 0 && result < 1 ? "%.1f" : "%.0f"
         let numberString = String(format: format, result)

@@ -120,18 +120,21 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let restTiles = tiles.count % flowLayout.numberOfHorizontalItems
-        let isLastSection = indexPath.section == numberOfSections(in: collectionView) - 1
-        
-        if isLastSection && restTiles != 0 {
-            var size = flowLayout.itemSize
-            let totalSpacing = flowLayout.minimumInteritemSpacing * (CGFloat(restTiles) - 1)
-            size.width = (collectionView.frame.width - totalSpacing) / CGFloat(restTiles)
-            
-            return size
+        let numberOfItemsInSection = collectionView.numberOfItems(inSection: indexPath.section)
+        let currentIndexOfItem = indexPath.item
+        let totalWidth = collectionView.frame.width
+        let totalHeight = collectionView.frame.height
+        let width = totalWidth / CGFloat(numberOfItemsInSection)
+        let height = totalHeight / CGFloat(flowLayout.numberOfVerticalItems)
+        let modulo = numberOfItemsInSection
+
+        guard modulo > 0 else {
+            return CGSize(width: width, height: height)
         }
-        
-        return flowLayout.itemSize
+
+        let cellWidth = currentIndexOfItem % modulo == 0 ? ceil(width) : floor(width)
+
+        return CGSize(width: cellWidth, height: height)
     }
 
     // Color Testing

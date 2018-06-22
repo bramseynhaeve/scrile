@@ -16,7 +16,6 @@ class NumberTileCollectionViewCell: TileCollectionViewCell {
     
     fileprivate let numberLabel: UILabel = UILabel()
     
-    
     var number: Float = 0.0 {
         didSet {
             let format = number > 0 && number < 1 ? "%.1f" : "%.0f"
@@ -41,6 +40,8 @@ class NumberTileCollectionViewCell: TileCollectionViewCell {
     }
     
     override func layoutTile() {
+        super.layoutTile()
+        
         backgroundColor = UIColor.red
         
         layer.cornerRadius = 2
@@ -53,22 +54,7 @@ class NumberTileCollectionViewCell: TileCollectionViewCell {
         addSubview(numberLabel)
         
         //TODO add pureLayout
-        let labelCenterX = NSLayoutConstraint(item: numberLabel,
-                                              attribute: .centerX,
-                                              relatedBy: .equal,
-                                              toItem: self,
-                                              attribute: .centerX,
-                                              multiplier: 1.0,
-                                              constant: 0.0)
-        
-        let labelCenterY = NSLayoutConstraint(item: numberLabel,
-                                              attribute: .centerY,
-                                              relatedBy: .equal,
-                                              toItem: self,
-                                              attribute: .centerY,
-                                              multiplier: 1.0,
-                                              constant: 0.0)
-        
-        addConstraints([labelCenterX, labelCenterY])
+        numberLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        numberLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 }

@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let tileCollectionViewController = NumberViewController()
+        let tileCollectionViewController = NumberViewController() // NumberViewController()
         let navigationController = NavigationViewController(rootViewController: tileCollectionViewController)
         
         window = UIWindow(frame: UIScreen.main.bounds)
