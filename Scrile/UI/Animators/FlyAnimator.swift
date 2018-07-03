@@ -92,12 +92,14 @@ class FlyAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContro
         }
         
         fromViewController.view.alpha = 1
+        toViewController.view.alpha = 0
 
         UIView.animate(withDuration: 0.29,
                        delay: self.transitionDuration(using: context) * 0.4,
                        options: .curveEaseOut,
                        animations: {
 //                            fromViewController.view.alpha = 0
+                            toViewController.view.alpha = 1
                             self.topBlackView.transform = CGAffineTransform(translationX: 0, y: -self.topBlackView.frame.height)
                             self.bottomBlackView.transform = CGAffineTransform(translationX: 0, y: self.bottomBlackView.frame.height)
         }) { (completed) in

@@ -19,7 +19,6 @@ class NavigationViewController: UINavigationController, UINavigationControllerDe
         }
         
         isNavigationBarHidden = true
-        automaticallyAdjustsScrollViewInsets = false
         delegate = self
     }
     

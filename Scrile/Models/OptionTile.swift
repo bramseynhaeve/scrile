@@ -25,11 +25,6 @@ enum OptionType {
 
     var color: UIColor {
         return .red
-
-        switch self {
-        case .tshirt: return UIColor.red
-        default: return UIColor.yellow
-        }
     }
 
     var viewController: UIViewController {

@@ -15,7 +15,7 @@ class ResultView: UIView {
     init(result: Float = 0) {
         super.init(frame: .zero)
 
-        backgroundColor = UIColor.white
+        backgroundColor = UIColor.clear
 
         addSubview(resultLabel)
         resultLabel.translatesAutoresizingMaskIntoConstraints = false

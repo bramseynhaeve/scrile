@@ -43,35 +43,26 @@ class FlipAnimator: NSObject, UIViewControllerTransitioningDelegate, UIViewContr
         toCollectionView.contentOffset = fromCollectionView.contentOffset
         toCollectionView.layoutSubviews()
 
-        let resultViewController = toViewController as? ResultCollectionViewController ?? fromViewController as? ResultCollectionViewController
-
-//        if let resultViewController = resultViewController {
-//            resultViewController.collectionView?.visibleCells.forEach { cell in
-//                guard let cell = cell as? TileCollectionViewCell else { return }
-//                cell.hideBorder(completion: nil)
-//            }
-//        }
-
         let fromVisibleCells = fromCollectionView.visibleCells.sorted { (cell1, cell2) -> Bool in
-        
+
             if cell1.isSelected { return true }
             if cell2.isSelected { return false }
-        
+
             guard let indexPath1 = fromCollectionView.indexPath(for: cell1),
                 let indexPath2 = fromCollectionView.indexPath(for: cell2) else { return false }
-            
+
             var bool = false
             if indexPath1.section == indexPath2.section {
                 bool = indexPath1.row < indexPath2.row
             } else {
                 bool = indexPath1.section < indexPath2.section
             }
-            
+
             if reverseAnimation { bool = !bool }
-            
+
             return bool
         }
-        
+
         let rotationFactor: CGFloat = reverseAnimation ? -1 : 1
         
         var fromTransform = CATransform3DIdentity

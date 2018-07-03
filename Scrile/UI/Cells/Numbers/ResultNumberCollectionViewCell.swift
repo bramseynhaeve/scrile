@@ -11,8 +11,8 @@ import UIKit
 class ResultNumberCollectionViewCell: TileCollectionViewCell {
     
     let fontSize: Double = 480
-    let baseLineFactor: Double = 0.0625
     let resultView = ResultView()
+    var flashTimer: Timer?
 
     var result: Float = 0 {
         didSet {
@@ -25,6 +25,8 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
         
         backgroundColor = .white
         backgroundContainer.addSubview(resultView)
+
+        flashTimer = randomTimer()
     }
 
     override func layoutTile() {
@@ -41,6 +43,20 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
         resultView.bottomAnchor.constraint(equalTo: newSuperview.bottomAnchor).isActive = true
         resultView.leftAnchor.constraint(equalTo: newSuperview.leftAnchor).isActive = true
         resultView.rightAnchor.constraint(equalTo: newSuperview.rightAnchor).isActive = true
+    }
+
+    private func randomTimer() -> Timer {
+        let randomFactor = Double(arc4random_uniform(100)) / 100.0
+        let randomInterval: Double = 1 + (10 * randomFactor)
+
+        return Timer.scheduledTimer(withTimeInterval: randomInterval, repeats: false) { timer in
+            self.flashTimer = self.randomTimer()
+
+            self.backgroundColor = UIColor.white.darkened(byPercentage: 0.05)
+            UIView.animate(withDuration: 1) {
+                self.backgroundColor = UIColor.white
+            }
+        }
     }
     
     static var reuseID: String {

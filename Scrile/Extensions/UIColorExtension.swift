@@ -9,12 +9,12 @@
 import UIKit
 
 extension UIColor {
-    func changedBrightness(byPercentage perc: CGFloat) -> UIColor? {
+    func changedBrightness(byPercentage perc: CGFloat) -> UIColor {
         if perc == 0 {
-            return self.copy() as? UIColor
+            return self
         }
         
-        guard let hsba = hsba() else { return nil }
+        guard let hsba = hsba() else { fatalError("Failed to get color values") }
         let percentage: CGFloat = min(max(perc, -1), 1)
         let newBrightness = min(max(hsba.brightness + percentage, -1), 1)
         return UIColor(hue: hsba.hue, saturation: hsba.saturation, brightness: newBrightness, alpha: hsba.alpha)
@@ -30,11 +30,11 @@ extension UIColor {
         return (hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
     }
     
-    public func lightened(byPercentage percentage: CGFloat = 0.1) -> UIColor? {
+    public func lightened(byPercentage percentage: CGFloat = 0.1) -> UIColor {
         return changedBrightness(byPercentage: percentage)
     }
     
-    public func darkened(byPercentage percentage: CGFloat = 0.1) -> UIColor? {
+    public func darkened(byPercentage percentage: CGFloat = 0.1) -> UIColor {
         return changedBrightness(byPercentage: -percentage)
     }
 }

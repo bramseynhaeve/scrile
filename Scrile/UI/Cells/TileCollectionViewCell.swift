@@ -10,6 +10,9 @@ import UIKit
 
 class TileCollectionViewCell: UICollectionViewCell {
 
+    fileprivate let borderOffset:CGFloat = 2.0
+    fileprivate let cornerRadius:CGFloat = 2.0
+
     let backgroundContainer: UIView = UIView()
     var widthConstraint: NSLayoutConstraint = NSLayoutConstraint()
     var heightConstraint: NSLayoutConstraint = NSLayoutConstraint()
@@ -39,6 +42,12 @@ class TileCollectionViewCell: UICollectionViewCell {
         transform = CGAffineTransform.identity
     }
 
+    func showBorder() {
+        widthConstraint.constant = -borderOffset
+        heightConstraint.constant = -borderOffset
+        backgroundContainer.layer.cornerRadius = cornerRadius
+    }
+
     func hideBorder() {
         widthConstraint.constant = 0
         heightConstraint.constant = 0
@@ -52,13 +61,12 @@ class TileCollectionViewCell: UICollectionViewCell {
         backgroundContainer.translatesAutoresizingMaskIntoConstraints = false
 
         backgroundColor = UIColor.darkGray
-        backgroundContainer.layer.cornerRadius = 2
+        backgroundContainer.layer.cornerRadius = cornerRadius
         backgroundContainer.layer.masksToBounds = true
 
         backgroundContainer.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         backgroundContainer.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
-        let borderOffset:CGFloat = 2.0
         widthConstraint = backgroundContainer.widthAnchor.constraint(equalTo: widthAnchor, constant: -borderOffset)
         heightConstraint = backgroundContainer.heightAnchor.constraint(equalTo: heightAnchor, constant: -borderOffset)
 

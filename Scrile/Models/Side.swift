@@ -80,9 +80,9 @@ extension Side {
         case .bottom, .bottomLeftRight:
             return .blue
         case .leaningTop:
-            return UIColor.yellow.darkened(byPercentage: 0.4)!
+            return UIColor.yellow.darkened(byPercentage: 0.4)
         case .leaningBottom:
-            return UIColor.blue.darkened(byPercentage: 0.4)!
+            return UIColor.blue.darkened(byPercentage: 0.4)
         default:
             return .gray
         }

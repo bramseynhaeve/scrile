@@ -113,7 +113,13 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
             break
 
         case .option(let type):
-            navigationController?.pushViewController(type.viewController, animated: true)
+            let viewController = type.viewController
+
+            if let colorViewController = viewController as? ColorViewController {
+                colorViewController.delegate = self
+            }
+
+            navigationController?.pushViewController(viewController, animated: true)
             break
 
         }
@@ -123,9 +129,8 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         let numberOfItemsInSection = collectionView.numberOfItems(inSection: indexPath.section)
         let currentIndexOfItem = indexPath.item
         let totalWidth = collectionView.frame.width
-        let totalHeight = collectionView.frame.height
         let width = totalWidth / CGFloat(numberOfItemsInSection)
-        let height = totalHeight / CGFloat(flowLayout.numberOfVerticalItems)
+        let height = flowLayout.itemSize.height
         let modulo = numberOfItemsInSection
 
         guard modulo > 0 else {
@@ -160,5 +165,10 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
     func index(for indexPath: IndexPath) -> Int {
         return (indexPath.section * flowLayout.numberOfHorizontalItems) + indexPath.row
     }
+}
 
+extension TileCollectionViewController: ColorDelegate {
+    func didChooseColor(color: UIColor) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
