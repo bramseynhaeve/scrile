@@ -32,6 +32,11 @@ class OptionCollectionViewCell: TileCollectionViewCell {
         return String(describing: self)
     }
     
+    func setType(type: OptionType) {
+        setImage(image: type.image)
+        backgroundColor = type.color
+    }
+    
     func setImage(image: UIImage) {
         imageView.image = image
     }

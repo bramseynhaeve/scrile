@@ -19,7 +19,6 @@ class NavigationViewController: UINavigationController, UINavigationControllerDe
         }
         
         isNavigationBarHidden = true
-        automaticallyAdjustsScrollViewInsets = false
         delegate = self
     }
     
@@ -38,16 +37,26 @@ class NavigationViewController: UINavigationController, UINavigationControllerDe
     }
     
     func popAnimatorForViewController(viewController: UIViewController) -> UIViewControllerAnimatedTransitioning {
-        if viewController.isKind(of: TileCollectionViewController.self) {
-            return PopFlipAnimator()
+        if
+            let fromViewController = viewControllers.first as? TileCollectionViewController,
+            let toViewController = viewController as? TileCollectionViewController
+        {
+            return fromViewController.tiles.count == toViewController.tiles.count ? PopFlipAnimator() : DoubleFlyAnimator()
         }
         
         return PopFlyAnimator()
     }
     
     func pushAnimatorForViewController(viewController: UIViewController) -> UIViewControllerAnimatedTransitioning {
-        if viewController.isKind(of: TileCollectionViewController.self) {
-            return PushFlipAnimator()
+
+        var modifiedViewControllers = viewControllers
+        modifiedViewControllers.removeLast()
+
+        if
+            let fromViewController = modifiedViewControllers.last as? TileCollectionViewController,
+            let toViewController = viewController as? TileCollectionViewController
+        {
+            return fromViewController.tiles.count == toViewController.tiles.count ? PushFlipAnimator() : DoubleFlyAnimator()
         }
         
         return PushFlyAnimator()

@@ -15,13 +15,13 @@ class User: NSObject {
     static var numberTileCount: Int {
         get {
             let numberOfTiles = UserDefaults.standard.integer(forKey: numberOfNumberTilesKey)
-            guard numberOfTiles != 0 else { return 9 }
+            guard numberOfTiles != 0 else { return 12 }
             
             return numberOfTiles
         }
         
         set { UserDefaults.standard.set(newValue, forKey: numberOfNumberTilesKey) }
     }
-    
-    static var optionTileCount: Int = 5
+
+    static var tshirtSizes: [String] = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXL", "XXL", "XXL"]
 }

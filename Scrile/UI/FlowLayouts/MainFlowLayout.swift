@@ -16,9 +16,9 @@ class MainFlowLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
         
-        minimumLineSpacing = 2.0
-        minimumInteritemSpacing = 2.0
-        sectionInset = UIEdgeInsetsMake(2.0, 0, 0, 0)
+        minimumLineSpacing = 0.0
+        minimumInteritemSpacing = 0.0
+        sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     override var itemSize: CGSize {
@@ -29,7 +29,7 @@ class MainFlowLayout: UICollectionViewFlowLayout {
             guard let collectionView = collectionView else { return CGSize.zero }
             
             let viewWidth = collectionView.frame.width
-            let viewHeight = collectionView.frame.height
+            let viewHeight = collectionView.frame.height - 40
             let numberOfHorizontalSeperators = numberOfHorizontalItems - 1
             let numberOfVerticalSeperators = numberOfVerticalItems - 1
             let tileWidth = (viewWidth - CGFloat(Int(minimumInteritemSpacing) * numberOfHorizontalSeperators)) / CGFloat(numberOfHorizontalItems)

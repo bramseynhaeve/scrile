@@ -9,8 +9,6 @@
 import Foundation
 
 extension Int {
-    
-    //This can p
     func scrumFibonacci() -> Float {
         
         // Make the first number 0 since we don't want 1 two times.
