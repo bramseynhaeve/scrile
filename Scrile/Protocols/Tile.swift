@@ -38,4 +38,17 @@ enum TileType {
             fatalError("Invalid hide type")
         }
     }
+
+    func color() -> UIColor {
+        switch self {
+        case .number(_), .tshirtSize(_):
+            return UserDefaults.standard.userColor()
+        case .numberResult(_), .tshirtResult(_):
+            return UIColor.white
+        case .hiddenNumber(_), .hiddenTshirtSize(_):
+            return UIColor.darkGray
+        case .option(_):
+            return UserDefaults.standard.userColor().darkened(byPercentage: 0.1)
+        }
+    }
 }

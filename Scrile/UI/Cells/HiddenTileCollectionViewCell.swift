@@ -9,8 +9,6 @@
 import UIKit
 
 class HiddenTileCollectionViewCell: TileCollectionViewCell {
-
-    let defaultColor = UIColor.darkGray
     var flashTimer: Timer?
     
     static var reuseID: String {
@@ -32,16 +30,11 @@ class HiddenTileCollectionViewCell: TileCollectionViewCell {
 
         return Timer.scheduledTimer(withTimeInterval: randomInterval, repeats: false) { timer in
             self.flashTimer = self.randomTimer()
-            self.backgroundColor = self.defaultColor.lightened(byPercentage: 0.1)
+            self.backgroundColor = self.color.lightened(byPercentage: 0.1)
 
-            UIView.animate(withDuration: 0.29) {
-                self.backgroundColor = self.defaultColor
-            }
+            UIView.animate(withDuration: 0.29, delay: 0, options: .allowUserInteraction, animations: {
+                self.backgroundColor = self.color
+            }, completion: nil)
         }
-    }
-    
-    override func layoutTile() {
-        super.layoutTile()
-        backgroundColor = defaultColor
     }
 }

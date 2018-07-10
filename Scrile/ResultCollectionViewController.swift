@@ -16,7 +16,7 @@ class ResultCollectionViewController: TileCollectionViewController {
             return result
         }
 
-        super.init(tiles: tiles)
+        super.init(tiles: tiles, color: UIColor.white)
 
         collectionView?.isScrollEnabled = false
     }

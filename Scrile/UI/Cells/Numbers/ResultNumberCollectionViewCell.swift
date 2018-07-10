@@ -22,8 +22,7 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .white
+
         backgroundContainer.addSubview(resultView)
 
         flashTimer = randomTimer()
@@ -52,10 +51,10 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
         return Timer.scheduledTimer(withTimeInterval: randomInterval, repeats: false) { timer in
             self.flashTimer = self.randomTimer()
 
-            self.backgroundColor = UIColor.white.darkened(byPercentage: 0.05)
-            UIView.animate(withDuration: 1) {
-                self.backgroundColor = UIColor.white
-            }
+            self.backgroundColor = self.color.darkened(byPercentage: 0.05)
+            UIView.animate(withDuration: 0.29, delay: 0, options: .allowUserInteraction, animations: {
+                self.backgroundColor = self.color
+            })
         }
     }
     

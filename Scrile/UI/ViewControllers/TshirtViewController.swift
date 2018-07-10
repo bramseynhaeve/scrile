@@ -6,10 +6,10 @@
 //  Copyright © 2018 In The Pocket. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TshirtViewController: TileCollectionViewController {
-    init() {
+    init(color: UIColor) {
 
         let numbers = ["XXXS", "XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"].map { (size) -> TileType in
             return TileType.tshirtSize(size)
@@ -20,7 +20,7 @@ class TshirtViewController: TileCollectionViewController {
         }
 
         let tiles = numbers + options
-        super.init(tiles: tiles)
+        super.init(tiles: tiles, color: color)
     }
 
     override func viewWillAppear(_ animated: Bool) {

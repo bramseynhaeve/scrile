@@ -27,8 +27,6 @@ class ResultTshirtCollectionViewCell: TileCollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = .white
-
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
         numberLabel.textAlignment = .center
         numberLabel.font = UIFont.font1Light(size: fontSize)

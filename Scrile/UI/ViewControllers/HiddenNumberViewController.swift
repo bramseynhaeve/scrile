@@ -15,8 +15,8 @@ class HiddenNumberViewController: TileCollectionViewController {
         let tiles = Array(0..<numberOfTiles).map { (_) -> TileType in
             return result
         }
-        
-        super.init(tiles: tiles)
+
+        super.init(tiles: tiles, color: UIColor.darkGray)
 
         collectionView?.isScrollEnabled = false
     }

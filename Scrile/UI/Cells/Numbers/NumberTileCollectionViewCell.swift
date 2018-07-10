@@ -35,14 +35,13 @@ class NumberTileCollectionViewCell: TileCollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        layoutTile()
         
         numberLabel.text = ""
     }
     
     override func layoutTile() {
         super.layoutTile()
-        
-        backgroundColor = UIColor.red
         
         layer.cornerRadius = 2
         layer.masksToBounds = true

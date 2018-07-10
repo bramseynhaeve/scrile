@@ -12,6 +12,7 @@
 		2507575A20EAB915000AE292 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2507575920EAB915000AE292 /* ImageExtension.swift */; };
 		250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */; };
 		250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AF0BC1F8FF0FB00BD919B /* Side.swift */; };
+		250BFFE120ECEC95005663F4 /* UIColorNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250BFFE020ECEC95005663F4 /* UIColorNameExtension.swift */; };
 		251B5C681FA9E6D400659A9B /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */; };
 		251B5C6C1FAA16E700659A9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C6B1FAA16E700659A9B /* User.swift */; };
 		2523D1881FAF1CC4006387AA /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2523D1871FAF1CC4006387AA /* NavigationViewController.swift */; };
@@ -22,10 +23,12 @@
 		2523D1921FAF2F3D006387AA /* ResultCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2523D1911FAF2F3D006387AA /* ResultCollectionViewController.swift */; };
 		2523D1941FAF3122006387AA /* ResultNumberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2523D1931FAF3122006387AA /* ResultNumberCollectionViewCell.swift */; };
 		2527801E1F9A25FF00E69AFA /* FloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2527801D1F9A25FF00E69AFA /* FloatExtension.swift */; };
+		2549DA0820EFC9A1002D74C9 /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2549DA0720EFC9A1002D74C9 /* UserDefaultsExtension.swift */; };
 		255A6DEB1F8F67D000C76EAD /* MainFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DEA1F8F67D000C76EAD /* MainFlowLayout.swift */; };
 		255A6DED1F8F726300C76EAD /* NumberTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DEC1F8F726300C76EAD /* NumberTileCollectionViewCell.swift */; };
 		255A6DF31F8F95B700C76EAD /* FlyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DF21F8F95B700C76EAD /* FlyAnimator.swift */; };
 		255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DF41F8F95EB00C76EAD /* ColorViewController.swift */; };
+		2565E58420EB8E660082C1AD /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2565E58320EB8E660082C1AD /* CGPointExtension.swift */; };
 		2578C2FE20C99EF3006329D1 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C2FD20C99EF3006329D1 /* Tile.swift */; };
 		2578C30920C9C747006329D1 /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30820C9C747006329D1 /* NumberViewController.swift */; };
 		2578C30B20C9E89F006329D1 /* OptionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30A20C9E89F006329D1 /* OptionTile.swift */; };
@@ -79,6 +82,7 @@
 		2507575920EAB915000AE292 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		250AF0BC1F8FF0FB00BD919B /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
+		250BFFE020ECEC95005663F4 /* UIColorNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorNameExtension.swift; sourceTree = "<group>"; };
 		251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		251B5C6B1FAA16E700659A9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2523D1871FAF1CC4006387AA /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -89,10 +93,12 @@
 		2523D1911FAF2F3D006387AA /* ResultCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResultCollectionViewController.swift; path = Scrile/ResultCollectionViewController.swift; sourceTree = SOURCE_ROOT; };
 		2523D1931FAF3122006387AA /* ResultNumberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultNumberCollectionViewCell.swift; sourceTree = "<group>"; };
 		2527801D1F9A25FF00E69AFA /* FloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtension.swift; sourceTree = "<group>"; };
+		2549DA0720EFC9A1002D74C9 /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		255A6DEA1F8F67D000C76EAD /* MainFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowLayout.swift; sourceTree = "<group>"; };
 		255A6DEC1F8F726300C76EAD /* NumberTileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTileCollectionViewCell.swift; sourceTree = "<group>"; };
 		255A6DF21F8F95B700C76EAD /* FlyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyAnimator.swift; sourceTree = "<group>"; };
 		255A6DF41F8F95EB00C76EAD /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
+		2565E58320EB8E660082C1AD /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		2578C2FD20C99EF3006329D1 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		2578C30820C9C747006329D1 /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
 		2578C30A20C9E89F006329D1 /* OptionTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionTile.swift; sourceTree = "<group>"; };
@@ -165,6 +171,9 @@
 				25BF23051F9F303900F0D806 /* UIFontExtension.swift */,
 				2507575720EAB68F000AE292 /* StringExtension.swift */,
 				2507575920EAB915000AE292 /* ImageExtension.swift */,
+				2565E58320EB8E660082C1AD /* CGPointExtension.swift */,
+				250BFFE020ECEC95005663F4 /* UIColorNameExtension.swift */,
+				2549DA0720EFC9A1002D74C9 /* UserDefaultsExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -509,6 +518,7 @@
 				250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */,
 				25F5B5241FA240DF00CEC2C1 /* FlipAnimator.swift in Sources */,
 				25DEB22D1F90D5E900C015F7 /* ArrayExtension.swift in Sources */,
+				2549DA0820EFC9A1002D74C9 /* UserDefaultsExtension.swift in Sources */,
 				255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */,
 				2523D1901FAF29C9006387AA /* PopFlyAnimator.swift in Sources */,
 				2578C31320CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift in Sources */,
@@ -523,8 +533,10 @@
 				2523D1921FAF2F3D006387AA /* ResultCollectionViewController.swift in Sources */,
 				2578C30B20C9E89F006329D1 /* OptionTile.swift in Sources */,
 				255A6DEB1F8F67D000C76EAD /* MainFlowLayout.swift in Sources */,
+				2565E58420EB8E660082C1AD /* CGPointExtension.swift in Sources */,
 				2578C30D20C9EC58006329D1 /* TshirtViewController.swift in Sources */,
 				2523D18A1FAF27C7006387AA /* PushFlipAnimator.swift in Sources */,
+				250BFFE120ECEC95005663F4 /* UIColorNameExtension.swift in Sources */,
 				2523D1941FAF3122006387AA /* ResultNumberCollectionViewCell.swift in Sources */,
 				25F5B52A1FA2452E00CEC2C1 /* TileCollectionViewCell.swift in Sources */,
 				2527801E1F9A25FF00E69AFA /* FloatExtension.swift in Sources */,

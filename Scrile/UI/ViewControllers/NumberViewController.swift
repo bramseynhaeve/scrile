@@ -6,11 +6,11 @@
 //  Copyright © 2018 In The Pocket. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NumberViewController: TileCollectionViewController {
-    init() {
 
+    init(color: UIColor) {
         let numbers = Array(0..<User.numberTileCount).map { (index) -> TileType in
             return TileType.number(index.scrumFibonacci())
         }
@@ -20,11 +20,12 @@ class NumberViewController: TileCollectionViewController {
         }
 
         let tiles = numbers + options
-        super.init(tiles: tiles)
+        super.init(tiles: tiles, color: color)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        collectionView?.layoutSubviews()
         navigationController?.viewControllers = [self]
     }
     

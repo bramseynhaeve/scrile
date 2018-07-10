@@ -16,6 +16,9 @@ class TileCollectionViewCell: UICollectionViewCell {
     let backgroundContainer: UIView = UIView()
     var widthConstraint: NSLayoutConstraint = NSLayoutConstraint()
     var heightConstraint: NSLayoutConstraint = NSLayoutConstraint()
+    var color = UIColor.tile {
+        didSet { backgroundColor = color }
+    }
 
     override var backgroundColor: UIColor? {
         set {
@@ -38,7 +41,8 @@ class TileCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+
+        backgroundColor = color
         transform = CGAffineTransform.identity
     }
 
@@ -59,8 +63,6 @@ class TileCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = true
         
         backgroundContainer.translatesAutoresizingMaskIntoConstraints = false
-
-        backgroundColor = UIColor.darkGray
         backgroundContainer.layer.cornerRadius = cornerRadius
         backgroundContainer.layer.masksToBounds = true
 

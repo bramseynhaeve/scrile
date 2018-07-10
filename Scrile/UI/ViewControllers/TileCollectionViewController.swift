@@ -12,10 +12,13 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
     
     let flowLayout = MainFlowLayout()
     let tiles: [TileType]
+    fileprivate let color: UIColor
 
-    init(tiles: [TileType]) {
+    init(tiles: [TileType], color: UIColor) {
         self.tiles = tiles
+        self.color = color
         super.init(collectionViewLayout: flowLayout)
+        self.collectionView?.isPrefetchingEnabled = false
     }
     
     override func viewDidLoad() {
@@ -49,49 +52,52 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let tile = tiles[index(for: indexPath)]
+        let cell: TileCollectionViewCell
 
         switch tile {
         case .number(let number):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NumberTileCollectionViewCell.reuseID, for: indexPath)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: NumberTileCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
             if let numberCell = cell as? NumberTileCollectionViewCell {
                 numberCell.number = number
+                print("Update color: \(number)")
             }
-
-            return cell
+            break
 
         case .numberResult(let number):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
             if let resultCell = cell as? ResultNumberCollectionViewCell {
                 resultCell.result = number
             }
-            return cell
+            break
 
         case .tshirtSize(let size):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TshirtTileCollectionViewCell.reuseID, for: indexPath)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: TshirtTileCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
             if let tshirtCell = cell as? TshirtTileCollectionViewCell {
                 tshirtCell.setSize(size)
             }
-            return cell
+            break
 
         case .tshirtResult(let size):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
             if let resultCell = cell as? ResultNumberCollectionViewCell {
                 resultCell.result = 0
             }
-            return cell
+            break
 
         case .hiddenNumber, .hiddenTshirtSize:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HiddenTileCollectionViewCell.reuseID, for: indexPath)
-            return cell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: HiddenTileCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
+            break
 
         case .option(let type):
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.reuseID, for: indexPath)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
             if let optionCell = cell as? OptionCollectionViewCell {
                 optionCell.setType(type: type)
             }
-            return cell
-
+            break
         }
+
+        cell.color = tile.color()
+        return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -169,6 +175,18 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
 
 extension TileCollectionViewController: ColorDelegate {
     func didChooseColor(color: UIColor) {
-        self.navigationController?.popViewController(animated: true)
+        UserDefaults.standard.saveUserColor(color)
+
+        self.collectionView?.visibleCells.forEach { cell in
+            guard
+                let cell = cell as? TileCollectionViewCell,
+                let indexPath = self.collectionView?.indexPath(for: cell)
+            else { return }
+
+            let tile = tiles[index(for: indexPath)]
+            cell.color = tile.color()
+        }
+
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }

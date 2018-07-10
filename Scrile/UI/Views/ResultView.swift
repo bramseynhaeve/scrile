@@ -30,7 +30,7 @@ class ResultView: UIView {
         resultLabel.numberOfLines = 1
         resultLabel.minimumScaleFactor = 0.2
         resultLabel.font = UIFont.font1Regular(size: fontSize)
-        resultLabel.textColor = UIColor.red
+        resultLabel.textColor = UserDefaults.standard.userColor()
 
         setResult(result)
     }

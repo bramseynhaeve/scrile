@@ -15,7 +15,7 @@ class User: NSObject {
     static var numberTileCount: Int {
         get {
             let numberOfTiles = UserDefaults.standard.integer(forKey: numberOfNumberTilesKey)
-            guard numberOfTiles != 0 else { return 12 }
+            guard numberOfTiles != 0 else { return 20 }
             
             return numberOfTiles
         }

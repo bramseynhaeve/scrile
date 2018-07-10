@@ -24,16 +24,17 @@ enum OptionType {
     }
 
     var color: UIColor {
-        return .red
+        return UserDefaults.standard.userColor().darkened(byPercentage: 0.1)
     }
 
     var viewController: UIViewController {
+        let currentUserColor = UserDefaults.standard.userColor()
+        
         switch self {
-        case .tshirt: return TshirtViewController()
-        case .numbers: return NumberViewController()
+        case .tshirt: return TshirtViewController(color: currentUserColor)
+        case .numbers: return NumberViewController(color: currentUserColor)
         default:
-            return ColorViewController()
-
+            return ColorViewController(color: UserDefaults.standard.userColor())
         }
     }
 }
