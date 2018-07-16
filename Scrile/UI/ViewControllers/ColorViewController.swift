@@ -17,6 +17,7 @@ class ColorViewController: UIViewController {
     fileprivate let colorCircle = UIView()
     fileprivate let okButton = UIButton()
     fileprivate let scrubber = UIView()
+    fileprivate let line = Line(startPoint: .zero, endPoint: .zero)
     fileprivate let brightnessButton = UIView()
     fileprivate let colorNameLabel = UILabel()
     fileprivate let touchCircleRadius: CGFloat = 70
@@ -49,6 +50,7 @@ class ColorViewController: UIViewController {
         brightnessButton.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(colorCircle)
+        view.addSubview(line)
         view.addSubview(okButton)
         view.addSubview(scrubber)
         view.addSubview(colorNameLabel)
@@ -67,7 +69,7 @@ class ColorViewController: UIViewController {
         okButton.layer.cornerRadius = okButtonRadius
         okButton.clipsToBounds = true
 
-        colorCircle.widthAnchor.constraint(equalToConstant: touchCircleRadius * 2).isActive = true
+        colorCircle.widthAnchor.constraint(equalToConstant: (touchCircleRadius + 2.5) * 2).isActive = true
         colorCircle.heightAnchor.constraint(equalTo: colorCircle.widthAnchor).isActive = true
         colorCircle.centerXAnchor.constraint(equalTo: okButton.centerXAnchor).isActive = true
         colorCircle.centerYAnchor.constraint(equalTo: okButton.centerYAnchor).isActive = true
@@ -110,6 +112,12 @@ class ColorViewController: UIViewController {
         moveScrubber(color: startColor)
         updateColor(color: startColor)
         updateBrightnessButton(color: startColor)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        line.startPoint = scrubber.layer.position
+        line.endPoint = brightnessButton.layer.position
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

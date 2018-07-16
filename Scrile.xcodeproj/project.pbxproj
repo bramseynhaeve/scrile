@@ -13,6 +13,7 @@
 		250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */; };
 		250AF0BD1F8FF0FB00BD919B /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AF0BC1F8FF0FB00BD919B /* Side.swift */; };
 		250BFFE120ECEC95005663F4 /* UIColorNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250BFFE020ECEC95005663F4 /* UIColorNameExtension.swift */; };
+		2516A5BB20FD2756007084AE /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2516A5BA20FD2756007084AE /* Line.swift */; };
 		251B5C681FA9E6D400659A9B /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */; };
 		251B5C6C1FAA16E700659A9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C6B1FAA16E700659A9B /* User.swift */; };
 		2523D1881FAF1CC4006387AA /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2523D1871FAF1CC4006387AA /* NavigationViewController.swift */; };
@@ -83,6 +84,7 @@
 		250AF0B91F8FEFB100BD919B /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		250AF0BC1F8FF0FB00BD919B /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		250BFFE020ECEC95005663F4 /* UIColorNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorNameExtension.swift; sourceTree = "<group>"; };
+		2516A5BA20FD2756007084AE /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		251B5C6B1FAA16E700659A9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2523D1871FAF1CC4006387AA /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				2578C31720CB316A006329D1 /* ResultView.swift */,
+				2516A5BA20FD2756007084AE /* Line.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2516A5BB20FD2756007084AE /* Line.swift in Sources */,
 				255A6DF31F8F95B700C76EAD /* FlyAnimator.swift in Sources */,
 				2523D18C1FAF285E006387AA /* PopFlipAnimator.swift in Sources */,
 				2507575A20EAB915000AE292 /* ImageExtension.swift in Sources */,
