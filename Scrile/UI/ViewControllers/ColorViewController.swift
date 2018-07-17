@@ -69,13 +69,14 @@ class ColorViewController: UIViewController {
         okButton.layer.cornerRadius = okButtonRadius
         okButton.clipsToBounds = true
 
-        colorCircle.widthAnchor.constraint(equalToConstant: (touchCircleRadius + 2.5) * 2).isActive = true
+        let colorCircleDiameterWithBorder = (touchCircleRadius + 2.5) * 2
+        colorCircle.widthAnchor.constraint(equalToConstant: colorCircleDiameterWithBorder).isActive = true
         colorCircle.heightAnchor.constraint(equalTo: colorCircle.widthAnchor).isActive = true
         colorCircle.centerXAnchor.constraint(equalTo: okButton.centerXAnchor).isActive = true
         colorCircle.centerYAnchor.constraint(equalTo: okButton.centerYAnchor).isActive = true
         colorCircle.layer.borderColor = UIColor.white.cgColor
         colorCircle.layer.borderWidth = 5
-        colorCircle.layer.cornerRadius = touchCircleRadius
+        colorCircle.layer.cornerRadius = colorCircleDiameterWithBorder / 2
         colorCircle.alpha = 0.4
 
         let scrubberRadius: CGFloat = 15.0
@@ -124,6 +125,7 @@ class ColorViewController: UIViewController {
         guard let touch = touches.first else { return }
         let newColor = colorInfo(touch: touch, inView: view)
 
+        line.animateIn()
         moveScrubber(color: newColor)
         updateBrightnessButton(color: newColor)
         updateColor(color: newColor, isTouching: true)
@@ -160,6 +162,7 @@ class ColorViewController: UIViewController {
         guard let touch = touches.first else { return }
         let newColor = colorInfo(touch: touch, inView: view)
 
+        line.animateOut()
         moveScrubber(color: newColor)
         updateBrightnessButton(color: newColor)
         updateColor(color: newColor, isTouching: true)

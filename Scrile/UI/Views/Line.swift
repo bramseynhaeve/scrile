@@ -42,6 +42,32 @@ class Line: UIView {
         layer.addSublayer(line)
     }
 
+    func animateIn(duration: Double = 0.29) {
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.duration = duration
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.repeatCount = 0
+        animation.autoreverses = false
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        line.add(animation, forKey: "strokeEnd")
+    }
+
+    func animateOut(duration: Double = 0.5) {
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.duration = duration
+        animation.fromValue = 1.0
+        animation.toValue = 0.0
+        animation.repeatCount = 0
+        animation.autoreverses = false
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        line.add(animation, forKey: "strokeEnd")
+    }
+
     fileprivate func drawLine()  {
         let path = UIBezierPath()
         path.move(to: startPoint)
