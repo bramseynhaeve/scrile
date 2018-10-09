@@ -29,7 +29,7 @@ class Line: UIView {
         line.backgroundColor = UIColor.clear.cgColor
         line.strokeColor = UIColor.white.cgColor
         line.lineWidth = 5.0
-        line.lineCap = kCALineCapRound
+        line.lineCap = CAShapeLayerLineCap.round
         line.fillColor = UIColor.clear.cgColor
         line.strokeEnd = 0.0
 
@@ -50,8 +50,8 @@ class Line: UIView {
         animation.repeatCount = 0
         animation.autoreverses = false
         animation.isRemovedOnCompletion = false
-        animation.fillMode = kCAFillModeForwards
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         line.add(animation, forKey: "strokeEnd")
     }
 
@@ -63,8 +63,8 @@ class Line: UIView {
         animation.repeatCount = 0
         animation.autoreverses = false
         animation.isRemovedOnCompletion = false
-        animation.fillMode = kCAFillModeForwards
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         line.add(animation, forKey: "strokeEnd")
     }
 

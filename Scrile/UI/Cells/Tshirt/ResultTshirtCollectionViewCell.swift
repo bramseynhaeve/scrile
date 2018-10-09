@@ -17,7 +17,7 @@ class ResultTshirtCollectionViewCell: TileCollectionViewCell {
         didSet {
             let adjustmentFactor = max((1 - (0.23 * Double(result.count - 1))), 0)
             let baselineOffset = -fontSize * (baseLineFactor * adjustmentFactor)
-            let attributedString = NSAttributedString(string: result, attributes: [NSAttributedStringKey.baselineOffset: baselineOffset])
+            let attributedString = NSAttributedString(string: result, attributes: [NSAttributedString.Key.baselineOffset: baselineOffset])
 
             numberLabel.attributedText = attributedString
             numberLabel.font = UIFont.font1Light(size: fontSize * adjustmentFactor)

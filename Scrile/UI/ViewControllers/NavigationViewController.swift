@@ -15,14 +15,14 @@ class NavigationViewController: UINavigationController, UINavigationControllerDe
         
         if #available(iOS 11.0, *) {
             let statusBarHeight = UIApplication.shared.statusBarFrame.height
-            additionalSafeAreaInsets = UIEdgeInsetsMake(-statusBarHeight, 0, -statusBarHeight, 0)
+            additionalSafeAreaInsets = UIEdgeInsets(top: -statusBarHeight, left: 0, bottom: -statusBarHeight, right: 0)
         }
         
         isNavigationBarHidden = true
         delegate = self
     }
     
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         switch operation {
         case .push:
