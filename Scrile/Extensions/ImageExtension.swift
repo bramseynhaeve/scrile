@@ -8,23 +8,27 @@
 
 import UIKit
 
-extension UIColor {
-    public var image: UIImage {
-        return self.image()
-    }
-
-    public func image(with size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        UIGraphicsBeginImageContext(rect.size)
-
-        guard let context = UIGraphicsGetCurrentContext() else { fatalError("Failed to get context") }
-        context.setFillColor(self.cgColor)
-        context.fill(rect)
-
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        guard let generatedImage = image else { fatalError("Failed to generate image") }
-        return generatedImage
+extension UIImage {
+    public func maskWithColor(color: UIColor) -> UIImage {
+        guard let maskImage = cgImage else { fatalError("Failed to get image") }
+        
+        let width = size.width
+        let height = size.height
+        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+        
+        context.clip(to: bounds, mask: maskImage)
+        context.setFillColor(color.cgColor)
+        context.fill(bounds)
+        
+        guard
+            let cgImage = cgImage
+        else { fatalError("Failed to generate image") }
+        
+        let coloredImage = UIImage(cgImage: cgImage)
+        return coloredImage
     }
 }

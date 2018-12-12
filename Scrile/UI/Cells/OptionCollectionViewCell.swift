@@ -17,15 +17,14 @@ class OptionCollectionViewCell: TileCollectionViewCell {
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .center
+        imageView.tintColor = .white
         imageView.image = UIImage(named: "colorpicker")
-        
-        let widthConstraint = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0.0)
-        let heightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 1.0, constant: 0.0)
-        let centerXConstraint = NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let centerYConstraint = NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-        
         self.addSubview(imageView)
-        self.addConstraints([widthConstraint, heightConstraint, centerXConstraint, centerYConstraint])
+        
+        imageView.widthAnchor.constraint(equalToConstant: 50).activate()
+        imageView.heightAnchor.constraint(equalToConstant: 50).activate()
+        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).activate()
+        imageView.centerYAnchor.constraint(equalTo: centerYAnchor).activate()
     }
     
     static var reuseID: String {
@@ -38,7 +37,8 @@ class OptionCollectionViewCell: TileCollectionViewCell {
     }
     
     func setImage(image: UIImage) {
-        imageView.image = image
+        let newImage = image.withRenderingMode(.alwaysTemplate)
+        imageView.image = newImage
     }
     
     override func layoutTile() {

@@ -25,6 +25,7 @@ class NumberViewController: TileCollectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UserDefaults.standard.saveUserFlow(.numbers)
         collectionView?.layoutSubviews()
         navigationController?.viewControllers = [self]
     }

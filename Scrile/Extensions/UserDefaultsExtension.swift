@@ -10,10 +10,24 @@ import UIKit
 
 private let kUserColorKey = "user_color"
 
+public enum UserFlow: Int {
+    case numbers
+    case tshirt
+}
+
 extension UserDefaults {
+    
+    func lastUserFlow() -> UserFlow {
+        return UserFlow(rawValue: UserDefaults.standard.integer(forKey: "userFlow"))!
+    }
+    
+    func saveUserFlow(_ flow: UserFlow) {
+        UserDefaults.standard.set(flow.rawValue, forKey: "userFlow")
+    }
 
     func userColor() -> UIColor {
-        return colorForKey(key: kUserColorKey) ?? UIColor.tile
+        let color = colorForKey(key: kUserColorKey) ?? UIColor.tile
+        return color.p3()
     }
 
     func saveUserColor(_ color: UIColor) {

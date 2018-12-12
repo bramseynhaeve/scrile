@@ -13,10 +13,10 @@ class NavigationViewController: UINavigationController, UINavigationControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 11.0, *) {
-            let statusBarHeight = UIApplication.shared.statusBarFrame.height
-            additionalSafeAreaInsets = UIEdgeInsets(top: -statusBarHeight, left: 0, bottom: -statusBarHeight, right: 0)
-        }
+//        if #available(iOS 11.0, *) {
+//            let statusBarHeight = UIApplication.shared.statusBarFrame.height
+//            additionalSafeAreaInsets = UIEdgeInsets(top: -statusBarHeight, left: 0, bottom: -statusBarHeight, right: 0)
+//        }
         
         isNavigationBarHidden = true
         delegate = self

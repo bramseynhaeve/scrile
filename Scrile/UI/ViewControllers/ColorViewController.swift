@@ -12,13 +12,13 @@ protocol ColorDelegate: AnyObject {
     func didChooseColor(color: UIColor)
 }
 
-class ColorViewController: UIViewController {
-
+final class ColorViewController: UIViewController {
     fileprivate let colorCircle = UIView()
     fileprivate let okButton = UIButton()
     fileprivate let scrubber = UIView()
     fileprivate let line = Line(startPoint: .zero, endPoint: .zero)
-    fileprivate let brightnessButton = UIView()
+    fileprivate let brightnessButton = UIButton()
+    fileprivate let originalColorButton = UIButton()
     fileprivate let colorNameLabel = UILabel()
     fileprivate let touchCircleRadius: CGFloat = 70
     fileprivate var scrubberXPosition: NSLayoutConstraint?
@@ -27,6 +27,8 @@ class ColorViewController: UIViewController {
     fileprivate var brightnessButtonYPosition: NSLayoutConstraint?
     fileprivate let startColor: UIColor
     fileprivate var currentColor: UIColor
+    fileprivate var originalColorBottomConstraint: NSLayoutConstraint?
+    fileprivate var originalColorTopConstraint: NSLayoutConstraint?
 
     weak var delegate: ColorDelegate?
 
@@ -42,12 +44,15 @@ class ColorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.preservesSuperviewLayoutMargins = true
 
         colorCircle.translatesAutoresizingMaskIntoConstraints = false
         okButton.translatesAutoresizingMaskIntoConstraints = false
         scrubber.translatesAutoresizingMaskIntoConstraints = false
         colorNameLabel.translatesAutoresizingMaskIntoConstraints = false
         brightnessButton.translatesAutoresizingMaskIntoConstraints = false
+        originalColorButton.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(colorCircle)
         view.addSubview(line)
@@ -55,6 +60,7 @@ class ColorViewController: UIViewController {
         view.addSubview(scrubber)
         view.addSubview(colorNameLabel)
         view.addSubview(brightnessButton)
+        view.addSubview(originalColorButton)
 
         let okButtonRadius:CGFloat = 25.0
         okButton.widthAnchor.constraint(equalToConstant: okButtonRadius * 2).isActive = true
@@ -108,7 +114,26 @@ class ColorViewController: UIViewController {
         colorNameLabel.textColor = UIColor.white
         colorNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         colorNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        colorNameLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        colorNameLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        
+        originalColorButton.widthAnchor.constraint(equalToConstant: 44).activate()
+        originalColorButton.heightAnchor.constraint(equalTo: originalColorButton.widthAnchor).activate()
+        originalColorButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).activate()
+        originalColorButton.layer.borderColor = UIColor.white.cgColor
+        originalColorButton.layer.borderWidth = 3
+        originalColorButton.layer.cornerRadius = 7
+        originalColorButton.layer.masksToBounds = true
+        originalColorButton.setBackgroundImage(startColor.image(), for: .normal)
+        
+        let originalColorBottomConstraint = originalColorButton.bottomAnchor.constraint(equalTo: colorNameLabel.topAnchor, constant: -20)
+        originalColorBottomConstraint.priority = UILayoutPriority(rawValue: 100.0)
+        originalColorBottomConstraint.activate()
+        self.originalColorBottomConstraint = originalColorBottomConstraint
+        
+        let originalColorTopConstraint = originalColorButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+        originalColorTopConstraint.priority = UILayoutPriority(rawValue: 900.0)
+        originalColorTopConstraint.activate()
+        self.originalColorTopConstraint = originalColorTopConstraint
 
         moveScrubber(color: startColor)
         updateColor(color: startColor)
@@ -205,7 +230,10 @@ class ColorViewController: UIViewController {
         scrubber.backgroundColor = isTouching ? color : UIColor.white
         okButton.setTitleColor(color, for: .normal)
         view.backgroundColor = color
-        colorNameLabel.text = color.name()
+        
+//        let colorName = color.name()
+//        colorNameLabel.text = colorName
+        
         currentColor = color
     }
 
@@ -217,6 +245,17 @@ class ColorViewController: UIViewController {
         let maxDistance = scrubberPoint.distance(borderPoint)
         let currentDistance = maxDistance * color.brightnessFactor()
         let point = scrubberPoint.point(angle: angle, distance: currentDistance)
+        
+//        let shouldMoveToBottom = point.y - center.y < 100
+//        let shouldMoveToTop = point.y - center.y > -100
+//
+//        if shouldMoveToTop && originalColorTopConstraint?.isActive != true {
+//            originalColorTopConstraint?.isActive = true
+//            view.setNeedsUpdateConstraints()
+//        } else if shouldMoveToBottom && originalColorTopConstraint?.isActive != false {
+//            originalColorTopConstraint?.isActive = false
+//            view.setNeedsUpdateConstraints()
+//        }
 
         brightnessButtonXPosition?.constant = point.x - center.x
         brightnessButtonYPosition?.constant = point.y - center.y
@@ -230,7 +269,6 @@ class ColorViewController: UIViewController {
         let colorBrightness = touchProgressToBorder(point: touchPosition, rect: view.frame)
         let angle = centerPoint.angle(touchPosition)
         let color = UIColor(angle: angle, brightnessFactor: colorBrightness)
-
         return color
     }
 

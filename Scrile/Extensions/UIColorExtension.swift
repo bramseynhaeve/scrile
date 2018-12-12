@@ -25,7 +25,7 @@ extension UIColor {
         let b = rgbValue & 0xff
 
         self.init(
-            red: CGFloat(r) / 0xff,
+            displayP3Red: CGFloat(r) / 0xff,
             green: CGFloat(g) / 0xff,
             blue: CGFloat(b) / 0xff, alpha: 1
         )
@@ -39,7 +39,7 @@ extension UIColor {
         let hsba = self.hsba()
         let percentage: CGFloat = min(max(perc, -1), 1)
         let newBrightness = min(max(hsba.brightness + percentage, -1), 1)
-        return UIColor(hue: hsba.hue, saturation: hsba.saturation, brightness: newBrightness, alpha: hsba.alpha)
+        return UIColor(hue: hsba.hue, saturation: hsba.saturation, brightness: newBrightness, alpha: hsba.alpha).p3()
     }
     
     func hsba() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
@@ -68,5 +68,29 @@ extension UIColor {
     
     public func darkened(byPercentage percentage: CGFloat = 0.1) -> UIColor {
         return changedBrightness(byPercentage: -percentage)
+    }
+    
+    public func p3() -> UIColor {
+        let colorInfo = self.rgba()
+        return UIColor(displayP3Red: colorInfo.red, green: colorInfo.green, blue: colorInfo.blue, alpha: colorInfo.alpha)
+    }
+    
+    public var image: UIImage {
+        return self.image()
+    }
+    
+    public func image(with size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(rect.size)
+        
+        guard let context = UIGraphicsGetCurrentContext() else { fatalError("Failed to get context") }
+        context.setFillColor(self.cgColor)
+        context.fill(rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let generatedImage = image else { fatalError("Failed to generate image") }
+        return generatedImage
     }
 }

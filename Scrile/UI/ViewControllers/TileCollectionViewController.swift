@@ -21,17 +21,28 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         self.collectionView?.isPrefetchingEnabled = false
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.contentInsetAdjustmentBehavior = .never
         
         collectionView?.backgroundColor = UIColor.clear
 
         collectionView?.register(NumberTileCollectionViewCell.self, forCellWithReuseIdentifier: NumberTileCollectionViewCell.reuseID)
         collectionView?.register(HiddenTileCollectionViewCell.self, forCellWithReuseIdentifier: HiddenTileCollectionViewCell.reuseID)
+        collectionView?.register(TshirtTileCollectionViewCell.self, forCellWithReuseIdentifier: TshirtTileCollectionViewCell.reuseID)
         collectionView?.register(ResultNumberCollectionViewCell.self, forCellWithReuseIdentifier: ResultNumberCollectionViewCell.reuseID)
         collectionView?.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.reuseID)
-        collectionView?.register(TshirtTileCollectionViewCell.self, forCellWithReuseIdentifier: TshirtTileCollectionViewCell.reuseID)
     }
+}
+
+// MARK: - DataSource & Delegate
+
+extension TileCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         let numberOfSections = Int(ceil(Double(tiles.count) / Double(flowLayout.numberOfHorizontalItems)))
@@ -59,7 +70,6 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: NumberTileCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
             if let numberCell = cell as? NumberTileCollectionViewCell {
                 numberCell.number = number
-                print("Update color: \(number)")
             }
             break
 
@@ -130,7 +140,11 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
 
         }
     }
-    
+}
+
+// MARK: - FlowLayout
+
+extension TileCollectionViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfItemsInSection = collectionView.numberOfItems(inSection: indexPath.section)
         let currentIndexOfItem = indexPath.item
@@ -163,15 +177,13 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         // Remove inset border in last row
         return section == 0 ? UIEdgeInsets.zero : flowLayout.sectionInset
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     func index(for indexPath: IndexPath) -> Int {
         return (indexPath.section * flowLayout.numberOfHorizontalItems) + indexPath.row
     }
 }
+
+// MARK: - Color Delegate
 
 extension TileCollectionViewController: ColorDelegate {
     func didChooseColor(color: UIColor) {

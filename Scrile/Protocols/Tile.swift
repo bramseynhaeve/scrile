@@ -48,7 +48,7 @@ enum TileType {
         case .hiddenNumber(_), .hiddenTshirtSize(_):
             return UIColor.darkGray
         case .option(_):
-            return UserDefaults.standard.userColor().darkened(byPercentage: 0.1)
+            return UserDefaults.standard.userColor()
         }
     }
 }

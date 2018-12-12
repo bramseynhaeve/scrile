@@ -19,7 +19,9 @@ enum OptionType {
     var image: UIImage {
         switch self {
         case .color: return UIImage(named: "colorpicker")!
-        default: return UIImage(named: "rules")!
+        case .coffee: return UIImage(named: "coffee")!
+        case .tshirt: return UIImage(named: "tshirt")!
+        default: return UIImage(named: "settings")!
         }
     }
 

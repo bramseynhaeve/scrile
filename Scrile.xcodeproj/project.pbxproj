@@ -29,6 +29,7 @@
 		255A6DED1F8F726300C76EAD /* NumberTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DEC1F8F726300C76EAD /* NumberTileCollectionViewCell.swift */; };
 		255A6DF31F8F95B700C76EAD /* FlyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DF21F8F95B700C76EAD /* FlyAnimator.swift */; };
 		255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DF41F8F95EB00C76EAD /* ColorViewController.swift */; };
+		2560835F217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560835E217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift */; };
 		2565E58420EB8E660082C1AD /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2565E58320EB8E660082C1AD /* CGPointExtension.swift */; };
 		2578C2FE20C99EF3006329D1 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C2FD20C99EF3006329D1 /* Tile.swift */; };
 		2578C30920C9C747006329D1 /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30820C9C747006329D1 /* NumberViewController.swift */; };
@@ -100,6 +101,7 @@
 		255A6DEC1F8F726300C76EAD /* NumberTileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTileCollectionViewCell.swift; sourceTree = "<group>"; };
 		255A6DF21F8F95B700C76EAD /* FlyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyAnimator.swift; sourceTree = "<group>"; };
 		255A6DF41F8F95EB00C76EAD /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
+		2560835E217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
 		2565E58320EB8E660082C1AD /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		2578C2FD20C99EF3006329D1 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		2578C30820C9C747006329D1 /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				2565E58320EB8E660082C1AD /* CGPointExtension.swift */,
 				250BFFE020ECEC95005663F4 /* UIColorNameExtension.swift */,
 				2549DA0720EFC9A1002D74C9 /* UserDefaultsExtension.swift */,
+				2560835E217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				2523D18A1FAF27C7006387AA /* PushFlipAnimator.swift in Sources */,
 				250BFFE120ECEC95005663F4 /* UIColorNameExtension.swift in Sources */,
 				2523D1941FAF3122006387AA /* ResultNumberCollectionViewCell.swift in Sources */,
+				2560835F217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift in Sources */,
 				25F5B52A1FA2452E00CEC2C1 /* TileCollectionViewCell.swift in Sources */,
 				2527801E1F9A25FF00E69AFA /* FloatExtension.swift in Sources */,
 				25BF23061F9F303900F0D806 /* UIFontExtension.swift in Sources */,
@@ -734,6 +738,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = be.bramseynhaeve.Scrile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -748,6 +753,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = be.bramseynhaeve.Scrile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

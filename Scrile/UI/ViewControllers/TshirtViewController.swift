@@ -11,7 +11,7 @@ import UIKit
 class TshirtViewController: TileCollectionViewController {
     init(color: UIColor) {
 
-        let numbers = ["XXXS", "XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"].map { (size) -> TileType in
+        let numbers = User.tshirtSizes.map { (size) -> TileType in
             return TileType.tshirtSize(size)
         }
 
@@ -22,13 +22,14 @@ class TshirtViewController: TileCollectionViewController {
         let tiles = numbers + options
         super.init(tiles: tiles, color: color)
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.viewControllers = [self]
-    }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserDefaults.standard.saveUserFlow(.tshirt)
+        navigationController?.viewControllers = [self]
     }
 }

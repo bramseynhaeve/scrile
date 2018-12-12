@@ -52,7 +52,6 @@ class NumberTileCollectionViewCell: TileCollectionViewCell {
         
         addSubview(numberLabel)
         
-        //TODO add pureLayout
         numberLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         numberLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
