@@ -15,28 +15,39 @@ enum OptionType {
     case settings
     case info
     case coffee
-
+    case empty
+    
     var image: UIImage {
         switch self {
-        case .color: return UIImage(named: "colorpicker")!
-        case .coffee: return UIImage(named: "coffee")!
         case .tshirt: return UIImage(named: "tshirt")!
-        default: return UIImage(named: "settings")!
+        case .numbers: return UIImage(named: "numbers")!
+        case .color: return UIImage(named: "colorpicker")!
+        case .settings: return UIImage(named: "settings")!
+        case .info: return UIImage(named: "info")!
+        case .coffee: return UIImage(named: "coffee")!
+        case .empty: return UIImage()
         }
     }
-
+    
     var color: UIColor {
+        if self == .empty {
+            return UserDefaults.standard.userColor().darkened(byPercentage: 0.25)
+        }
+        
         return UserDefaults.standard.userColor().darkened(byPercentage: 0.1)
     }
-
-    var viewController: UIViewController {
+    
+    var viewController: UIViewController? {
         let currentUserColor = UserDefaults.standard.userColor()
         
         switch self {
         case .tshirt: return TshirtViewController(color: currentUserColor)
         case .numbers: return NumberViewController(color: currentUserColor)
-        default:
-            return ColorViewController(color: UserDefaults.standard.userColor())
+        case .color: return ColorViewController(color: UserDefaults.standard.userColor())
+        case .settings: return nil
+        case .info: return nil
+        case .coffee: return nil
+        case .empty: return nil
         }
     }
 }

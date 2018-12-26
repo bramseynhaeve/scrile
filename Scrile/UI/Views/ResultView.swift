@@ -12,7 +12,7 @@ class ResultView: UIView {
     fileprivate let resultLabel = UILabel()
     fileprivate let fontSize: Double = 480
 
-    init(result: Float = 0) {
+    init(result: String? = nil) {
         super.init(frame: .zero)
 
         backgroundColor = UIColor.clear
@@ -32,17 +32,17 @@ class ResultView: UIView {
         resultLabel.font = UIFont.font1Regular(size: fontSize)
         resultLabel.textColor = UserDefaults.standard.userColor()
 
-        setResult(result)
+        if let result = result {
+            setResult(result)
+        }
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         return nil
     }
 
-    func setResult(_ result: Float) {
-        let format = result > 0 && result < 1 ? "%.1f" : "%.0f"
-        let numberString = String(format: format, result)
-        resultLabel.text = numberString
+    func setResult(_ result: String) {
+        resultLabel.text = result
     }
 
     required init?(coder aDecoder: NSCoder) {

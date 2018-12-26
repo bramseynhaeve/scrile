@@ -10,13 +10,14 @@ import UIKit
 
 class ResultNumberCollectionViewCell: TileCollectionViewCell {
     
-    let fontSize: Double = 480
     let resultView = ResultView()
     var flashTimer: Timer?
 
     var result: Float = 0 {
         didSet {
-            resultView.setResult(result)
+            let format = result > 0 && result < 1 ? "%.1f" : "%.0f"
+            let numberString = String(format: format, result)
+            resultView.setResult(numberString)
         }
     }
     

@@ -12,43 +12,18 @@ class ResultTshirtCollectionViewCell: TileCollectionViewCell {
 
     let fontSize: Double = 480
     let baseLineFactor: Double = 0.0625
-    let numberLabel = UILabel()
+    let resultView = ResultView()
+    
     var result: String = "" {
         didSet {
-            let adjustmentFactor = max((1 - (0.23 * Double(result.count - 1))), 0)
-            let baselineOffset = -fontSize * (baseLineFactor * adjustmentFactor)
-            let attributedString = NSAttributedString(string: result, attributes: [NSAttributedString.Key.baselineOffset: baselineOffset])
-
-            numberLabel.attributedText = attributedString
-            numberLabel.font = UIFont.font1Light(size: fontSize * adjustmentFactor)
+            resultView.setResult(result)
         }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        numberLabel.translatesAutoresizingMaskIntoConstraints = false
-        numberLabel.textAlignment = .center
-        numberLabel.font = UIFont.font1Light(size: fontSize)
-        numberLabel.textColor = UIColor.red
-
-        addSubview(numberLabel)
-    }
-
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-
-        // Get parrent of collectionView
-        guard let newSuperview = superview?.superview else { return }
-
-        let centerXConstraint = NSLayoutConstraint(item: numberLabel, attribute: .centerX, relatedBy: .equal, toItem: newSuperview, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-        let centerYConstraint = NSLayoutConstraint(item: numberLabel, attribute: .centerY, relatedBy: .equal, toItem: newSuperview, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-        let leftConstraint = NSLayoutConstraint(item: numberLabel, attribute: .left, relatedBy: .greaterThanOrEqual, toItem: newSuperview, attribute: .left, multiplier: 1.0, constant: 0.0)
-        let rightConstraint = NSLayoutConstraint(item: numberLabel, attribute: .right, relatedBy: .greaterThanOrEqual, toItem: newSuperview, attribute: .right, multiplier: 1.0, constant: 0.0)
-
-        newSuperview.addConstraints([centerXConstraint, centerYConstraint, leftConstraint, rightConstraint])
-
-        numberLabel.sizeToFit()
+            
+        backgroundContainer.addSubview(resultView)
     }
 
     static var reuseID: String {
@@ -57,7 +32,18 @@ class ResultTshirtCollectionViewCell: TileCollectionViewCell {
 
     override func layoutTile() {
         super.layoutTile()
-        layer.cornerRadius = 0
+        hideBorder()
+    }
+    
+    override func didMoveToSuperview() {
+        // Get parrent of collectionView
+        guard let newSuperview = superview?.superview else { return }
+        
+        resultView.translatesAutoresizingMaskIntoConstraints = false
+        resultView.topAnchor.constraint(equalTo: newSuperview.topAnchor).activate()
+        resultView.bottomAnchor.constraint(equalTo: newSuperview.bottomAnchor).activate()
+        resultView.leftAnchor.constraint(equalTo: newSuperview.leftAnchor).activate()
+        resultView.rightAnchor.constraint(equalTo: newSuperview.rightAnchor).activate()
     }
 
     required init?(coder aDecoder: NSCoder) {

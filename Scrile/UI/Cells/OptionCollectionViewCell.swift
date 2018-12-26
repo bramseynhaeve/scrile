@@ -43,8 +43,6 @@ class OptionCollectionViewCell: TileCollectionViewCell {
     
     override func layoutTile() {
         super.layoutTile()
-        
-        backgroundColor = UIColor.orange
     }
     
     required init?(coder aDecoder: NSCoder) {

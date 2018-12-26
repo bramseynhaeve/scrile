@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let option = UserDefaults.standard.lastUserFlow() == .numbers ? OptionType.numbers : OptionType.tshirt
-        let tileCollectionViewController = option.viewController
+        guard let tileCollectionViewController = option.viewController else {
+            fatalError("We need a ViewController to start the app")
+        }
+        
         let navigationController = NavigationViewController(rootViewController: tileCollectionViewController)
         
         window = UIWindow(frame: UIScreen.main.bounds)

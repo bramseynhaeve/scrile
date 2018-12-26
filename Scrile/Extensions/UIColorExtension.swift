@@ -75,6 +75,13 @@ extension UIColor {
         return UIColor(displayP3Red: colorInfo.red, green: colorInfo.green, blue: colorInfo.blue, alpha: colorInfo.alpha)
     }
     
+    func grayscale(maxWhite: CGFloat = 1, minWhite: CGFloat = 0) -> UIColor {
+        var grayscale: CGFloat = 0
+        var alpha: CGFloat = 0
+        self.getWhite(&grayscale, alpha: &alpha)
+        return UIColor(white: max(minWhite, min(maxWhite, grayscale)), alpha: alpha)
+    }
+    
     public var image: UIImage {
         return self.image()
     }
