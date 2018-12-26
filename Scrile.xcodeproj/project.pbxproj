@@ -31,12 +31,16 @@
 		255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A6DF41F8F95EB00C76EAD /* ColorViewController.swift */; };
 		2560835F217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560835E217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift */; };
 		2565E58420EB8E660082C1AD /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2565E58320EB8E660082C1AD /* CGPointExtension.swift */; };
+		256C34DA21D35D9A0047348D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C34D921D35D9A0047348D /* InfoViewController.swift */; };
+		256C34DC21D361550047348D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C34DB21D361550047348D /* SettingsViewController.swift */; };
+		256C34DE21D3625F0047348D /* CoffeeResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C34DD21D3625F0047348D /* CoffeeResultViewController.swift */; };
+		256C34E121D3657B0047348D /* ResultOptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C34E021D3657B0047348D /* ResultOptionCollectionViewCell.swift */; };
 		2578C2FE20C99EF3006329D1 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C2FD20C99EF3006329D1 /* Tile.swift */; };
 		2578C30920C9C747006329D1 /* NumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30820C9C747006329D1 /* NumberViewController.swift */; };
 		2578C30B20C9E89F006329D1 /* OptionTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30A20C9E89F006329D1 /* OptionTile.swift */; };
 		2578C30D20C9EC58006329D1 /* TshirtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C30C20C9EC58006329D1 /* TshirtViewController.swift */; };
-		2578C31120C9F41B006329D1 /* TshirtTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31020C9F41B006329D1 /* TshirtTileCollectionViewCell.swift */; };
-		2578C31320CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31220CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift */; };
+		2578C31120C9F41B006329D1 /* TextTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31020C9F41B006329D1 /* TextTileCollectionViewCell.swift */; };
+		2578C31320CA02B1006329D1 /* ResultTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31220CA02B1006329D1 /* ResultTextCollectionViewCell.swift */; };
 		2578C31520CAF8AF006329D1 /* DoubleFlyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31420CAF8AF006329D1 /* DoubleFlyAnimator.swift */; };
 		2578C31820CB316A006329D1 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2578C31720CB316A006329D1 /* ResultView.swift */; };
 		2578C31D20CB37F7006329D1 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2578C31920CB37F5006329D1 /* Quicksand-Light.ttf */; };
@@ -103,12 +107,16 @@
 		255A6DF41F8F95EB00C76EAD /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		2560835E217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
 		2565E58320EB8E660082C1AD /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+		256C34D921D35D9A0047348D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		256C34DB21D361550047348D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		256C34DD21D3625F0047348D /* CoffeeResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeResultViewController.swift; sourceTree = "<group>"; };
+		256C34E021D3657B0047348D /* ResultOptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultOptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		2578C2FD20C99EF3006329D1 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		2578C30820C9C747006329D1 /* NumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberViewController.swift; sourceTree = "<group>"; };
 		2578C30A20C9E89F006329D1 /* OptionTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionTile.swift; sourceTree = "<group>"; };
 		2578C30C20C9EC58006329D1 /* TshirtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TshirtViewController.swift; sourceTree = "<group>"; };
-		2578C31020C9F41B006329D1 /* TshirtTileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TshirtTileCollectionViewCell.swift; sourceTree = "<group>"; };
-		2578C31220CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTshirtCollectionViewCell.swift; sourceTree = "<group>"; };
+		2578C31020C9F41B006329D1 /* TextTileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTileCollectionViewCell.swift; sourceTree = "<group>"; };
+		2578C31220CA02B1006329D1 /* ResultTextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		2578C31420CAF8AF006329D1 /* DoubleFlyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFlyAnimator.swift; sourceTree = "<group>"; };
 		2578C31720CB316A006329D1 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		2578C31920CB37F5006329D1 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
@@ -216,6 +224,9 @@
 				2523D1911FAF2F3D006387AA /* ResultCollectionViewController.swift */,
 				2578C30820C9C747006329D1 /* NumberViewController.swift */,
 				2578C30C20C9EC58006329D1 /* TshirtViewController.swift */,
+				256C34D921D35D9A0047348D /* InfoViewController.swift */,
+				256C34DB21D361550047348D /* SettingsViewController.swift */,
+				256C34DD21D3625F0047348D /* CoffeeResultViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -245,11 +256,11 @@
 		255A6DFA1F8FB39100C76EAD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				256C34DF21D3656A0047348D /* Options */,
 				25F5B5291FA2452E00CEC2C1 /* TileCollectionViewCell.swift */,
 				25F5B5271FA244B600CEC2C1 /* HiddenTileCollectionViewCell.swift */,
 				2578C30F20C9F2C4006329D1 /* Tshirt */,
 				2578C30E20C9F2B8006329D1 /* Numbers */,
-				251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -280,6 +291,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		256C34DF21D3656A0047348D /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				251B5C671FA9E6D400659A9B /* OptionCollectionViewCell.swift */,
+				256C34E021D3657B0047348D /* ResultOptionCollectionViewCell.swift */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
 		2578C2FC20C99EDC006329D1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,8 +320,8 @@
 		2578C30F20C9F2C4006329D1 /* Tshirt */ = {
 			isa = PBXGroup;
 			children = (
-				2578C31020C9F41B006329D1 /* TshirtTileCollectionViewCell.swift */,
-				2578C31220CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift */,
+				2578C31020C9F41B006329D1 /* TextTileCollectionViewCell.swift */,
+				2578C31220CA02B1006329D1 /* ResultTextCollectionViewCell.swift */,
 			);
 			path = Tshirt;
 			sourceTree = "<group>";
@@ -530,7 +550,8 @@
 				2549DA0820EFC9A1002D74C9 /* UserDefaultsExtension.swift in Sources */,
 				255A6DF51F8F95EB00C76EAD /* ColorViewController.swift in Sources */,
 				2523D1901FAF29C9006387AA /* PopFlyAnimator.swift in Sources */,
-				2578C31320CA02B1006329D1 /* ResultTshirtCollectionViewCell.swift in Sources */,
+				256C34E121D3657B0047348D /* ResultOptionCollectionViewCell.swift in Sources */,
+				2578C31320CA02B1006329D1 /* ResultTextCollectionViewCell.swift in Sources */,
 				2578C31820CB316A006329D1 /* ResultView.swift in Sources */,
 				2523D18E1FAF29A7006387AA /* PushFlyAnimator.swift in Sources */,
 				2578C2FE20C99EF3006329D1 /* Tile.swift in Sources */,
@@ -538,18 +559,21 @@
 				250AF0BA1F8FEFB100BD919B /* UICollectionViewExtensions.swift in Sources */,
 				251B5C6C1FAA16E700659A9B /* User.swift in Sources */,
 				25DEB2271F90B0CB00C015F7 /* UIColorExtension.swift in Sources */,
-				2578C31120C9F41B006329D1 /* TshirtTileCollectionViewCell.swift in Sources */,
+				2578C31120C9F41B006329D1 /* TextTileCollectionViewCell.swift in Sources */,
 				2523D1921FAF2F3D006387AA /* ResultCollectionViewController.swift in Sources */,
 				2578C30B20C9E89F006329D1 /* OptionTile.swift in Sources */,
 				255A6DEB1F8F67D000C76EAD /* MainFlowLayout.swift in Sources */,
+				256C34DE21D3625F0047348D /* CoffeeResultViewController.swift in Sources */,
 				2565E58420EB8E660082C1AD /* CGPointExtension.swift in Sources */,
 				2578C30D20C9EC58006329D1 /* TshirtViewController.swift in Sources */,
+				256C34DA21D35D9A0047348D /* InfoViewController.swift in Sources */,
 				2523D18A1FAF27C7006387AA /* PushFlipAnimator.swift in Sources */,
 				250BFFE120ECEC95005663F4 /* UIColorNameExtension.swift in Sources */,
 				2523D1941FAF3122006387AA /* ResultNumberCollectionViewCell.swift in Sources */,
 				2560835F217B7F4C008B94C4 /* NSLayoutConstraintExtension.swift in Sources */,
 				25F5B52A1FA2452E00CEC2C1 /* TileCollectionViewCell.swift in Sources */,
 				2527801E1F9A25FF00E69AFA /* FloatExtension.swift in Sources */,
+				256C34DC21D361550047348D /* SettingsViewController.swift in Sources */,
 				25BF23061F9F303900F0D806 /* UIFontExtension.swift in Sources */,
 				25AE022E1F0B7389004EA053 /* AppDelegate.swift in Sources */,
 				25F5B52C1FA9BA2100CEC2C1 /* TileCollectionViewController.swift in Sources */,

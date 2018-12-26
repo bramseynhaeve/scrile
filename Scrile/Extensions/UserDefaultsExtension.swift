@@ -3,7 +3,7 @@
 //  Scrile
 //
 //  Created by Bram Seynhaeve on 06/07/2018.
-//  Copyright © 2018 In The Pocket. All rights reserved.
+//  Copyright © 2018 Bram Seynhaeve. All rights reserved.
 //
 
 import UIKit

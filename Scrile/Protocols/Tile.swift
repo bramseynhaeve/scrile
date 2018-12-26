@@ -3,7 +3,7 @@
 //  Scrile
 //
 //  Created by Bram Seynhaeve on 07/06/2018.
-//  Copyright © 2018 In The Pocket. All rights reserved.
+//  Copyright © 2018 Bram Seynhaeve. All rights reserved.
 //
 
 import UIKit
@@ -12,18 +12,21 @@ enum TileType {
     case number(Float)
     case hiddenNumber(Float)
     
-    case tshirtSize(String)
-    case hiddenTshirtSize(String)
+    case text(String)
+    case hiddenText(String)
+    
+    case option(OptionType)
+    case hiddenOption(OptionType)
     
     case numberResult(Float)
-    case tshirtResult(String)
-
-    case option(OptionType)
+    case textResult(String)
+    case optionResult(OptionType)
 
     func result() -> TileType {
         switch self {
         case .number(let number), .hiddenNumber(let number): return .numberResult(number)
-        case .tshirtSize(let size), .hiddenTshirtSize(let size): return .tshirtResult(size)
+        case .text(let size), .hiddenText(let size): return .textResult(size)
+        case .option(let option), .hiddenOption(let option): return .optionResult(option)
         default:
             fatalError("Invalid hide type")
         }
@@ -32,8 +35,9 @@ enum TileType {
     func hide() -> TileType {
         switch self {
         case .number(let number): return .hiddenNumber(number)
-        case .tshirtSize(let size): return .hiddenTshirtSize(size)
-        case .hiddenNumber, .hiddenTshirtSize: return self
+        case .text(let size): return .hiddenText(size)
+        case .option(let option): return .hiddenOption(option)
+        case .hiddenNumber, .hiddenText: return self
         default:
             fatalError("Invalid hide type")
         }
@@ -41,11 +45,11 @@ enum TileType {
 
     func color() -> UIColor {
         switch self {
-        case .number(_), .tshirtSize(_):
+        case .number(_), .text(_):
             return UserDefaults.standard.userColor()
-        case .numberResult(_), .tshirtResult(_):
+        case .numberResult(_), .textResult(_), .optionResult(_):
             return UIColor.white
-        case .hiddenNumber(_), .hiddenTshirtSize(_):
+        case .hiddenNumber(_), .hiddenText(_), .hiddenOption(_):
             return UserDefaults.standard.userColor().grayscale(maxWhite: 0.5)
         case .option(let option):
             return option.color

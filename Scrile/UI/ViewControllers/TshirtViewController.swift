@@ -3,7 +3,7 @@
 //  Scrile
 //
 //  Created by Bram Seynhaeve on 07/06/2018.
-//  Copyright © 2018 In The Pocket. All rights reserved.
+//  Copyright © 2018 Bram Seynhaeve. All rights reserved.
 //
 
 import UIKit
@@ -11,15 +11,18 @@ import UIKit
 class TshirtViewController: TileCollectionViewController {
     init(color: UIColor) {
 
-        let numbers = User.tshirtSizes.map { (size) -> TileType in
-            return TileType.tshirtSize(size)
+        let sizes = User.tshirtSizes.map { (size) -> TileType in
+            return TileType.text(size)
         }
+        
+        let question = TileType.text("?")
+        let additionalSizes = [question]
 
         let options = [OptionType.coffee, OptionType.numbers, OptionType.color, OptionType.settings, OptionType.info, OptionType.empty].map { (type) -> TileType in
             return TileType.option(type)
         }
 
-        let tiles = numbers + options
+        let tiles = sizes + additionalSizes + options
         super.init(tiles: tiles, color: color)
     }
     

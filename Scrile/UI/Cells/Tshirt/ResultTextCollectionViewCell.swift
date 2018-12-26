@@ -1,17 +1,14 @@
 //
-//  ResultTshirtCollectionViewCell.swift
+//  ResultTextCollectionViewCell.swift
 //  Scrile
 //
 //  Created by Bram Seynhaeve on 07/06/2018.
-//  Copyright © 2018 In The Pocket. All rights reserved.
+//  Copyright © 2018 Bram Seynhaeve. All rights reserved.
 //
 
 import UIKit
 
-class ResultTshirtCollectionViewCell: TileCollectionViewCell {
-
-    let fontSize: Double = 480
-    let baseLineFactor: Double = 0.0625
+class ResultTextCollectionViewCell: TileCollectionViewCell {
     let resultView = ResultView()
     
     var result: String = "" {

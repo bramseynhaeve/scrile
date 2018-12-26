@@ -9,9 +9,8 @@
 import UIKit
 
 class ResultNumberCollectionViewCell: TileCollectionViewCell {
-    
     let resultView = ResultView()
-    var flashTimer: Timer?
+//    var flashTimer: Timer?
 
     var result: Float = 0 {
         didSet {
@@ -23,10 +22,8 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         backgroundContainer.addSubview(resultView)
-
-        flashTimer = randomTimer()
+//        flashTimer = randomTimer()
     }
 
     override func layoutTile() {
@@ -45,19 +42,19 @@ class ResultNumberCollectionViewCell: TileCollectionViewCell {
         resultView.rightAnchor.constraint(equalTo: newSuperview.rightAnchor).isActive = true
     }
 
-    private func randomTimer() -> Timer {
-        let randomFactor = Double(arc4random_uniform(100)) / 100.0
-        let randomInterval: Double = 1 + (10 * randomFactor)
-
-        return Timer.scheduledTimer(withTimeInterval: randomInterval, repeats: false) { timer in
-            self.flashTimer = self.randomTimer()
-
-            self.backgroundColor = self.color.darkened(byPercentage: 0.05)
-            UIView.animate(withDuration: 0.29, delay: 0, options: .allowUserInteraction, animations: {
-                self.backgroundColor = self.color
-            })
-        }
-    }
+//    private func randomTimer() -> Timer {
+//        let randomFactor = Double(arc4random_uniform(100)) / 100.0
+//        let randomInterval: Double = 1 + (10 * randomFactor)
+//
+//        return Timer.scheduledTimer(withTimeInterval: randomInterval, repeats: false) { timer in
+//            self.flashTimer = self.randomTimer()
+//
+//            self.backgroundColor = self.color.darkened(byPercentage: 0.05)
+//            UIView.animate(withDuration: 0.29, delay: 0, options: .allowUserInteraction, animations: {
+//                self.backgroundColor = self.color
+//            })
+//        }
+//    }
     
     static var reuseID: String {
         return String(describing: self)

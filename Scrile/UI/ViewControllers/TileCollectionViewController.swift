@@ -18,7 +18,7 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         self.tiles = tiles
         self.color = color
         super.init(collectionViewLayout: flowLayout)
-        self.collectionView?.isPrefetchingEnabled = false
+        self.collectionView.isPrefetchingEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,15 +29,15 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         super.viewDidLoad()
         
         collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.backgroundColor = UIColor.clear
         
-        collectionView?.backgroundColor = UIColor.clear
-        
-        collectionView?.register(NumberTileCollectionViewCell.self, forCellWithReuseIdentifier: NumberTileCollectionViewCell.reuseID)
-        collectionView?.register(HiddenTileCollectionViewCell.self, forCellWithReuseIdentifier: HiddenTileCollectionViewCell.reuseID)
-        collectionView?.register(TshirtTileCollectionViewCell.self, forCellWithReuseIdentifier: TshirtTileCollectionViewCell.reuseID)
-        collectionView?.register(ResultNumberCollectionViewCell.self, forCellWithReuseIdentifier: ResultNumberCollectionViewCell.reuseID)
-        collectionView?.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.reuseID)
-        collectionView.register(ResultTshirtCollectionViewCell.self, forCellWithReuseIdentifier: ResultTshirtCollectionViewCell.reuseID)
+        collectionView.register(NumberTileCollectionViewCell.self, forCellWithReuseIdentifier: NumberTileCollectionViewCell.reuseID)
+        collectionView.register(HiddenTileCollectionViewCell.self, forCellWithReuseIdentifier: HiddenTileCollectionViewCell.reuseID)
+        collectionView.register(TextTileCollectionViewCell.self, forCellWithReuseIdentifier: TextTileCollectionViewCell.reuseID)
+        collectionView.register(ResultNumberCollectionViewCell.self, forCellWithReuseIdentifier: ResultNumberCollectionViewCell.reuseID)
+        collectionView.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.reuseID)
+        collectionView.register(ResultTextCollectionViewCell.self, forCellWithReuseIdentifier: ResultTextCollectionViewCell.reuseID)
+        collectionView.register(ResultOptionCollectionViewCell.self, forCellWithReuseIdentifier: ResultOptionCollectionViewCell.reuseID)
     }
 }
 
@@ -72,39 +72,39 @@ extension TileCollectionViewController {
             if let numberCell = cell as? NumberTileCollectionViewCell {
                 numberCell.number = number
             }
-            break
             
         case .numberResult(let number):
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultNumberCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
             if let resultCell = cell as? ResultNumberCollectionViewCell {
                 resultCell.result = number
             }
-            break
             
-        case .tshirtSize(let size):
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: TshirtTileCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
-            if let tshirtCell = cell as? TshirtTileCollectionViewCell {
-                tshirtCell.setSize(size)
+        case .text(let text):
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextTileCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
+            if let textCell = cell as? TextTileCollectionViewCell {
+                textCell.setText(text)
             }
-            break
-            
-        case .tshirtResult(let size):
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultTshirtCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
-            if let resultCell = cell as? ResultTshirtCollectionViewCell {
-                resultCell.result = size
+
+        case .textResult(let text):
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultTextCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
+            if let resultCell = cell as? ResultTextCollectionViewCell {
+                resultCell.result = text
             }
-            break
             
-        case .hiddenNumber, .hiddenTshirtSize:
+        case .hiddenNumber, .hiddenText, .hiddenOption:
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: HiddenTileCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
-            break
             
         case .option(let type):
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
             if let optionCell = cell as? OptionCollectionViewCell {
                 optionCell.setType(type: type)
             }
-            break
+            
+        case .optionResult(let option):
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultOptionCollectionViewCell.reuseID, for: indexPath) as! TileCollectionViewCell
+            if let resultCell = cell as? ResultOptionCollectionViewCell {
+                resultCell.result = option
+            }
         }
         
         cell.color = tile.color()
@@ -115,27 +115,35 @@ extension TileCollectionViewController {
         let tile = tiles[index(for: indexPath)]
         
         switch tile {
-        case .number, .tshirtSize:
+        case .number, .text:
             let viewController = HiddenNumberViewController(result: tile.hide(), numberOfTiles: tiles.count)
             navigationController?.pushViewController(viewController, animated: true)
             
-            
-        case .hiddenNumber, .hiddenTshirtSize:
+        case .hiddenNumber, .hiddenText, .hiddenOption:
             let viewController = ResultCollectionViewController(result: tile.result(), numberOfTiles: tiles.count)
             navigationController?.pushViewController(viewController, animated: true)
             
-            
-        case .numberResult, .tshirtResult:
+        case .numberResult, .textResult, .optionResult:
             navigationController?.popToRootViewController(animated: true)
             
-            
         case .option(let type):
+            guard type != .empty else { return }
+            
             guard let viewController = type.viewController else {
+                let viewController = HiddenNumberViewController(result: tile.hide(), numberOfTiles: tiles.count)
+                navigationController?.pushViewController(viewController, animated: true)
                 return
             }
             
+            // Coordinator patterns would be nice
             if let colorViewController = viewController as? ColorViewController {
                 colorViewController.delegate = self
+            } else if let infoViewController = viewController as? InfoViewController {
+                infoViewController.delegate = self
+            } else if let settingsViewController = viewController as? SettingsViewController {
+                settingsViewController.delegate = self
+            } else if let coffeeResultViewController = viewController as? CoffeeResultViewController {
+                coffeeResultViewController.delegate = self
             }
             
             navigationController?.pushViewController(viewController, animated: true)
@@ -190,16 +198,34 @@ extension TileCollectionViewController: ColorDelegate {
     func didChooseColor(color: UIColor) {
         UserDefaults.standard.saveUserColor(color)
         
-        self.collectionView?.visibleCells.forEach { cell in
+        self.collectionView.visibleCells.forEach { cell in
             guard
                 let cell = cell as? TileCollectionViewCell,
-                let indexPath = self.collectionView?.indexPath(for: cell)
+                let indexPath = self.collectionView.indexPath(for: cell)
                 else { return }
             
             let tile = tiles[index(for: indexPath)]
             cell.color = tile.color()
         }
         
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+extension TileCollectionViewController: SettingsDelegate {
+    func closeSettings() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+extension TileCollectionViewController: InfoDelegate {
+    func closeInfo() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+extension TileCollectionViewController: CoffeeResultDelegate {
+    func endCoffeeBreak() {
         self.navigationController?.popToRootViewController(animated: true)
     }
 }

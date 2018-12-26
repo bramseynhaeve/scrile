@@ -1,9 +1,9 @@
 //
-//  TshirtTile.swift
+//  OptionTile.swift
 //  Scrile
 //
 //  Created by Bram Seynhaeve on 07/06/2018.
-//  Copyright © 2018 In The Pocket. All rights reserved.
+//  Copyright © 2018 Bram Seynhaeve. All rights reserved.
 //
 
 import UIKit
@@ -44,8 +44,8 @@ enum OptionType {
         case .tshirt: return TshirtViewController(color: currentUserColor)
         case .numbers: return NumberViewController(color: currentUserColor)
         case .color: return ColorViewController(color: UserDefaults.standard.userColor())
-        case .settings: return nil
-        case .info: return nil
+        case .settings: return SettingsViewController()
+        case .info: return InfoViewController()
         case .coffee: return nil
         case .empty: return nil
         }
