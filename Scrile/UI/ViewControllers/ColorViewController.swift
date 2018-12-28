@@ -16,19 +16,19 @@ final class ColorViewController: UIViewController {
     fileprivate let colorCircle = UIView()
     fileprivate let okButton = UIButton()
     fileprivate let scrubber = UIView()
+    fileprivate let originalScrubber = UIView()
     fileprivate let line = Line(startPoint: .zero, endPoint: .zero)
     fileprivate let brightnessButton = UIButton()
-    fileprivate let originalColorButton = UIButton()
     fileprivate let colorNameLabel = UILabel()
     fileprivate let touchCircleRadius: CGFloat = 70
     fileprivate var scrubberXPosition: NSLayoutConstraint?
     fileprivate var scrubberYPosition: NSLayoutConstraint?
+    fileprivate var originalScrubberXPosition: NSLayoutConstraint?
+    fileprivate var originalScrubberYPosition: NSLayoutConstraint?
     fileprivate var brightnessButtonXPosition: NSLayoutConstraint?
     fileprivate var brightnessButtonYPosition: NSLayoutConstraint?
     fileprivate let startColor: UIColor
     fileprivate var currentColor: UIColor
-    fileprivate var originalColorBottomConstraint: NSLayoutConstraint?
-    fileprivate var originalColorTopConstraint: NSLayoutConstraint?
 
     weak var delegate: ColorDelegate?
 
@@ -52,15 +52,15 @@ final class ColorViewController: UIViewController {
         scrubber.translatesAutoresizingMaskIntoConstraints = false
         colorNameLabel.translatesAutoresizingMaskIntoConstraints = false
         brightnessButton.translatesAutoresizingMaskIntoConstraints = false
-        originalColorButton.translatesAutoresizingMaskIntoConstraints = false
+        originalScrubber.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(colorCircle)
         view.addSubview(line)
         view.addSubview(okButton)
+        view.addSubview(originalScrubber)
         view.addSubview(scrubber)
         view.addSubview(colorNameLabel)
         view.addSubview(brightnessButton)
-        view.addSubview(originalColorButton)
 
         let okButtonRadius:CGFloat = 25.0
         okButton.widthAnchor.constraint(equalToConstant: okButtonRadius * 2).isActive = true
@@ -90,6 +90,17 @@ final class ColorViewController: UIViewController {
         scrubberYPosition = scrubber.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         scrubberXPosition?.isActive = true
         scrubberYPosition?.isActive = true
+        
+        originalScrubber.layer.borderWidth = 3
+        originalScrubber.layer.borderColor = UIColor.white.cgColor
+        originalScrubber.layer.cornerRadius = 5
+        originalScrubber.widthAnchor.constraint(equalToConstant: 10).activate()
+        originalScrubber.heightAnchor.constraint(equalToConstant: 10).activate()
+        
+        originalScrubberXPosition = originalScrubber.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        originalScrubberYPosition = originalScrubber.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        originalScrubberXPosition?.activate()
+        originalScrubberYPosition?.activate()
 
         let borderWidth: CGFloat = 3.0
         let scrubberWidth = (scrubberRadius * 2) - borderWidth
@@ -115,29 +126,10 @@ final class ColorViewController: UIViewController {
         colorNameLabel.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         colorNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         colorNameLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-        
-        originalColorButton.widthAnchor.constraint(equalToConstant: 44).activate()
-        originalColorButton.heightAnchor.constraint(equalTo: originalColorButton.widthAnchor).activate()
-        originalColorButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).activate()
-        originalColorButton.layer.borderColor = UIColor.white.cgColor
-        originalColorButton.layer.borderWidth = 3
-        originalColorButton.layer.cornerRadius = 7
-        originalColorButton.layer.masksToBounds = true
-        originalColorButton.setBackgroundImage(startColor.image(), for: .normal)
-        
-        let originalColorBottomConstraint = originalColorButton.bottomAnchor.constraint(equalTo: colorNameLabel.topAnchor, constant: -20)
-        originalColorBottomConstraint.priority = UILayoutPriority(rawValue: 100.0)
-        originalColorBottomConstraint.activate()
-        self.originalColorBottomConstraint = originalColorBottomConstraint
-        
-        let originalColorTopConstraint = originalColorButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
-        originalColorTopConstraint.priority = UILayoutPriority(rawValue: 900.0)
-        originalColorTopConstraint.activate()
-        self.originalColorTopConstraint = originalColorTopConstraint
 
         moveScrubber(color: startColor)
         updateColor(color: startColor)
-        updateBrightnessButton(color: startColor)
+        updateBrightnessButton(color: startColor, moveOriginal: true)
     }
 
     override func viewDidLayoutSubviews() {
@@ -149,11 +141,13 @@ final class ColorViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let newColor = colorInfo(touch: touch, inView: view)
-
+        let snapToOriginalColor = touch.location(in: view).distance(originalScrubber.center) < 22 // 44 devided by 2. 44 is based on Apples layout guide
+        let snappedNewColor = snapToOriginalColor ? startColor : newColor
+        
         line.animateIn()
         moveScrubber(color: newColor)
-        updateBrightnessButton(color: newColor)
-        updateColor(color: newColor, isTouching: true)
+        updateBrightnessButton(color: snappedNewColor)
+        updateColor(color: snappedNewColor, isTouching: true)
 
         let duration = 0.53
         let delay = 0.0
@@ -177,20 +171,24 @@ final class ColorViewController: UIViewController {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let newColor = colorInfo(touch: touch, inView: view)
+        let snapToOriginalColor = touch.location(in: view).distance(originalScrubber.center) < 22 // 44 devided by 2. 44 is based on Apples layout guide
+        let snappedNewColor = snapToOriginalColor ? startColor : newColor
 
         moveScrubber(color: newColor)
-        updateColor(color: newColor, isTouching: true)
-        updateBrightnessButton(color: newColor)
+        updateColor(color: snappedNewColor, isTouching: true)
+        updateBrightnessButton(color: snappedNewColor)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let newColor = colorInfo(touch: touch, inView: view)
+        let snapToOriginalColor = touch.location(in: view).distance(originalScrubber.center) < 22 // 44 devided by 2. 44 is based on Apples layout guide
+        let snappedNewColor = snapToOriginalColor ? startColor : newColor
 
         line.animateOut()
-        moveScrubber(color: newColor)
-        updateBrightnessButton(color: newColor)
-        updateColor(color: newColor, isTouching: true)
+        moveScrubber(color: snappedNewColor)
+        updateBrightnessButton(color: snappedNewColor)
+        updateColor(color: snappedNewColor, isTouching: true)
 
         let duration = 0.53
         let delay = 0.0
@@ -237,7 +235,7 @@ final class ColorViewController: UIViewController {
         currentColor = color
     }
 
-    func updateBrightnessButton(color: UIColor) {
+    func updateBrightnessButton(color: UIColor, moveOriginal: Bool = false) {
         let center = view.center
         let angle = color.angle()
         let borderPoint = view.frame.borderPoint(for: angle)
@@ -257,8 +255,16 @@ final class ColorViewController: UIViewController {
 //            view.setNeedsUpdateConstraints()
 //        }
 
-        brightnessButtonXPosition?.constant = point.x - center.x
-        brightnessButtonYPosition?.constant = point.y - center.y
+        let xPos = point.x - center.x
+        let yPos = point.y - center.y
+        brightnessButtonXPosition?.constant = xPos
+        brightnessButtonYPosition?.constant = yPos
+        
+        
+        if moveOriginal {
+            originalScrubberXPosition?.constant = xPos
+            originalScrubberYPosition?.constant = yPos
+        }
     }
 
     // --------------
