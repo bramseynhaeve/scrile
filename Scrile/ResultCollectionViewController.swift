@@ -11,7 +11,6 @@ import UIKit
 class ResultCollectionViewController: TileCollectionViewController {
 
     init(result: TileType, numberOfTiles: Int) {
-
         let tiles = Array(0..<numberOfTiles).map { (_) -> TileType in
             return result
         }

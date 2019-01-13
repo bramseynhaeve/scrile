@@ -25,7 +25,7 @@ extension UIColor {
         let b = rgbValue & 0xff
 
         self.init(
-            displayP3Red: CGFloat(r) / 0xff,
+            red: CGFloat(r) / 0xff,
             green: CGFloat(g) / 0xff,
             blue: CGFloat(b) / 0xff, alpha: 1
         )
@@ -39,7 +39,7 @@ extension UIColor {
         let hsba = self.hsba()
         let percentage: CGFloat = min(max(perc, -1), 1)
         let newBrightness = min(max(hsba.brightness + percentage, -1), 1)
-        return UIColor(hue: hsba.hue, saturation: hsba.saturation, brightness: newBrightness, alpha: hsba.alpha).p3()
+        return UIColor(hue: hsba.hue, saturation: hsba.saturation, brightness: newBrightness, alpha: hsba.alpha)
     }
     
     func hsba() -> (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
@@ -70,10 +70,11 @@ extension UIColor {
         return changedBrightness(byPercentage: -percentage)
     }
     
-    public func p3() -> UIColor {
-        let colorInfo = self.rgba()
-        return UIColor(displayP3Red: colorInfo.red, green: colorInfo.green, blue: colorInfo.blue, alpha: colorInfo.alpha)
-    }
+//    public func p3() -> UIColor {
+//        return self
+//        let colorInfo = self.rgba()
+//        return UIColor(displayP3Red: colorInfo.red, green: colorInfo.green, blue: colorInfo.blue, alpha: colorInfo.alpha)
+//    }
     
     func grayscale(maxWhite: CGFloat = 1, minWhite: CGFloat = 0) -> UIColor {
         var grayscale: CGFloat = 0

@@ -27,7 +27,7 @@ extension UserDefaults {
 
     func userColor() -> UIColor {
         let color = colorForKey(key: kUserColorKey) ?? UIColor.tile
-        return color.p3()
+        return color
     }
 
     func saveUserColor(_ color: UIColor) {

@@ -21,6 +21,10 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         self.collectionView.isPrefetchingEnabled = false
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,6 +42,43 @@ class TileCollectionViewController: UICollectionViewController, UICollectionView
         collectionView.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.reuseID)
         collectionView.register(ResultTextCollectionViewCell.self, forCellWithReuseIdentifier: ResultTextCollectionViewCell.reuseID)
         collectionView.register(ResultOptionCollectionViewCell.self, forCellWithReuseIdentifier: ResultOptionCollectionViewCell.reuseID)
+    }
+    
+    func handleTile(_ tile: TileType) {
+        switch tile {
+        case .number, .text:
+            let viewController = HiddenNumberViewController(result: tile.hide(), numberOfTiles: tiles.count)
+            navigationController?.pushViewController(viewController, animated: true)
+            
+        case .hiddenNumber, .hiddenText, .hiddenOption:
+            let viewController = ResultCollectionViewController(result: tile.result(), numberOfTiles: tiles.count)
+            navigationController?.pushViewController(viewController, animated: true)
+            
+        case .numberResult, .textResult, .optionResult:
+            navigationController?.popToRootViewController(animated: true)
+            
+        case .option(let type):
+            guard type != .empty else { return }
+            
+            guard let viewController = type.viewController else {
+                let viewController = HiddenNumberViewController(result: tile.hide(), numberOfTiles: tiles.count)
+                navigationController?.pushViewController(viewController, animated: true)
+                return
+            }
+            
+            // Coordinator patterns would be nice
+            if let colorViewController = viewController as? ColorViewController {
+                colorViewController.delegate = self
+            } else if let infoViewController = viewController as? InfoViewController {
+                infoViewController.delegate = self
+            } else if let settingsViewController = viewController as? SettingsViewController {
+                settingsViewController.delegate = self
+            } else if let coffeeResultViewController = viewController as? CoffeeResultViewController {
+                coffeeResultViewController.delegate = self
+            }
+            
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }
 
@@ -113,41 +154,7 @@ extension TileCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let tile = tiles[index(for: indexPath)]
-        
-        switch tile {
-        case .number, .text:
-            let viewController = HiddenNumberViewController(result: tile.hide(), numberOfTiles: tiles.count)
-            navigationController?.pushViewController(viewController, animated: true)
-            
-        case .hiddenNumber, .hiddenText, .hiddenOption:
-            let viewController = ResultCollectionViewController(result: tile.result(), numberOfTiles: tiles.count)
-            navigationController?.pushViewController(viewController, animated: true)
-            
-        case .numberResult, .textResult, .optionResult:
-            navigationController?.popToRootViewController(animated: true)
-            
-        case .option(let type):
-            guard type != .empty else { return }
-            
-            guard let viewController = type.viewController else {
-                let viewController = HiddenNumberViewController(result: tile.hide(), numberOfTiles: tiles.count)
-                navigationController?.pushViewController(viewController, animated: true)
-                return
-            }
-            
-            // Coordinator patterns would be nice
-            if let colorViewController = viewController as? ColorViewController {
-                colorViewController.delegate = self
-            } else if let infoViewController = viewController as? InfoViewController {
-                infoViewController.delegate = self
-            } else if let settingsViewController = viewController as? SettingsViewController {
-                settingsViewController.delegate = self
-            } else if let coffeeResultViewController = viewController as? CoffeeResultViewController {
-                coffeeResultViewController.delegate = self
-            }
-            
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        handleTile(tile)
     }
 }
 
